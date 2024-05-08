@@ -9,7 +9,7 @@ class Assist extends Model
 {
     use HasFactory;
 
-    //Atributos da tabela Player
+    protected $table = 'Assist';
     protected $fillable = [
         'Minute',
         'GameID',

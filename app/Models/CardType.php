@@ -9,6 +9,7 @@ class CardType extends Model
 {
     use HasFactory;
 
+    protected $table = 'CardType';
     protected $fillable = [
         'Denomination'
     ];
