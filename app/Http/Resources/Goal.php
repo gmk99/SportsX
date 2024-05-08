@@ -1,12 +1,16 @@
 <?php
-class Assist extends JsonResource
+
+namespace App\Http\Resources;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class Goal extends JsonResource
 {
     public function toArray($request)
     {
         return [
-            'assistID' => $this->assistID,
+            'goalID' => $this->goalID,
             'minute' => $this->minute,
-            'assistType' => $this->assistType,
+            'goalType' => $this->goalType,
             'player' => [
                 'playerID' => $this->player->playerID,
                 'fullName' => $this->player->fullName,
