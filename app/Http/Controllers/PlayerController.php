@@ -20,10 +20,9 @@ class PlayerController extends Controller {
 
     public function store(Request $request){
         $player = new Player;
-        $player->TeamID = $request->input('TeamID');
-        $player->Name = $request->input('Name');
-        $player->Position = $request->input('Position');
-        $player->Height = $request->input('Height');
+        $player->FullName = $request->input('FullName');
+        $player->Birthdate = $request->input('Birthdate');
+        $player->AssociationNumber = $request->input('AssociationNumber');
         $player->Weight = $request->input('Weight');
         $player->DOB = $request->input('DOB');
         $player->HighSchool = $request->input('HighSchool');
