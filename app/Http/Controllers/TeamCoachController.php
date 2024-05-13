@@ -20,6 +20,8 @@ class TeamCoachController extends Controller
         $teamCoach = new TeamCoach;
         $teamCoach->TeamID = $request->input('TeamID');
         $teamCoach->CoachID = $request->input('CoachID');
+        $teamCoach->CoachRoleID = $request->input('CoachRoleID');
+
         if( $teamCoach->save() ){
             return new TeamCoachResource( $teamCoach );
         }
@@ -29,6 +31,8 @@ class TeamCoachController extends Controller
         $teamCoach = TeamCoach::findOrFail( $request->input('id') );
         $teamCoach->TeamID = $request->input('TeamID');
         $teamCoach->CoachID = $request->input('CoachID');
+        $teamCoach->CoachRoleID = $request->input('CoachRoleID');
+
         if( $teamCoach->save() ) {
             return new TeamCoachResource($teamCoach);
         }

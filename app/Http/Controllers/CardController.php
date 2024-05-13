@@ -20,13 +20,11 @@ class CardController extends Controller {
 
     public function store(Request $request){
         $card = new Card;
-        $card->CardTypeID = $request->input('CardTypeID');
-        $card->Denomination = $request->input('Denomination');
         $card->CardID = $request->input('CardID');
         $card->Minute = $request->input('Minute');
         $card->CardTypelD = $request->input('CardTypelD');
         $card->GameID = $request->input('GameID');
-        $card->IsAtHome = $request->input('IsAtHome');
+        $card->PlayerID = $request->input('PlayerID');
 
         if( $card->save() ){
             return new CardResource( $card );
@@ -36,13 +34,11 @@ class CardController extends Controller {
     public function update(Request $request)
     {
         $card = Card::findOrFail( $request->id );
-        $card->CardTypeID = $request->input('CardTypeID');
-        $card->Denomination = $request->input('Denomination');
         $card->CardID = $request->input('CardID');
         $card->Minute = $request->input('Minute');
         $card->CardTypelD = $request->input('CardTypelD');
         $card->GameID = $request->input('GameID');
-        $card->IsAtHome = $request->input('IsAtHome');
+        $card->PlayerID = $request->input('PlayerID');
 
         if( $card->save() )
         {

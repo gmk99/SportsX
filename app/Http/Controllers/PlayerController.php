@@ -23,12 +23,9 @@ class PlayerController extends Controller {
         $player->FullName = $request->input('FullName');
         $player->Birthdate = $request->input('Birthdate');
         $player->AssociationNumber = $request->input('AssociationNumber');
-        $player->Weight = $request->input('Weight');
-        $player->DOB = $request->input('DOB');
-        $player->HighSchool = $request->input('HighSchool');
-        $player->College = $request->input('College');
-        $player->PlayerImage = $request->input('PlayerImage');
-        $player->TeamPlayerID = $request->input('TeamPlayerID');
+        $player->ContactID = $request->input('ContactID');
+        $player->PositionID = $request->input('PositionID');
+        $player->PlayerID = $request->input('PlayerID');
 
         if( $player->save() ){
             return new PlayerResource( $player );
@@ -38,16 +35,12 @@ class PlayerController extends Controller {
     public function update(Request $request)
     {
         $player = Player::findOrFail( $request->id );
-        $player->TeamID = $request->input('TeamID');
-        $player->Name = $request->input('Name');
-        $player->Position = $request->input('Position');
-        $player->Height = $request->input('Height');
-        $player->Weight = $request->input('Weight');
-        $player->DOB = $request->input('DOB');
-        $player->HighSchool = $request->input('HighSchool');
-        $player->College = $request->input('College');
-        $player->PlayerImage = $request->input('PlayerImage');
-        $player->TeamPlayerID = $request->input('TeamPlayerID');
+        $player->FullName = $request->input('FullName');
+        $player->Birthdate = $request->input('Birthdate');
+        $player->AssociationNumber = $request->input('AssociationNumber');
+        $player->ContactID = $request->input('ContactID');
+        $player->PositionID = $request->input('PositionID');
+        $player->PlayerID = $request->input('PlayerID');
 
         if( $player->save() )
         {

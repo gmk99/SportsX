@@ -20,17 +20,16 @@ class GameController extends Controller {
 
     public function store(Request $request){
         $game = new Game;
-        $game->SeasonID = $request->input('SeasonID');
-        $game->TeamID = $request->input('TeamID');
-        $game->OpponentTeamID = $request->input('OpponentTeamID');
+        $game->GameID = $request->input('GameID');
+        $game->IsAtHome = $request->input('IsAtHome');
+        $game->OpposingTeam = $request->input('OpposingTeam');
         $game->Date = $request->input('Date');
-        $game->GameType = $request->input('GameType');
-        $game->Venue = $request->input('Venue');
-        $game->Score = $request->input('Score');
-        $game->OpponentScore = $request->input('OpponentScore');
-        $game->WinLoss = $request->input('WinLoss');
-        $game->GameOrder = $request->input('GameOrder');
-        $game->SeasonTeamID = $request->input('SeasonTeamID');
+        $game->StartingTime = $request->input('StartingTime');
+        $game->GoalsScored = $request->input('GoalsScored');
+        $game->GoalsConceded = $request->input('GoalsConceded');
+        $game->EndingTime = $request->input('EndingTime');
+        $game->FieldFieldID = $request->input('FieldFieldID');
+        $game->TeamID = $request->input('TeamID');
 
         if( $game->save() ){
             return new GameResource( $game );
@@ -40,17 +39,16 @@ class GameController extends Controller {
     public function update(Request $request)
     {
         $game = Game::findOrFail( $request->id );
-        $game->SeasonID = $request->input('SeasonID');
-        $game->TeamID = $request->input('TeamID');
-        $game->OpponentTeamID = $request->input('OpponentTeamID');
+        $game->GameID = $request->input('GameID');
+        $game->IsAtHome = $request->input('IsAtHome');
+        $game->OpposingTeam = $request->input('OpposingTeam');
         $game->Date = $request->input('Date');
-        $game->GameType = $request->input('GameType');
-        $game->Venue = $request->input('Venue');
-        $game->Score = $request->input('Score');
-        $game->OpponentScore = $request->input('OpponentScore');
-        $game->WinLoss = $request->input('WinLoss');
-        $game->GameOrder = $request->input('GameOrder');
-        $game->SeasonTeamID = $request->input('SeasonTeamID');
+        $game->StartingTime = $request->input('StartingTime');
+        $game->GoalsScored = $request->input('GoalsScored');
+        $game->GoalsConceded = $request->input('GoalsConceded');
+        $game->EndingTime = $request->input('EndingTime');
+        $game->FieldFieldID = $request->input('FieldFieldID');
+        $game->TeamID = $request->input('TeamID');
 
         if( $game->save() )
         {

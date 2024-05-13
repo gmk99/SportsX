@@ -18,9 +18,12 @@ class PhysiotherapistController extends Controller
 
     public function store(Request $request){
         $physiotherapist = new Physiotherapist;
-        $physiotherapist->PhysiotherapistName = $request->input('PhysiotherapistName');
-        $physiotherapist->PhysiotherapistEmail = $request->input('PhysiotherapistEmail');
-        $physiotherapist->PhysiotherapistPhone = $request->input('PhysiotherapistPhone');
+        $physiotherapist->PhysiotherapistID = $request->input('PhysiotherapistID');
+        $physiotherapist->FullName = $request->input('FullName');
+        $physiotherapist->Birthdate = $request->input('Birthdate');
+        $physiotherapist->LoginEmail = $request->input('LoginEmail');
+        $physiotherapist->ContactID = $request->input('ContactID');
+
         if( $physiotherapist->save() ){
             return new PhysiotherapistResource( $physiotherapist );
         }
@@ -28,9 +31,12 @@ class PhysiotherapistController extends Controller
 
     public function update(Request $request) {
         $physiotherapist = Physiotherapist::findOrFail( $request->input('id') );
-        $physiotherapist->PhysiotherapistName = $request->input('PhysiotherapistName');
-        $physiotherapist->PhysiotherapistEmail = $request->input('PhysiotherapistEmail');
-        $physiotherapist->PhysiotherapistPhone = $request->input('PhysiotherapistPhone');
+        $physiotherapist->PhysiotherapistID = $request->input('PhysiotherapistID');
+        $physiotherapist->FullName = $request->input('FullName');
+        $physiotherapist->Birthdate = $request->input('Birthdate');
+        $physiotherapist->LoginEmail = $request->input('LoginEmail');
+        $physiotherapist->ContactID = $request->input('ContactID');
+
         if( $physiotherapist->save() ) {
             return new PhysiotherapistResource($physiotherapist);
         }
