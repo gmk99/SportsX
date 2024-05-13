@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\CardTypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\GamePlayerController;
@@ -103,12 +104,12 @@ Route::post('injury_player_treatment', [InjuryPlayerTreatmentController::class, 
 Route::put('injury_player_treatment/{id}', [InjuryPlayerTreatmentController::class, 'update']);
 Route::delete('injury_player_treatment/{id}', [InjuryPlayerTreatmentController::class,'destroy']);
 
-// COORDENADOR
-Route::get('coordenadores', [CoordenatorController::class, 'index']);
-Route::get('coordenador/{id}', [CoordenatorController::class, 'show']);
-Route::post('coordenador', [CoordenatorController::class, 'store']);
-Route::put('coordenador/{id}', [CoordenatorController::class, 'update']);
-Route::delete('coordenador/{id}', [CoordenatorController::class, 'destroy']);
+// COORDENATOR
+Route::get('coordenatores', [CoordenatorController::class, 'index']);
+Route::get('coordenator/{id}', [CoordenatorController::class, 'show']);
+Route::post('coordenator', [CoordenatorController::class, 'store']);
+Route::put('coordenator/{id}', [CoordenatorController::class, 'update']);
+Route::delete('coordenator/{id}', [CoordenatorController::class, 'destroy']);
 
 // LEVEL
 Route::get('levels', [LevelController::class, 'index']);

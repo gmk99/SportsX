@@ -2,58 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Card;
-use App\Http\Resources\Card as CardResource;
+use App\Models\CardType;
+use App\Http\Resources\CardType as CardTypeResource;
 use Illuminate\Http\Request;
 
-class CardController extends Controller {
+class CardTypeController extends Controller {
 
     public function index(){
-        $cards = Card::paginate(15);
-        return CardResource::collection($cards);
+        $cardtypes = CardType::paginate(15);
+        return CardTypeResource::collection($cardtypes);
     }
 
     public function show($id){
-        $card = Card::findOrFail( $id );
-        return new CardResource( $card );
+        $cardtype = CardType::findOrFail( $id );
+        return new CardTypeResource( $cardtype );
     }
 
     public function store(Request $request){
-        $card = new Card;
-        $card->CardTypeID = $request->input('CardTypeID');
-        $card->Denomination = $request->input('Denomination');
-        $card->CardID = $request->input('CardID');
-        $card->Minute = $request->input('Minute');
-        $card->GameID = $request->input('GameID');
-        $card->IsAtHome = $request->input('IsAtHome');
-        
-        if( $card->save() ){
-            return new CardResource( $card );
+        $cardtype = new CardType;
+        $cardtype->Denomination = $request->input('Denomination');
+
+        if( $cardtype->save() ){
+            return new CardtypeResource( $cardtype );
         }
     }
 
     public function update(Request $request)
     {
-        $card = Card::findOrFail( $request->id );
-        $card->CardTypeID = $request->input('CardTypeID');
-        $card->Denomination = $request->input('Denomination');
-        $card->CardID = $request->input('CardID');
-        $card->Minute = $request->input('Minute');
-        $card->GameID = $request->input('GameID');
-        $card->IsAtHome = $request->input('IsAtHome');
+        $cardtype = CardType::findOrFail( $request->id );
+        $cardtype->CardTypeID = $request->input('CardTypeID');
+        $cardtype->Denomination = $request->input('Denomination');
 
-        if( $card->save() )
+
+        if( $cardtype->save() )
         {
-            return new CardResource($card);
+            return new CardResource($cardtype);
         }
     }
 
     public function destroy($id)
     {
-        $card = Card::findOrFail( $id );
-        if( $card->delete() )
+        $cardtype = CardType::findOrFail( $id );
+        if( $cardtype->delete() )
         {
-            return new CardResource( $card );
+            return new CardTypeResource( $cardtype );
         }
     }
 }
