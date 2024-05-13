@@ -18,9 +18,11 @@ class InjuryPlayerTreatmentController extends Controller
 
     public function store(Request $request){
         $injuryPlayerTreatment = new InjuryPlayerTreatment;
+        $injuryPlayerTreatment->InjuryPlayerTreatmentID = $request->input('InjuryPlayerTreatmentID');
         $injuryPlayerTreatment->InjuryPlayerID = $request->input('InjuryPlayerID');
-        $injuryPlayerTreatment->PhysiotherapistID = $request->input('PhysiotherapistID');
         $injuryPlayerTreatment->Notes = $request->input('Notes');
+        $injuryPlayerTreatment->PhysiotherapistID = $request->input('PhysiotherapistID');
+
         if( $injuryPlayerTreatment->save() ){
             return new InjuryPlayerTreatmentResource( $injuryPlayerTreatment );
         }
@@ -28,18 +30,26 @@ class InjuryPlayerTreatmentController extends Controller
 
     public function update(Request $request) {
         $injuryPlayerTreatment = InjuryPlayerTreatment::findOrFail( $request->input('id') );
+        $injuryPlayerTreatment->InjuryPlayerTreatmentID = $request->input('InjuryPlayerTreatmentID');
         $injuryPlayerTreatment->InjuryPlayerID = $request->input('InjuryPlayerID');
-        $injuryPlayerTreatment->PhysiotherapistID = $request->input('PhysiotherapistID');
         $injuryPlayerTreatment->Notes = $request->input('Notes');
+        $injuryPlayerTreatment->PhysiotherapistID = $request->input('PhysiotherapistID');
+
         if( $injuryPlayerTreatment->save() ) {
             return new InjuryPlayerTreatmentResource($injuryPlayerTreatment);
         }
     }
 
     public function destroy($id) {
-$injuryPlayerTreatment = InjuryPlayerTreatment::findOrFail( $id );
+        $injuryPlayerTreatment = InjuryPlayerTreatment::findOrFail( $id );
         if( $injuryPlayerTreatment->delete() ) {
             return new InjuryPlayerTreatmentResource( $injuryPlayerTreatment );
         }
+    }
+
+    public function totalLesoes()
+    {
+        $total = InjuryPlayerTreatment::count();
+        return $total;
     }
 }

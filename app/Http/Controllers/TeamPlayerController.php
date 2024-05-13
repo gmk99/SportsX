@@ -20,8 +20,8 @@ class TeamPlayerController extends Controller
         $teamPlayer = new TeamPlayer;
         $teamPlayer->TeamID = $request->input('TeamID');
         $teamPlayer->PlayerID = $request->input('PlayerID');
-        $teamPlayer->TeamPlayerStartDate = $request->input('TeamPlayerStartDate');
-$teamPlayer->TeamPlayerEndDate = $request->input('TeamPlayerEndDate');
+        $teamPlayer->Number = $request->input('Number');
+
         if( $teamPlayer->save() ){
             return new TeamPlayerResource( $teamPlayer );
         }
@@ -31,8 +31,8 @@ $teamPlayer->TeamPlayerEndDate = $request->input('TeamPlayerEndDate');
         $teamPlayer = TeamPlayer::findOrFail( $request->input('id') );
         $teamPlayer->TeamID = $request->input('TeamID');
         $teamPlayer->PlayerID = $request->input('PlayerID');
-        $teamPlayer->TeamPlayerStartDate = $request->input('TeamPlayerStartDate');
-        $teamPlayer->TeamPlayerEndDate = $request->input('TeamPlayerEndDate');
+        $teamPlayer->Number = $request->input('Number');
+
         if( $teamPlayer->save() ) {
             return new TeamPlayerResource($teamPlayer);
         }

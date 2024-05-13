@@ -18,9 +18,12 @@ class CoordenatorController extends Controller
 
     public function store(Request $request){
         $coordenator = new Coordenator;
-        $coordenator->CoordenatorName = $request->input('CoordenatorName');
-        $coordenator->CoordenatorEmail = $request->input('CoordenatorEmail');
-        $coordenator->CoordenatorPhone = $request->input('CoordenatorPhone');
+        $coordenator->CoordenatorID = $request->input('CoordenatorID');
+        $coordenator->FullName = $request->input('FullName');
+        $coordenator->Birthdate = $request->input('Birthdate');
+        $coordenator->LoginEmail = $request->input('LoginEmail');
+        $coordenator->ContactID = $request->input('ContactID');
+
         if( $coordenator->save() ){
             return new CoordenatorResource( $coordenator );
         }
@@ -28,9 +31,12 @@ class CoordenatorController extends Controller
 
     public function update(Request $request) {
         $coordenator = Coordenator::findOrFail( $request->input('id') );
-        $coordenator->CoordenatorName = $request->input('CoordenatorName');
-        $coordenator->CoordenatorEmail = $request->input('CoordenatorEmail');
-        $coordenator->CoordenatorPhone = $request->input('CoordenatorPhone');
+        $coordenator->CoordenatorID = $request->input('CoordenatorID');
+        $coordenator->FullName = $request->input('FullName');
+        $coordenator->Birthdate = $request->input('Birthdate');
+        $coordenator->LoginEmail = $request->input('LoginEmail');
+        $coordenator->ContactID = $request->input('ContactID');
+
         if( $coordenator->save() ) {
             return new CoordenatorResource($coordenator);
         }

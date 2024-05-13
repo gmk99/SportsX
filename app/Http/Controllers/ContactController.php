@@ -18,10 +18,9 @@ class ContactController extends Controller {
     public function store(Request $request){
         $contact = new Contact;
         $contact->ContactID = $request->input('ContactID');
-        $contact->FirstName = $request->input('FirstName');
-        $contact->LastName = $request->input('LastName');
         $contact->PhoneNumber = $request->input('PhoneNumber');
         $contact->Email = $request->input('Email');
+
         if( $contact->save() ){
             return new ContactResource( $contact );
         }
@@ -29,10 +28,10 @@ class ContactController extends Controller {
 
     public function update(Request $request) {
         $contact = Contact::findOrFail( $request->ContactID );
-        $contact->FirstName = $request->input('FirstName');
-        $contact->LastName = $request->input('LastName');
+        $contact->ContactID = $request->input('ContactID');
         $contact->PhoneNumber = $request->input('PhoneNumber');
         $contact->Email = $request->input('Email');
+
         if( $contact->save() ) {
             return new ContactResource($contact);
         }

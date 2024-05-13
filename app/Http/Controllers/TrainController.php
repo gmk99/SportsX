@@ -18,11 +18,13 @@ class TrainController extends Controller
 
     public function store(Request $request){
         $train = new Train;
-        $train->TrainingTypeID = $request->input('TrainingTypeID');
-        $train->TrainingDate = $request->input('TrainingDate');
-        $train->TrainingTime = $request->input('TrainingTime');
-        $train->TrainingDuration = $request->input('TrainingDuration');
-        $train->TrainingLocation = $request->input('TrainingLocation');
+        $train->TrainID = $request->input('TrainID');
+        $train->Day = $request->input('Day');
+        $train->StartingTime = $request->input('StartingTime');
+        $train->EndingTime = $request->input('EndingTime');
+        $train->TeamID = $request->input('TeamID');
+        $train->FieldFielID = $request->input('FieldFielID');
+
         if( $train->save() ){
             return new TrainResource( $train );
         }
@@ -30,11 +32,13 @@ class TrainController extends Controller
 
     public function update(Request $request) {
         $train = Train::findOrFail( $request->input('id') );
-        $train->TrainingTypeID = $request->input('TrainingTypeID');
-        $train->TrainingDate = $request->input('TrainingDate');
-        $train->TrainingTime = $request->input('TrainingTime');
-        $train->TrainingDuration = $request->input('TrainingDuration');
-        $train->TrainingLocation = $request->input('TrainingLocation');
+        $train->TrainID = $request->input('TrainID');
+        $train->Day = $request->input('Day');
+        $train->StartingTime = $request->input('StartingTime');
+        $train->EndingTime = $request->input('EndingTime');
+        $train->TeamID = $request->input('TeamID');
+        $train->FieldFielID = $request->input('FieldFielID');
+
         if( $train->save() ) {
             return new TrainResource($train);
         }

@@ -1,47 +1,56 @@
-<?php namespace App\Http\Controllers;
+<?php
 
-use App\Models\InjuryPlayer as InjuryPlayer;
-use App\Http\Resources\InjuryPlayer as InjuryPlayerResource;
+namespace App\Http\Controllers;
+
+use App\Models\Team;
+use App\Http\Resources\Team as TeamResource;
 use Illuminate\Http\Request;
 
-class InjuryPlayerController extends Controller
+class TeamController extends Controller
 {
+
     public function index(){
-        $injuryPlayers = InjuryPlayer::paginate(15);
-        return InjuryPlayerResource::collection($injuryPlayers);
+        $teams = Team::paginate(15);
+        return TeamResource::collection($teams);
     }
 
     public function show($id){
-        $injuryPlayer = InjuryPlayer::findOrFail( $id );
-        return new InjuryPlayerResource( $injuryPlayer );
+        $team = Team::findOrFail( $id );
+        return new TeamResource( $team );
     }
 
     public function store(Request $request){
-        $injuryPlayer = new InjuryPlayer;
-        $injuryPlayer->PlayerID = $request->input('PlayerID');
-        $injuryPlayer->InjuryID = $request->input('InjuryID');
-        $injuryPlayer->Date = $request->input('Date');
-        $injuryPlayer->Observation = $request->input('Observation');
-        if( $injuryPlayer->save() ){
-            return new InjuryPlayerResource( $injuryPlayer );
+        $team = new Team;
+        $team->TeamID = $request->input('TeamID');
+        $team->Name = $request->input('Name');
+        $team->LevelID = $request->input('LevelID');
+        $team->TeamDirectorID = $request->input('TeamDirectorID');
+
+        if( $team->save() ){
+            return new TeamResource( $team );
         }
     }
 
-    public function update(Request $request) {
-        $injuryPlayer = InjuryPlayer::findOrFail( $request->input('id') );
-        $injuryPlayer->PlayerID = $request->input('PlayerID');
-        $injuryPlayer->InjuryID = $request->input('InjuryID');
-        $injuryPlayer->Date = $request->input('Date');
-        $injuryPlayer->Observation = $request->input('Observation');
-        if( $injuryPlayer->save() ) {
-            return new InjuryPlayerResource($injuryPlayer);
+    public function update(Request $request)
+    {
+        $team = Team::findOrFail( $request->id );
+        $team->TeamID = $request->input('TeamID');
+        $team->Name = $request->input('Name');
+        $team->LevelID = $request->input('LevelID');
+        $team->TeamDirectorID = $request->input('TeamDirectorID');
+
+        if( $team->save() )
+        {
+            return new TeamResource($team);
         }
     }
 
-    public function destroy($id) {
-        $injuryPlayer = InjuryPlayer::findOrFail( $id );
-        if( $injuryPlayer->delete() ) {
-            return new InjuryPlayerResource( $injuryPlayer );
+    public function destroy($id)
+    {
+        $team = Team::findOrFail( $id );
+        if( $team->delete() )
+        {
+            return new TeamResource( $team );
         }
     }
 }

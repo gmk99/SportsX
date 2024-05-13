@@ -9,7 +9,7 @@ class InjuryPlayerTreatment extends Model
 {
     use HasFactory;
 
-    protected $table = 'InjuryPlauerTreatment';
+    protected $table = 'InjuryPlayerTreatment';
     protected $fillable = [
         'Notes',
         'InjuryPlayerID',

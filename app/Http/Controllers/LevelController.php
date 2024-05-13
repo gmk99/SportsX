@@ -18,7 +18,10 @@ class LevelController extends Controller {
     public function store(Request $request){
         $level = new Level;
         $level->LevelID = $request->input('LevelID');
-        $level->LevelName = $request->input('LevelName');
+        $level->Designation = $request->input('Designation');
+        $level->MaximumAge = $request->input('MaximumAge');
+        $level->CoordenatorID = $request->input('CoordenatorID');
+
         if( $level->save() ){
             return new LevelResource( $level );
         }
@@ -26,7 +29,11 @@ class LevelController extends Controller {
 
     public function update(Request $request) {
         $level = Level::findOrFail( $request->LevelID );
-        $level->LevelName = $request->input('LevelName');
+        $level->LevelID = $request->input('LevelID');
+        $level->Designation = $request->input('Designation');
+        $level->MaximumAge = $request->input('MaximumAge');
+        $level->CoordenatorID = $request->input('CoordenatorID');
+
         if( $level->save() ) {
             return new LevelResource($level);
         }
@@ -37,5 +44,11 @@ class LevelController extends Controller {
         if( $level->delete() ) {
             return new LevelResource( $level );
         }
+    }
+
+    public function showLevel()
+    {
+        $levels = Level::all();
+        return view('dashboard', compact('levels'));
     }
 }

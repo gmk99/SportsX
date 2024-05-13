@@ -21,6 +21,10 @@ class CoachController extends Controller {
         $coach->FullName = $request->input('FullName');
         $coach->Birthdate = $request->input('Birthdate');
         $coach->Degree = $request->input('Degree');
+        $coach->AssociationNumber = $request->input('AssociationNumber');
+        $coach->ContactID = $request->input('ContactID');
+
+
         if( $coach->save() ){
             return new CoachResource( $coach );
         }
@@ -28,9 +32,13 @@ class CoachController extends Controller {
 
     public function update(Request $request) {
         $coach = Coach::findOrFail( $request->CoachID );
+        $coach->CoachID = $request->input('CoachID');
         $coach->FullName = $request->input('FullName');
         $coach->Birthdate = $request->input('Birthdate');
         $coach->Degree = $request->input('Degree');
+        $coach->AssociationNumber = $request->input('AssociationNumber');
+        $coach->ContactID = $request->input('ContactID');
+
         if( $coach->save() ) {
             return new CoachResource($coach);
         }

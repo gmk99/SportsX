@@ -18,9 +18,12 @@ class TeamDirectorController extends Controller
 
     public function store(Request $request){
         $teamDirector = new TeamDirector;
-        $teamDirector->TeamDirectorName = $request->input('TeamDirectorName');
-        $teamDirector->TeamDirectorEmail = $request->input('TeamDirectorEmail');
-        $teamDirector->TeamDirectorPhone = $request->input('TeamDirectorPhone');
+        $teamDirector->TeamDirectorID = $request->input('TeamDirectorID');
+        $teamDirector->FullName = $request->input('FullName');
+        $teamDirector->Birthdate = $request->input('Birthdate');
+        $teamDirector->LoginEmail = $request->input('LoginEmail');
+        $teamDirector->ContactID = $request->input('ContactID');
+
         if( $teamDirector->save() ){
             return new TeamDirectorResource( $teamDirector );
         }
@@ -28,9 +31,12 @@ class TeamDirectorController extends Controller
 
     public function update(Request $request) {
         $teamDirector = TeamDirector::findOrFail( $request->input('id') );
-        $teamDirector->TeamDirectorName = $request->input('TeamDirectorName');
-        $teamDirector->TeamDirectorEmail = $request->input('TeamDirectorEmail');
-        $teamDirector->TeamDirectorPhone = $request->input('TeamDirectorPhone');
+        $teamDirector->TeamDirectorID = $request->input('TeamDirectorID');
+        $teamDirector->FullName = $request->input('FullName');
+        $teamDirector->Birthdate = $request->input('Birthdate');
+        $teamDirector->LoginEmail = $request->input('LoginEmail');
+        $teamDirector->ContactID = $request->input('ContactID');
+
         if( $teamDirector->save() ) {
             return new TeamDirectorResource($teamDirector);
         }
