@@ -9,11 +9,13 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $table = 'Team';
     protected $fillable = [
         'Name',
         'LevelID',
         'TeamDirectorID'
     ];
+    public $timestamps = false;
     //Chave estrangeira LevelID
     private function level()
     {

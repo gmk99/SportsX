@@ -9,12 +9,14 @@ class TeamDiretor extends Model
 {
     use HasFactory;
 
+    protected $table = 'TeamDiretor';
     protected $fillable = [
         'FullName',
         'Birthname',
         'LoginEmail',
         'ContactID',
     ];
+    public $timestamps = false;
     //Chave estrangeira LoginEmail
     private function login()
     {

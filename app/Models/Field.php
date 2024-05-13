@@ -9,9 +9,10 @@ class Field extends Model
 {
     use HasFactory;
 
-    //Atributos da tabela Player
+    protected $table = 'Field';
     protected $fillable = [
         'FieldType',
         'Denomination',
     ];
+    public $timestamps = false;
 }

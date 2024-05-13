@@ -9,8 +9,10 @@ class Login extends Model
 {
     use HasFactory;
 
+    protected $table = 'Login';
     protected $fillable = [
         'Email',
         'Password',
     ];
+    public $timestamps = false;
 }

@@ -9,9 +9,11 @@ class Injury extends Model
 {
     use HasFactory;
 
+    protected $table = 'Injury';
     protected $fillable = [
         'Denomination',
         'Location',
         'EstimatedTimeToRecover'
     ];
+    public $timestamps = false;
 }

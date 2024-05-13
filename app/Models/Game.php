@@ -9,7 +9,7 @@ class Game extends Model
 {
     use HasFactory;
 
-    //Atributos da tabela Player
+    protected $table = 'Game';
     protected $fillable = [
         'isAtHome',
         'OpposingTeam',
@@ -21,7 +21,7 @@ class Game extends Model
         'FieldID',
         'TeamID'
     ];
-
+    public $timestamps = false;
     //Chave estrangeira FieldID
     private function field()
     {

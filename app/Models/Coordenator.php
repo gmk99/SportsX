@@ -9,13 +9,14 @@ class Coordenator extends Model
 {
     use HasFactory;
 
+    protected $table = 'Coordenator';
     protected $fillable = [
         'Fullname',
         'Birthname',
         'LoginEmail',
         'ContactID',
     ];
-
+    public $timestamps = false;
     //Chave estrangeira LoginEmail
     private function login()
     {

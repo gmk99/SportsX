@@ -16,7 +16,7 @@ class Card extends Model
         'GameID',
         'PlayerID',
     ];
-
+    public $timestamps = false;
     //Chave estrangeira CardTypeID
     private function cardType()
     {

@@ -9,11 +9,10 @@ class Position extends Model
 {
     use HasFactory;
 
-    //Atributos da tabela Position
+    protected $table = 'Position';
     protected $fillable = [
         'PitchPosition',
         'Designation',
-        'created_at',
-        'updated_at'
     ];
+    public $timestamps = false;
 }

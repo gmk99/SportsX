@@ -9,12 +9,14 @@ class Physiotherapist extends Model
 {
     use HasFactory;
 
+    protected $table = '~Physiotherapist';
     protected $fillable = [
         'FullName',
         'BirthDate',
         'LoginEmail',
         'ContactID'
     ];
+    public $timestamps = false;
     //Chave estrangeira LoginEmail
     private function login()
     {

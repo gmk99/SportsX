@@ -9,8 +9,10 @@ class Contact extends Model
 {
     use HasFactory;
 
+    protected $table = 'Contact';
     protected $fillable = [
         'PhoneNumber',
         'Email'
     ];
+    public $timestamps = false;
 }

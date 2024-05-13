@@ -13,4 +13,5 @@ class CardType extends Model
     protected $fillable = [
         'Denomination'
     ];
+    public $timestamps = false;
 }

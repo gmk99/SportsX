@@ -9,6 +9,7 @@ class Coach extends Model
 {
     use HasFactory;
 
+    protected $table = 'Coach';
     protected $fillable = [
         'FullName',
         'BirthName',
@@ -16,7 +17,7 @@ class Coach extends Model
         'AssociationNumber',
         'ContactID'
     ];
-
+    public $timestamps = false;
     //Chave estrangeira ContactID
     private function contact()
     {
