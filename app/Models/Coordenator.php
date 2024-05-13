@@ -13,7 +13,7 @@ class Coordenator extends Model
     protected $fillable = [
         'Fullname',
         'Birthname',
-        'LoginEmail',
+        'UsersID',
     ];
     public $timestamps = false;
     //Chave estrangeira LoginEmail
