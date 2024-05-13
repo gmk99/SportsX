@@ -23,7 +23,7 @@ class PlayerController extends Controller {
         $player->FullName = $request->input('FullName');
         $player->Birthdate = $request->input('Birthdate');
         $player->AssociationNumber = $request->input('AssociationNumber');
-        $player->ContactID = $request->input('ContactID');
+        $player->PhoneNumber = $request->input('PhoneNumber');
         $player->PositionID = $request->input('PositionID');
         $player->PlayerID = $request->input('PlayerID');
 
@@ -38,7 +38,7 @@ class PlayerController extends Controller {
         $player->FullName = $request->input('FullName');
         $player->Birthdate = $request->input('Birthdate');
         $player->AssociationNumber = $request->input('AssociationNumber');
-        $player->ContactID = $request->input('ContactID');
+        $player->PhoneNumber = $request->input('PhoneNumber');
         $player->PositionID = $request->input('PositionID');
         $player->PlayerID = $request->input('PlayerID');
 

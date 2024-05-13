@@ -22,7 +22,6 @@ class CoordenatorController extends Controller
         $coordenator->FullName = $request->input('FullName');
         $coordenator->Birthdate = $request->input('Birthdate');
         $coordenator->LoginEmail = $request->input('LoginEmail');
-        $coordenator->ContactID = $request->input('ContactID');
 
         if( $coordenator->save() ){
             return new CoordenatorResource( $coordenator );
@@ -35,7 +34,6 @@ class CoordenatorController extends Controller
         $coordenator->FullName = $request->input('FullName');
         $coordenator->Birthdate = $request->input('Birthdate');
         $coordenator->LoginEmail = $request->input('LoginEmail');
-        $coordenator->ContactID = $request->input('ContactID');
 
         if( $coordenator->save() ) {
             return new CoordenatorResource($coordenator);

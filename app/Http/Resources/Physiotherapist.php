@@ -13,7 +13,6 @@ class Physiotherapist extends JsonResource
             'full_name' => $this->full_name,
             'location' => $this->location,
             'birthdate' => $this->birthdate,
-            'estimated_time_to_recover' => $this->estimated_time_to_recover,
         ];
     }
 }

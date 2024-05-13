@@ -14,15 +14,10 @@ class Player extends Model
          'Fullname',
          'Birthdate',
          'AssociationNumber',
-         'ContactID',
+         'PhoneNumber',
          'PositionID',
      ];
     public $timestamps = false;
-     //Chave estrangeira ContactID
-     public function contact()
-     {
-        return $this->belongsTo(Contact::class,'ContactID');
-     }
 
     //Chave estrangeira PositionID
     public function position()

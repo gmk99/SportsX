@@ -22,7 +22,6 @@ class CoachController extends Controller {
         $coach->Birthdate = $request->input('Birthdate');
         $coach->Degree = $request->input('Degree');
         $coach->AssociationNumber = $request->input('AssociationNumber');
-        $coach->ContactID = $request->input('ContactID');
 
 
         if( $coach->save() ){
@@ -37,7 +36,6 @@ class CoachController extends Controller {
         $coach->Birthdate = $request->input('Birthdate');
         $coach->Degree = $request->input('Degree');
         $coach->AssociationNumber = $request->input('AssociationNumber');
-        $coach->ContactID = $request->input('ContactID');
 
         if( $coach->save() ) {
             return new CoachResource($coach);

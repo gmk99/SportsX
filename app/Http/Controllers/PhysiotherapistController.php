@@ -22,7 +22,6 @@ class PhysiotherapistController extends Controller
         $physiotherapist->FullName = $request->input('FullName');
         $physiotherapist->Birthdate = $request->input('Birthdate');
         $physiotherapist->LoginEmail = $request->input('LoginEmail');
-        $physiotherapist->ContactID = $request->input('ContactID');
 
         if( $physiotherapist->save() ){
             return new PhysiotherapistResource( $physiotherapist );
@@ -35,7 +34,6 @@ class PhysiotherapistController extends Controller
         $physiotherapist->FullName = $request->input('FullName');
         $physiotherapist->Birthdate = $request->input('Birthdate');
         $physiotherapist->LoginEmail = $request->input('LoginEmail');
-        $physiotherapist->ContactID = $request->input('ContactID');
 
         if( $physiotherapist->save() ) {
             return new PhysiotherapistResource($physiotherapist);

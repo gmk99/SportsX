@@ -13,7 +13,6 @@ class Coordenator extends JsonResource
             'full_name' => $this->full_name,
             'birthdate' => $this->birthdate,
             'login_email' => $this->login_email,
-            'contact_id' => $this->contact_id,
         ];
     }
 }

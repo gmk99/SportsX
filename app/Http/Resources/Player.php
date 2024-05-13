@@ -11,7 +11,7 @@ class Player extends JsonResource
             'fullName' => $this->fullName,
             'birthdate' => $this->birthdate,
             'loginEmail' => $this->loginEmail,
-            'contactID' => $this->contactID,
+            'PhoneNumber' => $this->PhoneNumber,
             'position' => $this->position,
             'associationNumber' => $this->associationNumber,
         ];

@@ -14,7 +14,6 @@ class TeamDiretor extends Model
         'FullName',
         'Birthname',
         'LoginEmail',
-        'ContactID',
     ];
     public $timestamps = false;
     //Chave estrangeira LoginEmail
@@ -22,9 +21,5 @@ class TeamDiretor extends Model
     {
         return $this->belongsTo(Login::class,'LoginEmail');
     }
-    //Chave estrangeira ContactID
-    private function contact()
-    {
-        return $this->belongsTo(Contact::class,'ContactID');
-    }
+
 }

@@ -15,12 +15,11 @@ class Coach extends Model
         'BirthName',
         'Degree',
         'AssociationNumber',
-        'ContactID'
     ];
     public $timestamps = false;
     //Chave estrangeira ContactID
-    private function contact()
-    {
-        return $this->belongsTo(Contact::class,'ContactID');
-    }
+    //private function contact()
+    //{
+    //    return $this->belongsTo(Contact::class,'ContactID');
+    //}
 }

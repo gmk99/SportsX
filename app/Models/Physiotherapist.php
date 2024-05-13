@@ -14,7 +14,6 @@ class Physiotherapist extends Model
         'FullName',
         'BirthDate',
         'LoginEmail',
-        'ContactID'
     ];
     public $timestamps = false;
     //Chave estrangeira LoginEmail
@@ -22,9 +21,5 @@ class Physiotherapist extends Model
     {
         return $this->belongsTo(Login::class,'LoginEmail');
     }
-    //Chave estrangeira ContactID
-    private function Contact()
-    {
-        return $this->belongsTo(Contact::class,'ContactID');
-    }
+
 }

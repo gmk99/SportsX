@@ -22,7 +22,6 @@ class TeamDirectorController extends Controller
         $teamDirector->FullName = $request->input('FullName');
         $teamDirector->Birthdate = $request->input('Birthdate');
         $teamDirector->LoginEmail = $request->input('LoginEmail');
-        $teamDirector->ContactID = $request->input('ContactID');
 
         if( $teamDirector->save() ){
             return new TeamDirectorResource( $teamDirector );
@@ -35,7 +34,6 @@ class TeamDirectorController extends Controller
         $teamDirector->FullName = $request->input('FullName');
         $teamDirector->Birthdate = $request->input('Birthdate');
         $teamDirector->LoginEmail = $request->input('LoginEmail');
-        $teamDirector->ContactID = $request->input('ContactID');
 
         if( $teamDirector->save() ) {
             return new TeamDirectorResource($teamDirector);

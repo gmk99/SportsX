@@ -21,8 +21,6 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamCoachController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\PositionController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CoachController;
 use App\Http\Controllers\CoachRoleController;
 use App\Http\Controllers\TrainController;
@@ -167,20 +165,6 @@ Route::post('position', [PositionController::class, 'store']);
 Route::put('position/{id}', [PositionController::class, 'update']);
 Route::delete('position/{id}', [PositionController::class, 'destroy']);
 
-// CONTACT
-Route::get('contacts', [ContactController::class, 'index']);
-Route::get('contact/{id}', [ContactController::class, 'show']);
-Route::post('contact', [ContactController::class, 'store']);
-Route::put('contact/{id}', [ContactController::class, 'update']);
-Route::delete('contact/{id}', [ContactController::class, 'destroy']);
-
-// LOGIN
-Route::get('logins', [LoginController::class, 'index']);
-Route::get('login/{id}', [LoginController::class, 'show']);
-Route::post('login', [LoginController::class, 'store']);
-Route::put('login/{id}', [LoginController::class, 'update']);
-Route::delete('login/{id}', [LoginController::class, 'destroy']);
-
 // COACH
 Route::get('coaches', [CoachController::class, 'index']);
 Route::get('coach/{id}', [CoachController::class, 'show']);
@@ -208,6 +192,7 @@ Route::get('team_director/{id}', [TeamDirectorController::class, 'show']);
 Route::post('team_director', [TeamDirectorController::class, 'store']);
 Route::put('team_director/{id}', [TeamDirectorController::class, 'update']);
 Route::delete('team_director/{id}', [TeamDirectorController::class, 'destroy']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
