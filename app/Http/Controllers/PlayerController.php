@@ -56,4 +56,10 @@ class PlayerController extends Controller {
             return new PlayerResource( $player );
         }
     }
+
+    public function total()
+    {
+        $total = Player::count();
+        return $total;
+    }
 }

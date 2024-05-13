@@ -46,4 +46,10 @@ class InjuryPlayerTreatmentController extends Controller
             return new InjuryPlayerTreatmentResource( $injuryPlayerTreatment );
         }
     }
+
+    public function totalLesoes()
+    {
+        $total = InjuryPlayerTreatment::count();
+        return $total;
+    }
 }

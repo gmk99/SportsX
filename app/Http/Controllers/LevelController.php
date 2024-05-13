@@ -45,4 +45,10 @@ class LevelController extends Controller {
             return new LevelResource( $level );
         }
     }
+
+    public function showLevel()
+    {
+        $levels = Level::all();
+        return view('dashboard', compact('levels'));
+    }
 }
