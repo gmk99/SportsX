@@ -9,7 +9,7 @@ class Physiotherapist extends Model
 {
     use HasFactory;
 
-    protected $table = '~Physiotherapist';
+    protected $table = 'Physiotherapist';
     protected $fillable = [
         'FullName',
         'BirthDate',

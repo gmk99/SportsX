@@ -12,7 +12,7 @@ class Player extends JsonResource
             'birthdate' => $this->birthdate,
             'loginEmail' => $this->loginEmail,
             'PhoneNumber' => $this->PhoneNumber,
-            'position' => $this->position,
+            'positionid' => $this->positionid,
             'associationNumber' => $this->associationNumber,
         ];
     }
