@@ -15,5 +15,6 @@ class Card extends JsonResource
             'CardType' => $this->CardType,
             'GameID' => $this -> GameID,
             'PlayerID' => $this->PlayerID,
+            ];
     }
 }
