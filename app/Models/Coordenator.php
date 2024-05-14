@@ -16,11 +16,9 @@ class Coordenator extends Model
         'UsersID',
     ];
     public $timestamps = false;
-    //Chave estrangeira LoginEmail
-    private function login()
+    //Chave estrangeira UsersID
+    private function user()
     {
-        return $this->belongsTo(Login::class,'LoginEmail');
+        return $this->belongsTo(User::class,'UserID');
     }
-
-
 }

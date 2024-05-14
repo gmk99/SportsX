@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use TCG\Voyager\Models\Role;
 
 class User extends Authenticatable
 {
@@ -18,17 +19,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'role_id',
         'username',
-        'firstname',
-        'lastname',
         'email',
-        'password',
-        'address',
-        'city',
-        'country',
-        'postal',
-        'about'
+        'password'
     ];
+
+    //Chave estrangeira RoleID
+    private function role()
+    {
+        return $this->belongsTo(Role::class,'RoleID');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -49,12 +50,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     /**
      * Always encrypt the password when it is updated.
      *
      * @param $value
     * @return string
     */
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);

@@ -12,14 +12,13 @@ class Physiotherapist extends Model
     protected $table = 'Physiotherapist';
     protected $fillable = [
         'FullName',
-        'BirthDate',
-        'LoginEmail',
+        'Birthdate',
+        'UserID',
     ];
     public $timestamps = false;
-    //Chave estrangeira LoginEmail
-    private function login()
+    //Chave estrangeira UserID
+    private function user()
     {
-        return $this->belongsTo(Login::class,'LoginEmail');
+        return $this->belongsTo(User::class,'UserID');
     }
-
 }
