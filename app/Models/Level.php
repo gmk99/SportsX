@@ -12,7 +12,7 @@ class Level extends Model
     protected $table = 'Level';
     protected $fillable = [
         'Degination',
-        'Maximumage',
+        'MaximumAge',
         'CoordenatorID'
     ];
     public $timestamps = false;

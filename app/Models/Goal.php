@@ -14,8 +14,6 @@ class Goal extends Model
         'Minute',
         'GameID',
         'PlayerID',
-        'created_at',
-        'updated_at'
     ];
     public $timestamps = false;
     //Chave estrangeira GameID
