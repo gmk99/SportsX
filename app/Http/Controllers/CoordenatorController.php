@@ -28,7 +28,6 @@ class CoordenatorController extends Controller
     }
 
     public function update(Request $request) {
-        $coordenator = Coordenator::findOrFail( $request->input('id') );
         $coordenator->CoordenatorID = $request->input('CoordenatorID');
         $coordenator->FullName = $request->input('FullName');
         $coordenator->Birthdate = $request->input('Birthdate');

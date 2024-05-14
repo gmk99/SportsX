@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Resources\User as UserResource;
+use App\Http\Resources\Users as UserResource;
 use Illuminate\Http\Request;
 
 class UserController extends Controller {
@@ -20,12 +20,9 @@ class UserController extends Controller {
 
     public function store(Request $request){
         $user = new User;
-        $user->Name = $request->input('Name');
-        $user->Email = $request->input('Email');
-        $user->Password = bcrypt($request->input('Password'));
-        $user->PhoneNumber = $request->input('PhoneNumber');
-        $user->Address = $request->input('Address');
-        $user->Role = $request->input('Role');
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
 
         if( $user->save() ){
             return new UserResource( $user );
@@ -35,12 +32,9 @@ class UserController extends Controller {
     public function update(Request $request)
     {
         $user = User::findOrFail( $request->id );
-        $user->Name = $request->input('Name');
-        $user->Email = $request->input('Email');
-        $user->Password = bcrypt($request->input('Password'));
-        $user->PhoneNumber = $request->input('PhoneNumber');
-        $user->Address = $request->input('Address');
-        $user->Role = $request->input('Role');
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
 
         if( $user->save() )
         {

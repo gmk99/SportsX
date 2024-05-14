@@ -25,7 +25,6 @@ class PlayerController extends Controller {
         $player->AssociationNumber = $request->input('AssociationNumber');
         $player->PhoneNumber = $request->input('PhoneNumber');
         $player->PositionID = $request->input('PositionID');
-        $player->PlayerID = $request->input('PlayerID');
 
         if( $player->save() ){
             return new PlayerResource( $player );
@@ -40,7 +39,6 @@ class PlayerController extends Controller {
         $player->AssociationNumber = $request->input('AssociationNumber');
         $player->PhoneNumber = $request->input('PhoneNumber');
         $player->PositionID = $request->input('PositionID');
-        $player->PlayerID = $request->input('PlayerID');
 
         if( $player->save() )
         {

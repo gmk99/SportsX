@@ -17,7 +17,6 @@ class InjuryController extends Controller {
 
     public function store(Request $request){
         $injury = new Injury;
-        $injury->InjuryID = $request->input('InjuryID');
         $injury->Denomination = $request->input('Denomination');
         $injury->Location = $request->input('Location');
         $injury->EstimatedTimeToRecover = $request->input('EstimatedTimeToRecover');
@@ -29,7 +28,6 @@ class InjuryController extends Controller {
 
     public function update(Request $request) {
         $injury = Injury::findOrFail( $request->InjuryID );
-        $injury->InjuryID = $request->input('InjuryID');
         $injury->Denomination = $request->input('Denomination');
         $injury->Location = $request->input('Location');
         $injury->EstimatedTimeToRecover = $request->input('EstimatedTimeToRecover');
