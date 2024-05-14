@@ -17,7 +17,6 @@ class CoachRoleController extends Controller {
 
     public function store(Request $request){
         $coachRole = new CoachRole;
-        $coachRole->CoachRoleID = $request->input('CoachRoleID');
         $coachRole->Denomination = $request->input('Denomination');
 
         if( $coachRole->save() ){
