@@ -9,12 +9,15 @@ class Coach extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'CoachId' => $this->CoachId,
+            'FullName' => $this->FullName,
+            'Birthdate' => $this->Date,
+            'Degree' => $this->Degree,
+            'AssociationNumber' => $this->AssociationNumber,
+            'UsersID' => $this->UsersID,
+
+
+
         ];
     }
 }

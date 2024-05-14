@@ -10,21 +10,10 @@ class Card extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'cardID' => $this->cardID,
-            'minute' => $this->minute,
-            'cardType' => new CardType($this->cardType),
-            'game' => [
-                'gameID' => $this->game->gameID,
-                'isAtHome' => $this->game->isAtHome,
-                'opposingTeam' => $this->game->opposingTeam,
-                'date' => $this->game->date,
-                'startingTime' => $this->game->startingTime,
-                'endingTime' => $this->game->endingTime,
-                'field' => $this->game->field,
-                'team' => $this->game->team,
-            ],
-            'goalsScored' => $this->goalsScored,
-            'goalsConceded' => $this->goalsConceded,
-        ];
+            'CardID' => $this->CardID,
+            'Minute' => $this->Minute,
+            'CardType' => $this->CardType,
+            'GameID' => $this -> GameID,
+            'PlayerID' => $this->PlayerID,
     }
 }
