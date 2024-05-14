@@ -12,8 +12,6 @@ class Goal extends JsonResource
             'Minute' => $this->Minute,
             'GameID' => $this->GameID,
             'PlayerID' => $this->PlayerID,
-
-
-
+        ];
     }
 }
