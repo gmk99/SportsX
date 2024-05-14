@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Player;
 use App\Models\Goal;
 use App\Http\Resources\Goal as GoalResource;
 use Illuminate\Http\Request;
@@ -51,5 +52,27 @@ class GoalController extends Controller {
         {
             return new GoalResource( $goal );
         }
+    }
+
+    public function bestScorer()
+    {
+        $players = Player::all();
+
+        $bestScorerName = null;
+        $maxGoals = 0;
+
+        foreach ($players as $player) {
+            $goals = Goal::where('PlayerID', $player->id)->count();
+
+            if ($goals > $maxGoals) {
+                $bestScorerName = $player->Fullname;
+                $maxGoals = $goals;
+            }
+        }
+
+        return [
+            'Fullname' => $bestScorerName,
+            'total_goals' => $maxGoals,
+        ];
     }
 }

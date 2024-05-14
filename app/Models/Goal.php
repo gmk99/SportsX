@@ -29,4 +29,9 @@ class Goal extends Model
     {
         return $this->belongsTo(Player::class,'PlayerID');
     }
+
+    private function totalGoals()
+    {
+        return $this->hasMany('App\Models\Goal', 'PlayerID')->count();
+    }
 }
