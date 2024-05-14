@@ -12,9 +12,8 @@ class GamePlayer extends JsonResource
             'GameID' => $this->GameID,
             'PlayerID' => $this->PlayerID,
             'IsStarter' => $this->IsStarter,
-            'Minutes' => $this->Minutes,
-
-
+            'Minutes' => $this->Minutes
+            ];
 
     }
 }
