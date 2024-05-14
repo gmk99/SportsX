@@ -20,7 +20,6 @@ class PositionController extends Controller {
 
     public function store(Request $request){
         $position = new Position;
-        $position->PositionD = $request->input('PositionD');
         $position->PitchPosition = $request->input('PitchPosition');
         $position->Designation = $request->input('Designation');
 
@@ -32,7 +31,6 @@ class PositionController extends Controller {
     public function update(Request $request)
     {
         $position = Position::findOrFail( $request->id );
-        $position->PositionD = $request->input('PositionD');
         $position->PitchPosition = $request->input('PitchPosition');
         $position->Designation = $request->input('Designation');
 

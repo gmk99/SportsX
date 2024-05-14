@@ -12,14 +12,17 @@ class Coach extends Model
     protected $table = 'Coach';
     protected $fillable = [
         'FullName',
-        'BirthName',
+        'Birthdate',
         'Degree',
         'AssociationNumber',
+        'UsersID',
     ];
     public $timestamps = false;
-    //Chave estrangeira ContactID
-    //private function contact()
-    //{
-    //    return $this->belongsTo(Contact::class,'ContactID');
-    //}
+
+    //Chave estrangeira UsersID
+    private function users()
+    {
+        return $this->belongsTo(User::class,'UsersID');
+    }
+
 }

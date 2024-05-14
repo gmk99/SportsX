@@ -18,7 +18,6 @@ class InjuryPlayerTreatmentController extends Controller
 
     public function store(Request $request){
         $injuryPlayerTreatment = new InjuryPlayerTreatment;
-        $injuryPlayerTreatment->InjuryPlayerTreatmentID = $request->input('InjuryPlayerTreatmentID');
         $injuryPlayerTreatment->InjuryPlayerID = $request->input('InjuryPlayerID');
         $injuryPlayerTreatment->Notes = $request->input('Notes');
         $injuryPlayerTreatment->PhysiotherapistID = $request->input('PhysiotherapistID');
@@ -30,7 +29,6 @@ class InjuryPlayerTreatmentController extends Controller
 
     public function update(Request $request) {
         $injuryPlayerTreatment = InjuryPlayerTreatment::findOrFail( $request->input('id') );
-        $injuryPlayerTreatment->InjuryPlayerTreatmentID = $request->input('InjuryPlayerTreatmentID');
         $injuryPlayerTreatment->InjuryPlayerID = $request->input('InjuryPlayerID');
         $injuryPlayerTreatment->Notes = $request->input('Notes');
         $injuryPlayerTreatment->PhysiotherapistID = $request->input('PhysiotherapistID');

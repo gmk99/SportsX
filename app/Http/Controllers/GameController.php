@@ -20,7 +20,6 @@ class GameController extends Controller {
 
     public function store(Request $request){
         $game = new Game;
-        $game->GameID = $request->input('GameID');
         $game->IsAtHome = $request->input('IsAtHome');
         $game->OpposingTeam = $request->input('OpposingTeam');
         $game->Date = $request->input('Date');
@@ -39,7 +38,6 @@ class GameController extends Controller {
     public function update(Request $request)
     {
         $game = Game::findOrFail( $request->id );
-        $game->GameID = $request->input('GameID');
         $game->IsAtHome = $request->input('IsAtHome');
         $game->OpposingTeam = $request->input('OpposingTeam');
         $game->Date = $request->input('Date');

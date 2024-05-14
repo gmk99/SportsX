@@ -17,7 +17,6 @@ class CoachController extends Controller {
 
     public function store(Request $request){
         $coach = new Coach;
-        $coach->CoachID = $request->input('CoachID');
         $coach->FullName = $request->input('FullName');
         $coach->Birthdate = $request->input('Birthdate');
         $coach->Degree = $request->input('Degree');
@@ -31,7 +30,6 @@ class CoachController extends Controller {
 
     public function update(Request $request) {
         $coach = Coach::findOrFail( $request->CoachID );
-        $coach->CoachID = $request->input('CoachID');
         $coach->FullName = $request->input('FullName');
         $coach->Birthdate = $request->input('Birthdate');
         $coach->Degree = $request->input('Degree');

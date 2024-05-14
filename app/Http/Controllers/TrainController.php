@@ -18,7 +18,6 @@ class TrainController extends Controller
 
     public function store(Request $request){
         $train = new Train;
-        $train->TrainID = $request->input('TrainID');
         $train->Day = $request->input('Day');
         $train->StartingTime = $request->input('StartingTime');
         $train->EndingTime = $request->input('EndingTime');
@@ -32,7 +31,6 @@ class TrainController extends Controller
 
     public function update(Request $request) {
         $train = Train::findOrFail( $request->input('id') );
-        $train->TrainID = $request->input('TrainID');
         $train->Day = $request->input('Day');
         $train->StartingTime = $request->input('StartingTime');
         $train->EndingTime = $request->input('EndingTime');

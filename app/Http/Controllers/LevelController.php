@@ -17,7 +17,6 @@ class LevelController extends Controller {
 
     public function store(Request $request){
         $level = new Level;
-        $level->LevelID = $request->input('LevelID');
         $level->Designation = $request->input('Designation');
         $level->MaximumAge = $request->input('MaximumAge');
         $level->CoordenatorID = $request->input('CoordenatorID');
@@ -29,7 +28,6 @@ class LevelController extends Controller {
 
     public function update(Request $request) {
         $level = Level::findOrFail( $request->LevelID );
-        $level->LevelID = $request->input('LevelID');
         $level->Designation = $request->input('Designation');
         $level->MaximumAge = $request->input('MaximumAge');
         $level->CoordenatorID = $request->input('CoordenatorID');

@@ -20,7 +20,6 @@ class CardController extends Controller {
 
     public function store(Request $request){
         $card = new Card;
-        $card->CardID = $request->input('CardID');
         $card->Minute = $request->input('Minute');
         $card->CardTypelD = $request->input('CardTypelD');
         $card->GameID = $request->input('GameID');
@@ -34,7 +33,6 @@ class CardController extends Controller {
     public function update(Request $request)
     {
         $card = Card::findOrFail( $request->id );
-        $card->CardID = $request->input('CardID');
         $card->Minute = $request->input('Minute');
         $card->CardTypelD = $request->input('CardTypelD');
         $card->GameID = $request->input('GameID');

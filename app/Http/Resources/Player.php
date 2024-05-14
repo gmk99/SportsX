@@ -14,12 +14,12 @@ class Player extends JsonResource
     public function toArray($request)
     {
         return [
-            'fullName' => $this->fullName,
-            'birthdate' => $this->birthdate,
-            'loginEmail' => $this->loginEmail,
+            'PlayerID' => $this->PlayerID,
+            'FullName' => $this->FullName,
+            'Birthdate' => $this->Birthdate,
+            'AssociationNumber' => $this->AssociationNumber,
             'PhoneNumber' => $this->PhoneNumber,
-            'positionid' => $this->positionid,
-            'associationNumber' => $this->associationNumber,
+            'PositionID' => $this->PositionID
         ];
     }
 }

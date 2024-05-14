@@ -12,8 +12,8 @@ class TeamDirector extends Model
     protected $table = 'TeamDirector';
     protected $fillable = [
         'FullName',
-        'Birthname',
-        'LoginEmail',
+        'Birthdate',
+        'UsersID',
     ];
     public $timestamps = false;
     //Chave estrangeira LoginEmail
