@@ -23,6 +23,7 @@ class UserController extends Controller {
         $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
+        $user->role_id = $request->input('role_id');
 
         if( $user->save() ){
             return new UserResource( $user );
@@ -35,6 +36,7 @@ class UserController extends Controller {
         $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
+        $user->role_id = $request->input('role_id');
 
         if( $user->save() )
         {
