@@ -13,7 +13,7 @@ class GamePlayer extends Model
     protected $fillable = [
       'GameID',
       'PlayerID',
-      'isStarter',
+      'IsStarter',
       'Minutes',
     ];
     public $timestamps = false;

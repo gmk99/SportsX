@@ -20,7 +20,6 @@ class AssistController extends Controller {
 
     public function store(Request $request){
         $assist = new Assist;
-        $assist->AssistID = $request->input('AssistID');
         $assist->Minute = $request->input('Minute');
         $assist->GameID = $request->input('GameID');
         $assist->PlayerID = $request->input('PlayerID');

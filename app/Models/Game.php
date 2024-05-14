@@ -11,21 +11,21 @@ class Game extends Model
 
     protected $table = 'Game';
     protected $fillable = [
-        'isAtHome',
+        'IsAtHome',
         'OpposingTeam',
         'Date',
         'StartingTime',
         'GoalsScored',
         'GoalsConceded',
         'EndingTime',
-        'FieldID',
+        'FieldFieldID',
         'TeamID'
     ];
     public $timestamps = false;
     //Chave estrangeira FieldID
     private function field()
     {
-        return $this->belongsTo(Field::class,'FieldID');
+        return $this->belongsTo(Field::class,'FieldFieldID');
     }
 
     //Chave estrangeira TeamID
