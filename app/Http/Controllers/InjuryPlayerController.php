@@ -19,7 +19,6 @@ class InjuryPlayerController extends Controller
     public function store(Request $request)
     {
         $injuryPlayer = new InjuryPlayer;
-        $injuryPlayer->InjuryPlayerID = $request->input('InjuryPlayerID');
         $injuryPlayer->PlayerID = $request->input('PlayerID');
         $injuryPlayer->InjuryID = $request->input('InjuryID');
         $injuryPlayer->Date = $request->input('Date');
@@ -33,7 +32,6 @@ class InjuryPlayerController extends Controller
     public function update(Request $request)
     {
         $injuryPlayer = InjuryPlayer::findOrFail( $request->input('id') );
-        $injuryPlayer->InjuryPlayerID = $request->input('InjuryPlayerID');
         $injuryPlayer->PlayerID = $request->input('PlayerID');
         $injuryPlayer->InjuryID = $request->input('InjuryID');
         $injuryPlayer->Date = $request->input('Date');

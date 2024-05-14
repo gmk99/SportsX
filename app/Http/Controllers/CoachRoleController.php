@@ -26,7 +26,6 @@ class CoachRoleController extends Controller {
 
     public function update(Request $request) {
         $coachRole = CoachRole::findOrFail( $request->CoachRoleID );
-        $coachRole->CoachRoleID = $request->input('CoachRoleID');
         $coachRole->Denomination = $request->input('Denomination');
 
         if( $coachRole->save() ) {

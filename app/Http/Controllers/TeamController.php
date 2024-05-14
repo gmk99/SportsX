@@ -21,7 +21,6 @@ class TeamController extends Controller
 
     public function store(Request $request){
         $team = new Team;
-        $team->TeamID = $request->input('TeamID');
         $team->Name = $request->input('Name');
         $team->LevelID = $request->input('LevelID');
         $team->TeamDirectorID = $request->input('TeamDirectorID');
@@ -34,7 +33,6 @@ class TeamController extends Controller
     public function update(Request $request)
     {
         $team = Team::findOrFail( $request->id );
-        $team->TeamID = $request->input('TeamID');
         $team->Name = $request->input('Name');
         $team->LevelID = $request->input('LevelID');
         $team->TeamDirectorID = $request->input('TeamDirectorID');
