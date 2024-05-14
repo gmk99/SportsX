@@ -20,22 +20,15 @@ class User extends Authenticatable
     protected $fillable = [
         'role_id',
         'username',
-        'firstname',
-        'lastname',
         'email',
-        'avatar',
-        'email_verified_at',
         'password',
-        'address',
-        'city',
-        'country',
-        'postal',
-        'about TEXT',
-        'remember_token',
-        'settings TEXT',
-        'created_at',
-        'updated_at',
     ];
+
+    //Chave estrangeira RoleID
+    private function role_id()
+    {
+        return $this->belongsTo(role_id::class,'RoleID');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -56,12 +49,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     /**
      * Always encrypt the password when it is updated.
      *
      * @param $value
     * @return string
     */
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
