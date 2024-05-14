@@ -24,8 +24,6 @@ class GamePlayerController extends Controller
     public function store(Request $request)
     {
         $gamePlayer = new GamePlayer;
-        $gamePlayer->PlayerID = $request->input('PlayerID');
-        $gamePlayer->GameID = $request->input('GameID');
         $gamePlayer->IsStarter = $request->input('IsStarter');
         $gamePlayer->Minutes = $request->input('Minutes');
 
@@ -37,8 +35,6 @@ class GamePlayerController extends Controller
     public function update(Request $request)
     {
         $gamePlayer = GamePlayer::findOrFail($request->id);
-        $gamePlayer->PlayerID = $request->input('PlayerID');
-        $gamePlayer->GameID = $request->input('GameID');
         $gamePlayer->IsStarter = $request->input('IsStarter');
         $gamePlayer->Minutes = $request->input('Minutes');
 

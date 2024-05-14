@@ -18,8 +18,6 @@ class TeamPlayerController extends Controller
 
     public function store(Request $request){
         $teamPlayer = new TeamPlayer;
-        $teamPlayer->TeamID = $request->input('TeamID');
-        $teamPlayer->PlayerID = $request->input('PlayerID');
         $teamPlayer->Number = $request->input('Number');
 
         if( $teamPlayer->save() ){
@@ -29,8 +27,6 @@ class TeamPlayerController extends Controller
 
     public function update(Request $request) {
         $teamPlayer = TeamPlayer::findOrFail( $request->input('id') );
-        $teamPlayer->TeamID = $request->input('TeamID');
-        $teamPlayer->PlayerID = $request->input('PlayerID');
         $teamPlayer->Number = $request->input('Number');
 
         if( $teamPlayer->save() ) {

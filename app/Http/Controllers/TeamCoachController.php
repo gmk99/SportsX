@@ -18,8 +18,6 @@ class TeamCoachController extends Controller
 
     public function store(Request $request){
         $teamCoach = new TeamCoach;
-        $teamCoach->TeamID = $request->input('TeamID');
-        $teamCoach->CoachID = $request->input('CoachID');
         $teamCoach->CoachRoleID = $request->input('CoachRoleID');
 
         if( $teamCoach->save() ){
@@ -29,8 +27,6 @@ class TeamCoachController extends Controller
 
     public function update(Request $request) {
         $teamCoach = TeamCoach::findOrFail( $request->input('id') );
-        $teamCoach->TeamID = $request->input('TeamID');
-        $teamCoach->CoachID = $request->input('CoachID');
         $teamCoach->CoachRoleID = $request->input('CoachRoleID');
 
         if( $teamCoach->save() ) {
