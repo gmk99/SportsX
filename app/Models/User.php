@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use TCG\Voyager\Models\Role;
 
 class User extends Authenticatable
 {
@@ -25,9 +26,9 @@ class User extends Authenticatable
     ];
 
     //Chave estrangeira RoleID
-    private function role_id()
+    private function role()
     {
-        return $this->belongsTo(role_id::class,'RoleID');
+        return $this->belongsTo(Role::class,'RoleID');
     }
 
     /**
