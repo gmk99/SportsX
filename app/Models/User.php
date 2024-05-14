@@ -21,7 +21,7 @@ class User extends Authenticatable
         'role_id',
         'username',
         'email',
-        'password',
+        'password'
     ];
 
     //Chave estrangeira RoleID
