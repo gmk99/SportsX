@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Player;
 use App\Http\Resources\Player as PlayerResource;
+use App\Http\Requests\PlayerRequest;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller {
@@ -18,7 +19,8 @@ class PlayerController extends Controller {
         return new PlayerResource( $player );
     }
 
-    public function store(Request $request){
+    public function store(PlayerRequest $request)
+    {
         $player = new Player;
         $player->FullName = $request->input('FullName');
         $player->Birthdate = $request->input('Birthdate');
@@ -31,7 +33,7 @@ class PlayerController extends Controller {
         }
     }
 
-    public function update(Request $request)
+    public function update(PlayerRequest $request)
     {
         $player = Player::findOrFail( $request->id );
         $player->FullName = $request->input('FullName');
