@@ -8,7 +8,7 @@ class Assist extends JsonResource
     public function toArray($request)
     {
         return [
-            'AssistID' => $this->AssistID,
+            'id' => $this->id,
             'Minute' => $this->Minute,
             'GameID' => $this->GameID,
             'PlayerID' => $this->PlayerID,

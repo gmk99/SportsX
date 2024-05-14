@@ -9,7 +9,7 @@ class TeamDirector extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'TeamDirectorID' => $this->TeamDirectorID,
+            'id' => $this->id,
             'FullName' => $this->FullName,
             'BirthDate' => $this->BirthDate,
             'UsersID' => $this->UsersID

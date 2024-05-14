@@ -8,7 +8,7 @@ class Level extends JsonResource
     public function toArray($request)
     {
         return [
-            'LevelID' => $this->LevelID,
+            'id' => $this->id,
             'Designation' => $this->Designation,
             'MaximumAge' => $this->MaximumAge,
             'CoordenatorID' => $this->CoordenatorID,

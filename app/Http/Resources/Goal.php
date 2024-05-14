@@ -8,7 +8,7 @@ class Goal extends JsonResource
     public function toArray($request)
     {
         return [
-            'GoalID' => $this->GoalID,
+            'id' => $this->id,
             'Minute' => $this->Minute,
             'GameID' => $this->GameID,
             'PlayerID' => $this->PlayerID,

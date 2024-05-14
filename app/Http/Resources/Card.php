@@ -10,7 +10,7 @@ class Card extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'CardID' => $this->CardID,
+            'id' => $this->id,
             'Minute' => $this->Minute,
             'CardType' => $this->CardType,
             'GameID' => $this -> GameID,

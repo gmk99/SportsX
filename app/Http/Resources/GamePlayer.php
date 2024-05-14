@@ -9,8 +9,8 @@ class GamePlayer extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'GameID' => $this->GameID,
-            'PlayerID' => $this->PlayerID,
+            'game_id' => $this->game_id,
+            'player_id' => $this->player_id,
             'IsStarter' => $this->IsStarter,
             'Minutes' => $this->Minutes
             ];

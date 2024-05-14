@@ -8,7 +8,7 @@ class InjuryPlayerTreatment extends JsonResource
     public function toArray($request)
     {
         return [
-            'InjuryPlayerTreatmentID' => $this->InjuryPlayerTreatmentID,
+            'id' => $this->id,
             'Notes' => $this->Notes,
             'InjuryPlayerID' => $this->InjuryPlayerID,
             'PhysiotherapistID' => $this->InjuryID,

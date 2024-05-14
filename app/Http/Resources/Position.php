@@ -8,7 +8,7 @@ class Position extends JsonResource
     public function toArray($request)
     {
         return [
-            'PositionID' => $this->PositionID,
+            'id' => $this->id,
             'PitchPosition' => $this->PitchPosition,
             'Designation' => $this->Designation
         ];

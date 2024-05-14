@@ -9,7 +9,7 @@ class Coordenator extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'CoordenatorID' => $this->CoordenatorID,
+            'id' => $this->id,
             'FullName' => $this->FullName,
             'Birthdate' => $this->Birthdate,
             'UsersID' => $this->UsersID,

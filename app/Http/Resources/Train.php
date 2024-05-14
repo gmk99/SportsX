@@ -9,7 +9,7 @@ class Train extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'TrainID' => $this->TrainID,
+            'id' => $this->id,
             'Day' => $this->Day,
             'StartingTime' => $this->StartingTime,
             'EndingTime' => $this->EndingTime,

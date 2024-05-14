@@ -9,7 +9,7 @@ class Coach extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'CoachId' => $this->CoachId,
+            'id' => $this->id,
             'FullName' => $this->FullName,
             'Birthdate' => $this->Date,
             'Degree' => $this->Degree,

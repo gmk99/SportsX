@@ -8,7 +8,7 @@ class Field extends JsonResource
     public function toArray($request)
     {
         return [
-            'FieldId' => $this->FieldID,
+            'id' => $this->id,
             'FieldType' => $this->FieldType,
             'Denomination' => $this->Denomination,
 

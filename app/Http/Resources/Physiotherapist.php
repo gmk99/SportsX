@@ -8,7 +8,7 @@ class Physiotherapist extends JsonResource
     public function toArray($request)
     {
         return [
-            'PhysiotherapistID' => $this->PhysiotherapistID,
+            'id' => $this->id,
             'FullName' => $this->FullName,
             'Birthdate' => $this->Birthdate,
             'UsersID' => $this->UsersID

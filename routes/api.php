@@ -193,6 +193,13 @@ Route::post('team_director', [TeamDirectorController::class, 'store']);
 Route::put('team_director/{id}', [TeamDirectorController::class, 'update']);
 Route::delete('team_director/{id}', [TeamDirectorController::class, 'destroy']);
 
+// USER
+Route::get('users', [UserController::class, 'index']);
+Route::get('user/{id}', [UserController::class, 'show']);
+Route::post('user', [UserController::class, 'store']);
+Route::put('user/{id}', [UserController::class, 'update']);
+Route::delete('user/{id}', [UserController::class, 'destroy']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

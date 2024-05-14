@@ -9,7 +9,7 @@ class Game extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'GameID' => $this->GameID,
+            'id' => $this->id,
             'IsAtHome' => $this->IsAtHome,
             'OpposingTeam' => $this->OpposingTeam,
             'Date' => $this->Date,
