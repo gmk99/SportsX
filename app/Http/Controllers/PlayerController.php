@@ -21,7 +21,11 @@ class PlayerController extends Controller {
 
     public function store(PlayerRequest $request)
     {
-        $player = new Player;
+        $player = Player::create($request->validated());
+
+        return response()->json($player, 201);
+
+        /*$player = new Player;
         $player->FullName = $request->input('FullName');
         $player->Birthdate = $request->input('Birthdate');
         $player->AssociationNumber = $request->input('AssociationNumber');
@@ -30,7 +34,7 @@ class PlayerController extends Controller {
 
         if( $player->save() ){
             return new PlayerResource( $player );
-        }
+        }*/
     }
 
     public function update(PlayerRequest $request)

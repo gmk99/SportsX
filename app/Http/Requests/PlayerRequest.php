@@ -14,7 +14,6 @@ class PlayerRequest extends FormRequest
     public function rules()
     {
         return [
-            // Validação de idade
             'Birthdate' => 'required|date|after_or_equal:1965-01-01|before_or_equal:' . now()->format('Y-m-d'),
         ];
     }

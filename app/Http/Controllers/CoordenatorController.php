@@ -2,6 +2,7 @@
 
 use App\Models\Coordenator as Coordenator;
 use App\Http\Resources\Coordenator as CoordenatorResource;
+use App\Models\Field;
 use Illuminate\Http\Request;
 
 class CoordenatorController extends Controller
@@ -28,7 +29,7 @@ class CoordenatorController extends Controller
     }
 
     public function update(Request $request) {
-        $coordenator->CoordenatorID = $request->input('CoordenatorID');
+        $coordenator = Coordenator::findOrFail( $request->id );
         $coordenator->FullName = $request->input('FullName');
         $coordenator->Birthdate = $request->input('Birthdate');
         $coordenator->UsersID = $request->input('UsersID');
