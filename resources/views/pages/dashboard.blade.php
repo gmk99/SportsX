@@ -392,7 +392,7 @@
         new Chart(ctx1, {
             type: "line",
             data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                labels: ["2000", "2002", "2004", "2006", "2008", "2010", "2012", "2014", "2016"],
                 datasets: [{
                     label: "Mobile apps",
                     tension: 0.4,
