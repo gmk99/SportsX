@@ -2,6 +2,7 @@
 
 use App\Models\Coach as Coach;
 use App\Http\Resources\Coach as CoachResource;
+use App\Models\InjuryPlayer as InjuryPlayer;
 use Illuminate\Http\Request;
 
 class CoachController extends Controller {
@@ -45,5 +46,11 @@ class CoachController extends Controller {
         if( $coach->delete() ) {
             return new CoachResource( $coach );
         }
+    }
+
+    public function totalCoaches()
+    {
+        $total = Coach::count();
+        return $total;
     }
 }

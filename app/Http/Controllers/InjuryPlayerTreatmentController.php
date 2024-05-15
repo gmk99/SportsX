@@ -45,9 +45,5 @@ class InjuryPlayerTreatmentController extends Controller
         }
     }
 
-    public function totalLesoes()
-    {
-        $total = InjuryPlayerTreatment::count();
-        return $total;
-    }
+
 }

@@ -61,7 +61,7 @@ class PlayerController extends Controller {
         }
     }
 
-    public function total()
+    public function totalPlayers()
     {
         $total = Player::count();
         return $total;

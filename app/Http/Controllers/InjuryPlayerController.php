@@ -2,6 +2,7 @@
 
 use App\Models\InjuryPlayer as InjuryPlayer;
 use App\Http\Resources\InjuryPlayer as InjuryPlayerResource;
+use App\Models\InjuryPlayerTreatment as InjuryPlayerTreatment;
 use Illuminate\Http\Request;
 
 class InjuryPlayerController extends Controller
@@ -47,5 +48,11 @@ class InjuryPlayerController extends Controller
         if( $injuryPlayer->delete() ) {
             return new InjuryPlayerResource( $injuryPlayer );
         }
+    }
+
+    public function totalInjuries()
+    {
+        $total = InjuryPlayer::count();
+        return $total;
     }
 }

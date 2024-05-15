@@ -12,7 +12,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total de Atletas do Clube</p>
                                     <h5 class="font-weight-bolder">
-                                        {{ app('App\Http\Controllers\PlayerController')->total() }}
+                                        {{ app('App\Http\Controllers\PlayerController')->totalPlayers() }}
                                     </h5>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Atletas Lesionados</p>
                                     <h5 class="font-weight-bolder">
-                                        {{ app('App\Http\Controllers\InjuryPlayerTreatmentController')->totalLesoes() }}
+                                        {{ app('App\Http\Controllers\InjuryPlayerController')->totalInjuries() }}
                                     </h5>
                                 </div>
                             </div>
@@ -52,14 +52,10 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">New Clients</p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total de equipas</p>
                                     <h5 class="font-weight-bolder">
-                                        +3,462
+                                        {{ app('App\Http\Controllers\TeamController')->totalTeams() }}
                                     </h5>
-                                    <p class="mb-0">
-                                        <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                        since last quarter
-                                    </p>
                                 </div>
                             </div>
                             <div class="col-4 text-end">
@@ -77,13 +73,10 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales</p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total de treinadores</p>
                                     <h5 class="font-weight-bolder">
-                                        $103,430
+                                        {{ app('App\Http\Controllers\CoachController')->totalCoaches() }}
                                     </h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
-                                    </p>
                                 </div>
                             </div>
                             <div class="col-4 text-end">

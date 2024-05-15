@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Player;
 use App\Models\Team;
 use App\Http\Resources\Team as TeamResource;
 use Illuminate\Http\Request;
@@ -50,5 +51,11 @@ class TeamController extends Controller
         {
             return new TeamResource( $team );
         }
+    }
+
+    public function totalTeams()
+    {
+        $total = Team::count();
+        return $total;
     }
 }
