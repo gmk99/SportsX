@@ -18,13 +18,145 @@ CREATE SCHEMA IF NOT EXISTS `dbsportsx` DEFAULT CHARACTER SET utf8mb4 COLLATE ut
 USE `dbsportsx` ;
 
 -- -----------------------------------------------------
--- Table `dbsportsx`.`Field`
+-- Table `dbsportsx`.`Position`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`Field` (
-  `FieldID` INT NOT NULL AUTO_INCREMENT,
-  `FieldType` INT NOT NULL,
-  `Denomination` INT NOT NULL,
-  PRIMARY KEY (`FieldID`))
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`Position` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `PitchPosition` VARCHAR(255) NOT NULL,
+  `Designation` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`Player`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`Player` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `FullName` VARCHAR(255) NOT NULL,
+  `Birthdate` DATE NOT NULL,
+  `AssociationNumber` INT NOT NULL,
+  `PhoneNumber` INT NOT NULL,
+  `PositionID` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `AssociationNumber` (`AssociationNumber` ASC) VISIBLE,
+  INDEX `FKPlayer605414` (`PositionID` ASC) VISIBLE,
+  CONSTRAINT `FKPlayer605414`
+    FOREIGN KEY (`PositionID`)
+    REFERENCES `dbsportsx`.`Position` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 12
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`GamePlayer`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`GamePlayer` (
+  `game_id` INT NOT NULL,
+  `player_id` INT NOT NULL,
+  `IsStarter` INT NOT NULL,
+  `Minutes` INT NOT NULL,
+  PRIMARY KEY (`game_id`, `player_id`),
+  INDEX `FKGamePlayer407206` (`player_id` ASC) VISIBLE,
+  CONSTRAINT `FKGamePlayer407206`
+    FOREIGN KEY (`player_id`)
+    REFERENCES `dbsportsx`.`Player` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`Goal`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`Goal` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Minute` INT NOT NULL,
+  `GameID` INT NOT NULL,
+  `PlayerID` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `FKGoal748150` (`GameID` ASC, `PlayerID` ASC) VISIBLE,
+  CONSTRAINT `FKGoal748150`
+    FOREIGN KEY (`GameID` , `PlayerID`)
+    REFERENCES `dbsportsx`.`GamePlayer` (`game_id` , `player_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`Assist`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`Assist` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Minute` INT NOT NULL,
+  `GameID` INT NOT NULL,
+  `PlayerID` INT NOT NULL,
+  `GoalID` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `FKAssist242682` (`GoalID` ASC) VISIBLE,
+  INDEX `FKAssist816137` (`GameID` ASC, `PlayerID` ASC) VISIBLE,
+  CONSTRAINT `FKAssist242682`
+    FOREIGN KEY (`GoalID`)
+    REFERENCES `dbsportsx`.`Goal` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `FKAssist816137`
+    FOREIGN KEY (`GameID` , `PlayerID`)
+    REFERENCES `dbsportsx`.`GamePlayer` (`game_id` , `player_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`CardType`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`CardType` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Denomination` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`Card`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`Card` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Minute` INT NOT NULL,
+  `CardTypeID` INT NOT NULL,
+  `GameID` INT NOT NULL,
+  `PlayerID` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `FKCard616051` (`GameID` ASC, `PlayerID` ASC) VISIBLE,
+  INDEX `FKCard626465` (`CardTypeID` ASC) VISIBLE,
+  CONSTRAINT `FKCard616051`
+    FOREIGN KEY (`GameID` , `PlayerID`)
+    REFERENCES `dbsportsx`.`GamePlayer` (`game_id` , `player_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `FKCard626465`
+    FOREIGN KEY (`CardTypeID`)
+    REFERENCES `dbsportsx`.`CardType` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -81,259 +213,23 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `dbsportsx`.`Coordenator`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`Coordenator` (
-  `CoordenatorID` INT NOT NULL AUTO_INCREMENT,
-  `FullName` INT NOT NULL,
-  `Birthdate` DATE NOT NULL,
-  `UsersID` BIGINT UNSIGNED NULL DEFAULT NULL,
-  PRIMARY KEY (`CoordenatorID`),
-  INDEX `fk_c_users_id` (`UsersID` ASC) VISIBLE,
-  CONSTRAINT `fk_c_users_id`
-    FOREIGN KEY (`UsersID`)
-    REFERENCES `dbsportsx`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`Level`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`Level` (
-  `LevelID` INT NOT NULL AUTO_INCREMENT,
-  `Designation` VARCHAR(255) NOT NULL,
-  `MaximumAge` INT NOT NULL,
-  `CoordenatorID` INT NOT NULL,
-  PRIMARY KEY (`LevelID`),
-  INDEX `FKLevel544498` (`CoordenatorID` ASC) VISIBLE,
-  CONSTRAINT `FKLevel544498`
-    FOREIGN KEY (`CoordenatorID`)
-    REFERENCES `dbsportsx`.`Coordenator` (`CoordenatorID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`TeamDirector`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`TeamDirector` (
-  `TeamDirectorID` INT NOT NULL AUTO_INCREMENT,
-  `FullName` INT NOT NULL,
-  `Birthdate` DATE NOT NULL,
-  `UsersID` BIGINT UNSIGNED NULL DEFAULT NULL,
-  PRIMARY KEY (`TeamDirectorID`),
-  INDEX `fk_td_users_id` (`UsersID` ASC) VISIBLE,
-  CONSTRAINT `fk_td_users_id`
-    FOREIGN KEY (`UsersID`)
-    REFERENCES `dbsportsx`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`Team`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`Team` (
-  `TeamID` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(255) NOT NULL,
-  `LevelID` INT NOT NULL,
-  `TeamDirectorID` INT NOT NULL,
-  PRIMARY KEY (`TeamID`),
-  INDEX `FKTeam176783` (`LevelID` ASC) VISIBLE,
-  INDEX `FKTeam598162` (`TeamDirectorID` ASC) VISIBLE,
-  CONSTRAINT `FKTeam176783`
-    FOREIGN KEY (`LevelID`)
-    REFERENCES `dbsportsx`.`Level` (`LevelID`),
-  CONSTRAINT `FKTeam598162`
-    FOREIGN KEY (`TeamDirectorID`)
-    REFERENCES `dbsportsx`.`TeamDirector` (`TeamDirectorID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`Game`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`Game` (
-  `GameID` INT NOT NULL AUTO_INCREMENT,
-  `IsAtHome` INT NOT NULL,
-  `OpposingTeam` INT NOT NULL,
-  `Date` INT NOT NULL,
-  `StartingTime` TIMESTAMP NOT NULL,
-  `GoalsScored` INT NOT NULL,
-  `GoalsConceded` INT NOT NULL,
-  `EndingTime` TIMESTAMP NOT NULL,
-  `FieldFieldID` INT NULL DEFAULT NULL,
-  `TeamID` INT NOT NULL,
-  PRIMARY KEY (`GameID`),
-  INDEX `FKGame205548` (`FieldFieldID` ASC) VISIBLE,
-  INDEX `FKGame90119` (`TeamID` ASC) VISIBLE,
-  CONSTRAINT `FKGame205548`
-    FOREIGN KEY (`FieldFieldID`)
-    REFERENCES `dbsportsx`.`Field` (`FieldID`),
-  CONSTRAINT `FKGame90119`
-    FOREIGN KEY (`TeamID`)
-    REFERENCES `dbsportsx`.`Team` (`TeamID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`Position`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`Position` (
-  `PositionID` INT NOT NULL AUTO_INCREMENT,
-  `PitchPosition` VARCHAR(255) NOT NULL,
-  `Designation` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`PositionID`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 3
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`Player`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`Player` (
-  `PlayerID` INT NOT NULL AUTO_INCREMENT,
-  `FullName` VARCHAR(255) NOT NULL,
-  `Birthdate` DATE NOT NULL,
-  `AssociationNumber` INT NOT NULL,
-  `PhoneNumber` INT NOT NULL,
-  `PositionID` INT NOT NULL,
-  PRIMARY KEY (`PlayerID`),
-  UNIQUE INDEX `AssociationNumber` (`AssociationNumber` ASC) VISIBLE,
-  INDEX `FKPlayer605414` (`PositionID` ASC) VISIBLE,
-  CONSTRAINT `FKPlayer605414`
-    FOREIGN KEY (`PositionID`)
-    REFERENCES `dbsportsx`.`Position` (`PositionID`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 4
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`GamePlayer`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`GamePlayer` (
-  `GameID` INT NOT NULL,
-  `PlayerID` INT NOT NULL,
-  `IsStarter` INT NOT NULL,
-  `Minutes` INT NOT NULL,
-  PRIMARY KEY (`GameID`, `PlayerID`),
-  INDEX `FKGamePlayer407206` (`PlayerID` ASC) VISIBLE,
-  CONSTRAINT `FKGamePlayer103890`
-    FOREIGN KEY (`GameID`)
-    REFERENCES `dbsportsx`.`Game` (`GameID`),
-  CONSTRAINT `FKGamePlayer407206`
-    FOREIGN KEY (`PlayerID`)
-    REFERENCES `dbsportsx`.`Player` (`PlayerID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`Goal`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`Goal` (
-  `GoalID` INT NOT NULL AUTO_INCREMENT,
-  `Minute` INT NOT NULL,
-  `GameID` INT NOT NULL,
-  `PlayerID` INT NOT NULL,
-  PRIMARY KEY (`GoalID`),
-  INDEX `FKGoal748150` (`GameID` ASC, `PlayerID` ASC) VISIBLE,
-  CONSTRAINT `FKGoal748150`
-    FOREIGN KEY (`GameID` , `PlayerID`)
-    REFERENCES `dbsportsx`.`GamePlayer` (`GameID` , `PlayerID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`Assist`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`Assist` (
-  `AssistID` INT NOT NULL AUTO_INCREMENT,
-  `Minute` INT NOT NULL,
-  `GameID` INT NOT NULL,
-  `PlayerID` INT NOT NULL,
-  `GoalID` INT NOT NULL,
-  PRIMARY KEY (`AssistID`),
-  INDEX `FKAssist816137` (`GameID` ASC, `PlayerID` ASC) VISIBLE,
-  INDEX `FKAssist242682` (`GoalID` ASC) VISIBLE,
-  CONSTRAINT `FKAssist242682`
-    FOREIGN KEY (`GoalID`)
-    REFERENCES `dbsportsx`.`Goal` (`GoalID`),
-  CONSTRAINT `FKAssist816137`
-    FOREIGN KEY (`GameID` , `PlayerID`)
-    REFERENCES `dbsportsx`.`GamePlayer` (`GameID` , `PlayerID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`CardType`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`CardType` (
-  `CardTypeID` INT NOT NULL AUTO_INCREMENT,
-  `Denomination` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`CardTypeID`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 3
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`Card`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`Card` (
-  `CardID` INT NOT NULL AUTO_INCREMENT,
-  `Minute` INT NOT NULL,
-  `CardTypeID` INT NOT NULL,
-  `GameID` INT NOT NULL,
-  `PlayerID` INT NOT NULL,
-  PRIMARY KEY (`CardID`),
-  INDEX `FKCard626465` (`CardTypeID` ASC) VISIBLE,
-  INDEX `FKCard616051` (`GameID` ASC, `PlayerID` ASC) VISIBLE,
-  CONSTRAINT `FKCard616051`
-    FOREIGN KEY (`GameID` , `PlayerID`)
-    REFERENCES `dbsportsx`.`GamePlayer` (`GameID` , `PlayerID`),
-  CONSTRAINT `FKCard626465`
-    FOREIGN KEY (`CardTypeID`)
-    REFERENCES `dbsportsx`.`CardType` (`CardTypeID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `dbsportsx`.`Coach`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dbsportsx`.`Coach` (
-  `CoachID` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `FullName` VARCHAR(255) NOT NULL,
   `Birthdate` DATE NOT NULL,
   `Degree` VARCHAR(255) NOT NULL,
-  `AssociationNumber` VARCHAR(255) NOT NULL,
+  `AssociationNumber` INT NOT NULL,
   `UsersID` BIGINT UNSIGNED NULL DEFAULT NULL,
-  PRIMARY KEY (`CoachID`),
+  PRIMARY KEY (`id`),
   UNIQUE INDEX `AssociationNumber` (`AssociationNumber` ASC) VISIBLE,
   INDEX `fk_users_id` (`UsersID` ASC) VISIBLE,
   CONSTRAINT `fk_users_id`
     FOREIGN KEY (`UsersID`)
-    REFERENCES `dbsportsx`.`users` (`id`))
+    REFERENCES `dbsportsx`.`users` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -343,9 +239,140 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `dbsportsx`.`CoachRole`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dbsportsx`.`CoachRole` (
-  `CoachRoleID` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Denomination` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`Coordenator`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`Coordenator` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `FullName` VARCHAR(100) NOT NULL,
+  `Birthdate` DATE NOT NULL,
+  `UsersID` BIGINT UNSIGNED NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_c_users_id` (`UsersID` ASC) VISIBLE,
+  CONSTRAINT `fk_c_users_id`
+    FOREIGN KEY (`UsersID`)
+    REFERENCES `dbsportsx`.`users` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`Field`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`Field` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `FieldType` INT NOT NULL,
   `Denomination` INT NOT NULL,
-  PRIMARY KEY (`CoachRoleID`))
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`Level`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`Level` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Designation` VARCHAR(255) NOT NULL,
+  `MaximumAge` INT NOT NULL,
+  `CoordenatorID` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `FKLevel544498` (`CoordenatorID` ASC) VISIBLE,
+  CONSTRAINT `FKLevel544498`
+    FOREIGN KEY (`CoordenatorID`)
+    REFERENCES `dbsportsx`.`Coordenator` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`TeamDirector`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`TeamDirector` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `FullName` VARCHAR(100) NOT NULL,
+  `Birthdate` DATE NOT NULL,
+  `UsersID` BIGINT UNSIGNED NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_td_users_id` (`UsersID` ASC) VISIBLE,
+  CONSTRAINT `fk_td_users_id`
+    FOREIGN KEY (`UsersID`)
+    REFERENCES `dbsportsx`.`users` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`Team`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`Team` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(255) NOT NULL,
+  `LevelID` INT NOT NULL,
+  `TeamDirectorID` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `FKTeam176783` (`LevelID` ASC) VISIBLE,
+  INDEX `FKTeam598162` (`TeamDirectorID` ASC) VISIBLE,
+  CONSTRAINT `FKTeam176783`
+    FOREIGN KEY (`LevelID`)
+    REFERENCES `dbsportsx`.`Level` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `FKTeam598162`
+    FOREIGN KEY (`TeamDirectorID`)
+    REFERENCES `dbsportsx`.`TeamDirector` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `dbsportsx`.`Game`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbsportsx`.`Game` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `IsAtHome` INT NOT NULL,
+  `OpposingTeam` VARCHAR(50) NOT NULL,
+  `Date` DATE NOT NULL,
+  `StartingTime` TIMESTAMP NOT NULL,
+  `GoalsScored` INT NOT NULL,
+  `GoalsConceded` INT NOT NULL,
+  `EndingTime` TIMESTAMP NOT NULL,
+  `FieldFieldID` INT NULL DEFAULT NULL,
+  `TeamID` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `FKGame205548` (`FieldFieldID` ASC) VISIBLE,
+  INDEX `FKGame90119` (`TeamID` ASC) VISIBLE,
+  CONSTRAINT `FKGame205548`
+    FOREIGN KEY (`FieldFieldID`)
+    REFERENCES `dbsportsx`.`Field` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `FKGame90119`
+    FOREIGN KEY (`TeamID`)
+    REFERENCES `dbsportsx`.`Team` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -355,11 +382,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `dbsportsx`.`Injury`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dbsportsx`.`Injury` (
-  `InjuryID` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Denomination` VARCHAR(255) NOT NULL,
   `Location` VARCHAR(255) NOT NULL,
   `EstimatedTimeToRecover` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`InjuryID`))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -369,20 +396,24 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `dbsportsx`.`InjuryPlayer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dbsportsx`.`InjuryPlayer` (
-  `InjuryPlayerID` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Date` DATE NOT NULL,
   `Observation` VARCHAR(10000) NOT NULL,
   `InjuryID` INT NOT NULL,
   `PlayerID` INT NOT NULL,
-  PRIMARY KEY (`InjuryPlayerID`),
-  INDEX `FKInjuryPlay740775` (`InjuryID` ASC) VISIBLE,
+  PRIMARY KEY (`id`),
   INDEX `FKInjuryPlay291125` (`PlayerID` ASC) VISIBLE,
+  INDEX `FKInjuryPlay740775` (`InjuryID` ASC) VISIBLE,
   CONSTRAINT `FKInjuryPlay291125`
     FOREIGN KEY (`PlayerID`)
-    REFERENCES `dbsportsx`.`Player` (`PlayerID`),
+    REFERENCES `dbsportsx`.`Player` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `FKInjuryPlay740775`
     FOREIGN KEY (`InjuryID`)
-    REFERENCES `dbsportsx`.`Injury` (`InjuryID`))
+    REFERENCES `dbsportsx`.`Injury` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -392,15 +423,17 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `dbsportsx`.`Physiotherapist`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dbsportsx`.`Physiotherapist` (
-  `PhysiotherapistID` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `FullName` VARCHAR(255) NOT NULL,
   `Birthdate` DATE NOT NULL,
   `UsersID` BIGINT UNSIGNED NULL DEFAULT NULL,
-  PRIMARY KEY (`PhysiotherapistID`),
+  PRIMARY KEY (`id`),
   INDEX `fk_p_users_id` (`UsersID` ASC) VISIBLE,
   CONSTRAINT `fk_p_users_id`
     FOREIGN KEY (`UsersID`)
-    REFERENCES `dbsportsx`.`users` (`id`))
+    REFERENCES `dbsportsx`.`users` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -410,31 +443,23 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `dbsportsx`.`InjuryPlayerTreatment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dbsportsx`.`InjuryPlayerTreatment` (
-  `InjuryPlayerTreatmentID` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Notes` VARCHAR(10000) NULL DEFAULT NULL,
   `InjuryPlayerID` INT NOT NULL,
   `PhysiotherapistID` INT NOT NULL,
-  PRIMARY KEY (`InjuryPlayerTreatmentID`),
+  PRIMARY KEY (`id`),
   INDEX `FKInjuryPlay228941` (`InjuryPlayerID` ASC) VISIBLE,
   INDEX `FKInjuryPlay87320` (`PhysiotherapistID` ASC) VISIBLE,
   CONSTRAINT `FKInjuryPlay228941`
     FOREIGN KEY (`InjuryPlayerID`)
-    REFERENCES `dbsportsx`.`InjuryPlayer` (`InjuryPlayerID`),
+    REFERENCES `dbsportsx`.`InjuryPlayer` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `FKInjuryPlay87320`
     FOREIGN KEY (`PhysiotherapistID`)
-    REFERENCES `dbsportsx`.`Physiotherapist` (`PhysiotherapistID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `dbsportsx`.`Login`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbsportsx`.`Login` (
-  `Email` VARCHAR(100) NOT NULL,
-  `Password` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`Email`))
+    REFERENCES `dbsportsx`.`Physiotherapist` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -444,21 +469,27 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `dbsportsx`.`TeamCoach`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dbsportsx`.`TeamCoach` (
-  `TeamID` INT NOT NULL,
-  `CoachID` INT NOT NULL,
+  `team_id` INT NOT NULL,
+  `coach_id` INT NOT NULL,
   `CoachRoleID` INT NOT NULL,
-  PRIMARY KEY (`TeamID`, `CoachID`),
-  INDEX `FKTeamCoach77418` (`CoachID` ASC) VISIBLE,
+  PRIMARY KEY (`team_id`, `coach_id`),
   INDEX `FKTeamCoach635965` (`CoachRoleID` ASC) VISIBLE,
+  INDEX `FKTeamCoach77418` (`coach_id` ASC) VISIBLE,
   CONSTRAINT `FKTeamCoach635965`
     FOREIGN KEY (`CoachRoleID`)
-    REFERENCES `dbsportsx`.`CoachRole` (`CoachRoleID`),
+    REFERENCES `dbsportsx`.`CoachRole` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `FKTeamCoach77418`
-    FOREIGN KEY (`CoachID`)
-    REFERENCES `dbsportsx`.`Coach` (`CoachID`),
+    FOREIGN KEY (`coach_id`)
+    REFERENCES `dbsportsx`.`Coach` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `FKTeamCoach858668`
-    FOREIGN KEY (`TeamID`)
-    REFERENCES `dbsportsx`.`Team` (`TeamID`))
+    FOREIGN KEY (`team_id`)
+    REFERENCES `dbsportsx`.`Team` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -468,17 +499,21 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `dbsportsx`.`TeamPlayer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dbsportsx`.`TeamPlayer` (
-  `TeamID` INT NOT NULL,
-  `PlayerID` INT NOT NULL,
+  `team_id` INT NOT NULL,
+  `player_id` INT NOT NULL,
   `Number` INT NOT NULL,
-  PRIMARY KEY (`TeamID`, `PlayerID`),
-  INDEX `FKTeamPlayer946425` (`PlayerID` ASC) VISIBLE,
+  PRIMARY KEY (`team_id`, `player_id`),
+  INDEX `FKTeamPlayer946425` (`player_id` ASC) VISIBLE,
   CONSTRAINT `FKTeamPlayer946425`
-    FOREIGN KEY (`PlayerID`)
-    REFERENCES `dbsportsx`.`Player` (`PlayerID`),
+    FOREIGN KEY (`player_id`)
+    REFERENCES `dbsportsx`.`Player` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `FKTeamPlayer952068`
-    FOREIGN KEY (`TeamID`)
-    REFERENCES `dbsportsx`.`Team` (`TeamID`))
+    FOREIGN KEY (`team_id`)
+    REFERENCES `dbsportsx`.`Team` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -488,21 +523,25 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `dbsportsx`.`Train`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dbsportsx`.`Train` (
-  `TrainID` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Day` DATE NOT NULL,
   `StartingTime` TIMESTAMP NOT NULL,
   `EndingTime` TIMESTAMP NOT NULL,
   `TeamID` INT NOT NULL,
   `FieldFieldID` INT NOT NULL,
-  PRIMARY KEY (`TrainID`),
-  INDEX `FKTrain946859` (`TeamID` ASC) VISIBLE,
+  PRIMARY KEY (`id`),
   INDEX `FKTrain62289` (`FieldFieldID` ASC) VISIBLE,
+  INDEX `FKTrain946859` (`TeamID` ASC) VISIBLE,
   CONSTRAINT `FKTrain62289`
     FOREIGN KEY (`FieldFieldID`)
-    REFERENCES `dbsportsx`.`Field` (`FieldID`),
+    REFERENCES `dbsportsx`.`Field` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `FKTrain946859`
     FOREIGN KEY (`TeamID`)
-    REFERENCES `dbsportsx`.`Team` (`TeamID`))
+    REFERENCES `dbsportsx`.`Team` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
