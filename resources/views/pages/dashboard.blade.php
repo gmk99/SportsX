@@ -1,5 +1,91 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
+    function fetchDataAndDrawChart() {
+        $.ajax({
+            url: '{{ route("totalPlayersInIniciacao") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[0] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInPetizes") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[1] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInTraquinas") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[2] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInBenjamins") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[3] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInInfantis") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[4] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInIniciados") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[5] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInJuvenis") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[6] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInJuniores") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[7] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInSeniores") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[8] = data.totalPlayers;
+                chart.update();
+            }
+        });
+    }
+
+    fetchDataAndDrawChart();
+
     $(document).ready(function() {
         $.ajax({
             url: '{{ route("totalCoaches") }}',
@@ -48,6 +134,7 @@
             }
         });
     });
+
 </script>
 
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
@@ -233,7 +320,7 @@
                                     <td>
                                         <div class="text-center">
                                             <p class="text-xs font-weight-bold mb-0">Position:</p>
-                                            <h6 class="text-sm mb-0">Goal-Keeper</h6>
+                                            <h6 class="text-sm mb-0">Goalkeeper</h6>
                                         </div>
                                     </td>
                                     <td class="align-middle text-sm">
@@ -452,7 +539,7 @@
                     backgroundColor: gradientStroke1,
                     borderWidth: 3,
                     fill: true,
-                    data: [],
+                    data: [0,0,0,0,0,0,0,0,0],
                     maxBarThickness: 6
 
                 }],
