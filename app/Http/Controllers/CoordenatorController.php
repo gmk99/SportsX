@@ -2,6 +2,7 @@
 
 use App\Models\Coordenator as Coordenator;
 use App\Http\Resources\Coordenator as CoordenatorResource;
+use App\Models\Field;
 use Illuminate\Http\Request;
 
 class CoordenatorController extends Controller
@@ -18,19 +19,21 @@ class CoordenatorController extends Controller
 
     public function store(Request $request){
         $coordenator = new Coordenator;
-        $coordenator->CoordenatorName = $request->input('CoordenatorName');
-        $coordenator->CoordenatorEmail = $request->input('CoordenatorEmail');
-        $coordenator->CoordenatorPhone = $request->input('CoordenatorPhone');
+        $coordenator->FullName = $request->input('FullName');
+        $coordenator->Birthdate = $request->input('Birthdate');
+        $coordenator->UsersID = $request->input('UsersID');
+
         if( $coordenator->save() ){
             return new CoordenatorResource( $coordenator );
         }
     }
 
     public function update(Request $request) {
-        $coordenator = Coordenator::findOrFail( $request->input('id') );
-        $coordenator->CoordenatorName = $request->input('CoordenatorName');
-        $coordenator->CoordenatorEmail = $request->input('CoordenatorEmail');
-        $coordenator->CoordenatorPhone = $request->input('CoordenatorPhone');
+        $coordenator = Coordenator::findOrFail( $request->id );
+        $coordenator->FullName = $request->input('FullName');
+        $coordenator->Birthdate = $request->input('Birthdate');
+        $coordenator->UsersID = $request->input('UsersID');
+
         if( $coordenator->save() ) {
             return new CoordenatorResource($coordenator);
         }

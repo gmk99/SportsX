@@ -9,14 +9,13 @@ class Goal extends Model
 {
     use HasFactory;
 
+    protected $table = 'Goal';
     protected $fillable = [
         'Minute',
         'GameID',
         'PlayerID',
-        'created_at',
-        'updated_at'
     ];
-
+    public $timestamps = false;
     //Chave estrangeira GameID
     public function game()
     {

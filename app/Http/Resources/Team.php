@@ -9,11 +9,9 @@ class Team extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'level_id' => $this->level_id,
-            'team_director_id' => $this->team_director_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'Name' => $this->Name,
+            'LevelID' => $this->LevelID,
+            'TeamDirector' => $this->TeamDirector
         ];
     }
 }

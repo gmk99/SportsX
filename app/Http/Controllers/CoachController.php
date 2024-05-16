@@ -2,6 +2,7 @@
 
 use App\Models\Coach as Coach;
 use App\Http\Resources\Coach as CoachResource;
+use App\Models\InjuryPlayer as InjuryPlayer;
 use Illuminate\Http\Request;
 
 class CoachController extends Controller {
@@ -17,10 +18,12 @@ class CoachController extends Controller {
 
     public function store(Request $request){
         $coach = new Coach;
-        $coach->CoachID = $request->input('CoachID');
         $coach->FullName = $request->input('FullName');
         $coach->Birthdate = $request->input('Birthdate');
         $coach->Degree = $request->input('Degree');
+        $coach->AssociationNumber = $request->input('AssociationNumber');
+
+
         if( $coach->save() ){
             return new CoachResource( $coach );
         }
@@ -31,6 +34,8 @@ class CoachController extends Controller {
         $coach->FullName = $request->input('FullName');
         $coach->Birthdate = $request->input('Birthdate');
         $coach->Degree = $request->input('Degree');
+        $coach->AssociationNumber = $request->input('AssociationNumber');
+
         if( $coach->save() ) {
             return new CoachResource($coach);
         }
@@ -41,5 +46,11 @@ class CoachController extends Controller {
         if( $coach->delete() ) {
             return new CoachResource( $coach );
         }
+    }
+
+    public function totalCoaches()
+    {
+        $total = Coach::count();
+        return $total;
     }
 }

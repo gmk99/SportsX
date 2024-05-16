@@ -2,6 +2,7 @@
 
 use App\Models\InjuryPlayer as InjuryPlayer;
 use App\Http\Resources\InjuryPlayer as InjuryPlayerResource;
+use App\Models\InjuryPlayerTreatment as InjuryPlayerTreatment;
 use Illuminate\Http\Request;
 
 class InjuryPlayerController extends Controller
@@ -16,23 +17,27 @@ class InjuryPlayerController extends Controller
         return new InjuryPlayerResource( $injuryPlayer );
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $injuryPlayer = new InjuryPlayer;
         $injuryPlayer->PlayerID = $request->input('PlayerID');
         $injuryPlayer->InjuryID = $request->input('InjuryID');
         $injuryPlayer->Date = $request->input('Date');
         $injuryPlayer->Observation = $request->input('Observation');
+
         if( $injuryPlayer->save() ){
             return new InjuryPlayerResource( $injuryPlayer );
         }
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         $injuryPlayer = InjuryPlayer::findOrFail( $request->input('id') );
         $injuryPlayer->PlayerID = $request->input('PlayerID');
         $injuryPlayer->InjuryID = $request->input('InjuryID');
         $injuryPlayer->Date = $request->input('Date');
         $injuryPlayer->Observation = $request->input('Observation');
+
         if( $injuryPlayer->save() ) {
             return new InjuryPlayerResource($injuryPlayer);
         }
@@ -43,5 +48,11 @@ class InjuryPlayerController extends Controller
         if( $injuryPlayer->delete() ) {
             return new InjuryPlayerResource( $injuryPlayer );
         }
+    }
+
+    public function totalInjuries()
+    {
+        $total = InjuryPlayer::count();
+        return $total;
     }
 }

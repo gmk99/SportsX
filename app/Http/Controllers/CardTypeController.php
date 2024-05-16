@@ -30,7 +30,7 @@ class CardTypeController extends Controller {
     public function update(Request $request)
     {
         $cardtype = CardType::findOrFail( $request->id );
-        $cardtype->CardTypeID = $request->input('CardTypeID');
+
         $cardtype->Denomination = $request->input('Denomination');
 
 

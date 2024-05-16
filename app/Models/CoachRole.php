@@ -9,7 +9,9 @@ class CoachRole extends Model
 {
     use HasFactory;
 
+    protected $table = 'CoachRole';
     protected $fillable = [
         'Denomination'
     ];
+    public $timestamps = false;
 }

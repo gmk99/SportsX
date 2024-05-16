@@ -9,22 +9,15 @@ class Player extends Model
 {
     use HasFactory;
 
-    //Atributos da tabela Player
+    protected $table = 'Player';
      protected $fillable = [
          'Fullname',
          'Birthdate',
          'AssociationNumber',
-         'ContactID',
+         'PhoneNumber',
          'PositionID',
-         'created_at',
-         'updated_at'
      ];
-
-     //Chave estrangeira ContactID
-     public function contact()
-     {
-        return $this->belongsTo(Contact::class,'ContactID');
-     }
+    public $timestamps = false;
 
     //Chave estrangeira PositionID
     public function position()

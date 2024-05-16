@@ -20,9 +20,10 @@ class AssistController extends Controller {
 
     public function store(Request $request){
         $assist = new Assist;
-        $assist->AssistID = $request->input('AssistID');
+        $assist->Minute = $request->input('Minute');
         $assist->GameID = $request->input('GameID');
         $assist->PlayerID = $request->input('PlayerID');
+        $assist->GoalID = $request->input('GoalID');
 
         if( $assist->save() ){
             return new AssistResource( $assist );
@@ -32,10 +33,11 @@ class AssistController extends Controller {
     public function update(Request $request)
     {
         $assist = Assist::findOrFail( $request->id );
-        $assist->AssistID = $request->input('AssistID');
+
+        $assist->Minute = $request->input('Minute');
         $assist->GameID = $request->input('GameID');
         $assist->PlayerID = $request->input('PlayerID');
-
+        $assist->GoalID = $request->input('GoalID');
         if( $assist->save() )
         {
             return new AssistResource($assist);

@@ -9,14 +9,9 @@ class InjuryPlayerTreatment extends JsonResource
     {
         return [
             'id' => $this->id,
-            'injury_player_id' => $this->injury_player_id,
-            'treatment_id' => $this->treatment_id,
-            'notes' => $this->notes,
-            'physiotherapist_id' => $this->physiotherapist_id,
-            'physiotherapist' => new PhysiotherapistResource($this->whenLoaded('physiotherapist')),
-            'injury_player' => new InjuryPlayerResource($this->whenLoaded('injuryPlayer')),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'Notes' => $this->Notes,
+            'InjuryPlayerID' => $this->InjuryPlayerID,
+            'PhysiotherapistID' => $this->InjuryID,
         ];
     }
 }

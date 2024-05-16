@@ -20,10 +20,8 @@ class FieldController extends Controller {
 
     public function store(Request $request){
         $field = new Field;
-        $field->FieldID = $request->input('FieldID');
         $field->FieldType = $request->input('FieldType');
         $field->Denomination = $request->input('Denomination');
-        $field->TeamID = $request->input('TeamID');
 
         if( $field->save() ){
             return new FieldResource( $field );
@@ -33,10 +31,8 @@ class FieldController extends Controller {
     public function update(Request $request)
     {
         $field = Field::findOrFail( $request->id );
-        $field->FieldID = $request->input('FieldID');
         $field->FieldType = $request->input('FieldType');
         $field->Denomination = $request->input('Denomination');
-        $field->TeamID = $request->input('TeamID');
 
         if( $field->save() )
         {

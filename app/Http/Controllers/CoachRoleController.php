@@ -17,8 +17,8 @@ class CoachRoleController extends Controller {
 
     public function store(Request $request){
         $coachRole = new CoachRole;
-        $coachRole->CoachRoleID = $request->input('CoachRoleID');
-        $coachRole->Role = $request->input('Role');
+        $coachRole->Denomination = $request->input('Denomination');
+
         if( $coachRole->save() ){
             return new CoachRoleResource( $coachRole );
         }
@@ -26,7 +26,8 @@ class CoachRoleController extends Controller {
 
     public function update(Request $request) {
         $coachRole = CoachRole::findOrFail( $request->CoachRoleID );
-        $coachRole->Role = $request->input('Role');
+        $coachRole->Denomination = $request->input('Denomination');
+
         if( $coachRole->save() ) {
             return new CoachRoleResource($coachRole);
         }

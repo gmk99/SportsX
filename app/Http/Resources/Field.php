@@ -9,9 +9,9 @@ class Field extends JsonResource
     {
         return [
             'id' => $this->id,
-            'denomination' => $this->denomination,
-            'field_type' => $this->field_type,
-            'team_id' => $this->team_id,
+            'FieldType' => $this->FieldType,
+            'Denomination' => $this->Denomination,
+
         ];
     }
 }

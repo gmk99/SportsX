@@ -9,11 +9,9 @@ class Physiotherapist extends JsonResource
     {
         return [
             'id' => $this->id,
-            'denomination' => $this->denomination,
-            'full_name' => $this->full_name,
-            'location' => $this->location,
-            'birthdate' => $this->birthdate,
-            'estimated_time_to_recover' => $this->estimated_time_to_recover,
+            'FullName' => $this->FullName,
+            'Birthdate' => $this->Birthdate,
+            'UsersID' => $this->UsersID
         ];
     }
 }

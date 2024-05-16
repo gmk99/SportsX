@@ -9,20 +9,16 @@ class Physiotherapist extends Model
 {
     use HasFactory;
 
+    protected $table = 'Physiotherapist';
     protected $fillable = [
         'FullName',
-        'BirthDate',
-        'LoginEmail',
-        'ContactID'
+        'Birthdate',
+        'UserID',
     ];
-    //Chave estrangeira LoginEmail
-    private function login()
+    public $timestamps = false;
+    //Chave estrangeira UserID
+    private function user()
     {
-        return $this->belongsTo(Login::class,'LoginEmail');
-    }
-    //Chave estrangeira ContactID
-    private function Contact()
-    {
-        return $this->belongsTo(Contact::class,'ContactID');
+        return $this->belongsTo(User::class,'UserID');
     }
 }

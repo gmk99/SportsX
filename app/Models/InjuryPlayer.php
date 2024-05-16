@@ -9,13 +9,14 @@ class InjuryPlayer extends Model
 {
     use HasFactory;
 
+    protected $table = 'InjuryPlayer';
     protected $fillable = [
         'Date',
         'Observation',
         'InjuryID',
         'PlayerID',
     ];
-
+    public $timestamps = false;
     //Chave estrangeira InjuryID
     private function injury()
     {

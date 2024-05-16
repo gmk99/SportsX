@@ -16,7 +16,7 @@ class Assist extends Model
         'PlayerID',
         'GoalID'
     ];
-
+    public $timestamps = false;
     //Chave estrangeira GameID
     private function game()
     {

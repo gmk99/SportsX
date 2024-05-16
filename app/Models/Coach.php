@@ -9,17 +9,20 @@ class Coach extends Model
 {
     use HasFactory;
 
+    protected $table = 'Coach';
     protected $fillable = [
         'FullName',
-        'BirthName',
+        'Birthdate',
         'Degree',
         'AssociationNumber',
-        'ContactID'
+        'UsersID',
     ];
+    public $timestamps = false;
 
-    //Chave estrangeira ContactID
-    private function contact()
+    //Chave estrangeira UsersID
+    private function users()
     {
-        return $this->belongsTo(Contact::class,'ContactID');
+        return $this->belongsTo(User::class,'UsersID');
     }
+
 }

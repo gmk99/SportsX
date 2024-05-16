@@ -9,28 +9,11 @@ class GamePlayer extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'gameID' => $this->gameID,
-            'playerID' => $this->playerID,
-            'isStarter' => $this->isStarter,
-            'minutes' => $this->minutes,
-            'goal' => [
-                'goalID' => $this->goal->goalID,
-                'minute' => $this->goal->minute,
-                'goalType' => $this->goal->goalType,
-            ],
-            'assist' => [
-                'assistID' => $this->assist->assistID,
-                'minute' => $this->assist->minute,
-                'assistType' => $this->assist->assistType,
-            ],
-            'player' => [
-                'playerID' => $this->player->playerID,
-                'fullName' => $this->player->fullName,
-                'birthdate' => $this->player->birthdate,
-                'associationNumber' => $this->player->associationNumber,
-                'position' => $this->player->position,
-                'number' => $this->player->number,
-            ],
-        ];
+            'game_id' => $this->game_id,
+            'player_id' => $this->player_id,
+            'IsStarter' => $this->IsStarter,
+            'Minutes' => $this->Minutes
+            ];
+
     }
 }

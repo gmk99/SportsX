@@ -9,6 +9,7 @@ class Train extends Model
 {
     use HasFactory;
 
+    protected $table = 'Train';
     protected $fillable = [
         'Day',
         'StartingTime',
@@ -16,6 +17,7 @@ class Train extends Model
         'TeamID',
         'FieldFieldID'
     ];
+    public $timestamps = false;
     //Chave estrangeira TeamID
     private function team()
     {

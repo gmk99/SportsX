@@ -9,11 +9,13 @@ class TeamCoach extends Model
 {
     use HasFactory;
 
+    protected $table = 'TeamCoach';
     protected $fillable = [
         'TeamID',
         'CoachID',
         'CoachRoleID'
     ];
+    public $timestamps = false;
     //Chave estrangeira TeamID
     public function team()
     {

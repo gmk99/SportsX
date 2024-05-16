@@ -9,21 +9,31 @@ class TeamPlayer extends Model
 {
     use HasFactory;
 
-    use HasFactory;
-
+    protected $table = 'TeamPlayer';
     protected $fillable = [
-        'TeamID',
-        'PlayerId',
+        'team_id',
+        'player_id',
         'Number'
     ];
-    //Chave estrangeira TeamID
-    private function team()
+    public $timestamps = false;
+
+    /**
+     * Get the team that the player belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function team(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Team::class,'TeamID');
+        return $this->belongsTo(Team::class, 'team_id');
     }
-    //Chave estrangeira PlayerID
-    private function player()
+
+    /**
+     * Get the player associated with the team player.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function player(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Player::class,'PlayerID');
+        return $this->belongsTo(Player::class, 'player_id');
     }
 }

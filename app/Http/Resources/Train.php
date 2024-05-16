@@ -9,11 +9,12 @@ class Train extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'name' => $this->name,
-            'type' => $this->type,
-            'capacity' => $this->capacity,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'id' => $this->id,
+            'Day' => $this->Day,
+            'StartingTime' => $this->StartingTime,
+            'EndingTime' => $this->EndingTime,
+            'TeamID' => $this->TeamID,
+            'FieldFieldID' => $this->FieldFieldID
         ];
     }
 }

@@ -8,8 +8,10 @@ class Injury extends JsonResource
     public function toArray($request)
     {
         return [
-            'injuryID' => $this->injuryID,
-            'description' => $this->description,
+            'id' => $this->id,
+            'Denomination' => $this->Denomination,
+            'Location' => $this->Location,
+            'EstimatedTimeToRecover' => $this->EstimatedTimeToRecover
         ];
     }
 }

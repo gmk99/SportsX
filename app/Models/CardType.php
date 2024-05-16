@@ -11,6 +11,7 @@ class CardType extends Model
 
     protected $table = 'CardType';
     protected $fillable = [
-        'Denomination'
+        'Denomination',
     ];
+    public $timestamps = false;
 }

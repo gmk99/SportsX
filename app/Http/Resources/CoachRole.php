@@ -10,10 +10,8 @@ class CoachRole extends JsonResource
         //return parent::toArray($request);
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'Denonimation' => $this->Denonimation,
+
         ];
     }
 }

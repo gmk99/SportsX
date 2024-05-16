@@ -20,7 +20,6 @@ class GoalController extends Controller {
 
     public function store(Request $request){
         $goal = new Goal;
-        $goal->GoallD = $request->input('GoallD');
         $goal->Minute = $request->input('Minute');
         $goal->GameID = $request->input('GameID');
         $goal->PlayerID = $request->input('PlayerID');
@@ -33,7 +32,6 @@ class GoalController extends Controller {
     public function update(Request $request)
     {
         $goal = Goal::findOrFail( $request->id );
-        $goal->GoallD = $request->input('GoallD');
         $goal->Minute = $request->input('Minute');
         $goal->GameID = $request->input('GameID');
         $goal->PlayerID = $request->input('PlayerID');
@@ -52,4 +50,10 @@ class GoalController extends Controller {
             return new GoalResource( $goal );
         }
     }
+
+    public function countGoals() {
+        $totalGoals = Goal::count();
+        return $totalGoals;
+    }
+
 }

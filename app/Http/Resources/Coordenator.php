@@ -10,10 +10,9 @@ class Coordenator extends JsonResource
         //return parent::toArray($request);
         return [
             'id' => $this->id,
-            'full_name' => $this->full_name,
-            'birthdate' => $this->birthdate,
-            'login_email' => $this->login_email,
-            'contact_id' => $this->contact_id,
+            'FullName' => $this->FullName,
+            'Birthdate' => $this->Birthdate,
+            'UsersID' => $this->UsersID,
         ];
     }
 }

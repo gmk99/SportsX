@@ -9,13 +9,14 @@ class GamePlayer extends Model
 {
     use HasFactory;
 
+    protected $table = 'GamePlayer';
     protected $fillable = [
       'GameID',
       'PlayerID',
-      'isStarter',
+      'IsStarter',
       'Minutes',
     ];
-
+    public $timestamps = false;
     //Chave GameID
     private function game()
     {

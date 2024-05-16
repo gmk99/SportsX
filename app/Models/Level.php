@@ -9,12 +9,13 @@ class Level extends Model
 {
     use HasFactory;
 
+    protected $table = 'Level';
     protected $fillable = [
         'Degination',
-        'Maximumage',
+        'MaximumAge',
         'CoordenatorID'
     ];
-
+    public $timestamps = false;
     //Chave estrangeira CoordenatorID
     private function coordenator()
     {

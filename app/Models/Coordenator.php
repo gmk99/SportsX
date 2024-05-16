@@ -9,22 +9,16 @@ class Coordenator extends Model
 {
     use HasFactory;
 
+    protected $table = 'Coordenator';
     protected $fillable = [
         'Fullname',
         'Birthname',
-        'LoginEmail',
-        'ContactID',
+        'UsersID',
     ];
-
-    //Chave estrangeira LoginEmail
-    private function login()
+    public $timestamps = false;
+    //Chave estrangeira UsersID
+    private function user()
     {
-        return $this->belongsTo(Login::class,'LoginEmail');
-    }
-
-    //Chave estrangeira ContactID
-    private function contact()
-    {
-        return $this->belongsTo(Contact::class,'ContactID');
+        return $this->belongsTo(User::class,'UserID');
     }
 }

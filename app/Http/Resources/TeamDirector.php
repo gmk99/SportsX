@@ -9,12 +9,10 @@ class TeamDirector extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'name' => $this->name,
-            'email' => $this->email,
-            'role' => $this->role,
-            'team_id' => $this->team_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'id' => $this->id,
+            'FullName' => $this->FullName,
+            'BirthDate' => $this->BirthDate,
+            'UsersID' => $this->UsersID
         ];
     }
 }

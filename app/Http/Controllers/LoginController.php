@@ -1,47 +1,49 @@
-<?php namespace App\Http\Controllers;
+<?php
 
-use App\Models\Contact as Contact;
-use App\Http\Resources\Contact as ContactResource;
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Password;
 
-class ContactController extends Controller {
-    public function index(){
-        $contacts = Contact::paginate(15);
-        return ContactResource::collection($contacts);
+class LoginController extends Controller
+{
+    /**
+     * Display login page.
+     *
+     * @return Renderable
+     */
+    public function show()
+    {
+        return view('auth.login');
     }
 
-    public function show($id){
-        $contact = Contact::findOrFail( $id );
-        return new ContactResource( $contact );
-    }
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-    public function store(Request $request){
-        $contact = new Contact;
-        $contact->ContactID = $request->input('ContactID');
-        $contact->FirstName = $request->input('FirstName');
-        $contact->LastName = $request->input('LastName');
-        $contact->PhoneNumber = $request->input('PhoneNumber');
-        $contact->Email = $request->input('Email');
-        if( $contact->save() ){
-            return new ContactResource( $contact );
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('dashboard');
         }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 
-    public function update(Request $request) {
-        $contact = Contact::findOrFail( $request->ContactID );
-        $contact->FirstName = $request->input('FirstName');
-        $contact->LastName = $request->input('LastName');
-        $contact->PhoneNumber = $request->input('PhoneNumber');
-        $contact->Email = $request->input('Email');
-        if( $contact->save() ) {
-            return new ContactResource($contact);
-        }
-    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
-    public function destroy($id) {
-        $contact = Contact::findOrFail( $id );
-        if( $contact->delete() ) {
-            return new ContactResource( $contact );
-        }
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }

@@ -6,48 +6,53 @@ use App\Models\GamePlayer;
 use App\Http\Resources\GamePlayer as GamePlayerResource;
 use Illuminate\Http\Request;
 
-class GamePlayerController extends Controller {
+class GamePlayerController extends Controller
+{
 
-    public function index(){
+    public function index()
+    {
         $gamePlayers = GamePlayer::paginate(15);
         return GamePlayerResource::collection($gamePlayers);
     }
 
-    public function show($id){
-        $gamePlayer = GamePlayer::findOrFail( $id );
-        return new GamePlayerResource( $gamePlayer );
+    public function show($id)
+    {
+        $gamePlayer = GamePlayer::findOrFail($id);
+        return new GamePlayerResource($gamePlayer);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $gamePlayer = new GamePlayer;
-        $gamePlayer->PlayerID = $request->input('PlayerID');
-        $gamePlayer->GameID = $request->input('GameID');
+        $gamePlayer->game_id = $request->input('game_id');
+        $gamePlayer->player_id = $request->input('player_id');
         $gamePlayer->IsStarter = $request->input('IsStarter');
         $gamePlayer->Minutes = $request->input('Minutes');
 
-        if( $gamePlayer->save() ){
-            return new GamePlayerResource( $gamePlayer );
+        if ($gamePlayer->save()) {
+            return new GamePlayerResource($gamePlayer);
         }
     }
 
     public function update(Request $request)
     {
-        $gamePlayer = GamePlayer::findOrFail( $request->id );
-        $gamePlayer->PlayerID = $request->input('PlayerID');
-        $gamePlayer->GameID = $request->input('GameID');
+        $gamePlayer = GamePlayer::findOrFail($request->id);
+        $gamePlayer->game_id = $request->input('game_id');
+        $gamePlayer->player_id = $request->input('player_id');
         $gamePlayer->IsStarter = $request->input('IsStarter');
         $gamePlayer->Minutes = $request->input('Minutes');
 
-        if( $gamePlayer->save() )
-        {
+        if ($gamePlayer->save()) {
             return new GamePlayerResource($gamePlayer);
         }
     }
 
     public function destroy($id)
     {
-        $gamePlayer = GamePlayer::findOrFail( $id );
-        if( $gamePlayer->delete() )
+        $gamePlayer = GamePlayer::findOrFail($id);
+        if ($gamePlayer->delete())
         {
-            return new GamePlayerResource( $gamePlayer );
-       
+            return new GamePlayerResource($gamePlayer);
+        }
+    }
+}
