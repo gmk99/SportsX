@@ -404,7 +404,7 @@
                         backgroundColor: gradientStroke1,
                         borderWidth: 3,
                         fill: true,
-                        data: [0,0,0,0,0,0,0,0,0],
+                        data: [0,0,0,0,0,0,0,0,2],
                         maxBarThickness: 6
                     }]
                 },
