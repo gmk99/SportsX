@@ -50,4 +50,10 @@ class GoalController extends Controller {
             return new GoalResource( $goal );
         }
     }
+
+    public function countGoals() {
+        $totalGoals = Goal::count();
+        return $totalGoals;
+    }
+
 }

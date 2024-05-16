@@ -206,7 +206,7 @@
                 <div class="card ">
                     <div class="card-header pb-0 p-3">
                         <div class="d-flex justify-content-between">
-                            <h6 class="mb-2">Sales by Country</h6>
+                            <h6 class="mb-2">Best Scorers</h6>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -216,30 +216,32 @@
                                     <td class="w-30">
                                         <div class="d-flex px-2 py-1 align-items-center">
                                             <div>
-                                                <img src="./img/icons/flags/US.png" alt="Country flag">
+                                                <img src="./img/icons/flags/gmk.jpg" alt="gmk">
                                             </div>
                                             <div class="ms-4">
-                                                <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                <h6 class="text-sm mb-0">United States</h6>
+                                                <p class="text-xs font-weight-bold mb-0">Name:</p>
+
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
+                                            <p class="text-xs font-weight-bold mb-0">Number:</p>
                                             <h6 class="text-sm mb-0">2500</h6>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
+                                            <p class="text-xs font-weight-bold mb-0">Position:</p>
                                             <h6 class="text-sm mb-0">$230,900</h6>
                                         </div>
                                     </td>
                                     <td class="align-middle text-sm">
                                         <div class="col text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                            <h6 class="text-sm mb-0">29.9%</h6>
+                                            <p class="text-xs font-weight-bold mb-0">Goals:</p>
+                                            <h6 class="text-sm mb-0">
+                                                    {{ app('App\Http\Controllers\GoalController')->countGoals() }}
+                                            </h6>
                                         </div>
                                     </td>
                                 </tr>
