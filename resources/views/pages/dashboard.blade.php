@@ -1,3 +1,140 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    function fetchDataAndDrawChart() {
+        $.ajax({
+            url: '{{ route("totalPlayersInIniciacao") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[0] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInPetizes") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[1] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInTraquinas") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[2] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInBenjamins") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[3] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInInfantis") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[4] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInIniciados") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[5] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInJuvenis") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[6] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInJuniores") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[7] = data.totalPlayers;
+                chart.update();
+            }
+        });
+
+        $.ajax({
+            url: '{{ route("totalPlayersInSeniores") }}',
+            method: 'GET',
+            success: function(data) {
+                chart.data.datasets[0].data[8] = data.totalPlayers;
+                chart.update();
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        $.ajax({
+            url: '{{ route("totalCoaches") }}',
+            method: 'GET',
+            success: function(response) {
+                $('#totalCoaches').text(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+    $(document).ready(function() {
+        $.ajax({
+            url: '{{ route("totalPlayers") }}',
+            method: 'GET',
+            success: function(response) {
+                $('#totalPlayers').text(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+    $(document).ready(function() {
+        $.ajax({
+            url: '{{ route("totalTeams") }}',
+            method: 'GET',
+            success: function(response) {
+                $('#totalTeams').text(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+    $(document).ready(function() {
+        $.ajax({
+            url: '{{ route("totalInjuries") }}',
+            method: 'GET',
+            success: function(response) {
+                $('#totalInjuries').text(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+
+</script>
+
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
@@ -192,8 +329,8 @@
                                             </h6>
                                         </div>
                                     </td>
-                                </tr> <!--
-                                                               <tr>
+                                </tr>
+                                <!--                                <tr>
                                                                   <td class="w-30">
                                                                         <div class="d-flex px-2 py-1 align-items-center">
                                                                             <div>
@@ -283,9 +420,9 @@
                                                                         <div class="col text-center">
                                                                             <p class="text-xs font-weight-bold mb-0">Bounce:</p>
                                                                             <h6 class="text-sm mb-0">32.14%</h6>
-                                                                        </div>
+                                                                        </div>-->
                                                                     </td>
-                                                                </tr> -->
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -375,258 +512,92 @@
 @endsection
 
 @push('js')
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/plugins/chartjs.min.js"></script>
     <script>
 
 
-        $(document).ready(function() {
-            var ctx1 = document.getElementById("chart-line").getContext("2d");
+        var ctx1 = document.getElementById("chart-line").getContext("2d");
 
-            var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+        var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
 
-            gradientStroke1.addColorStop(1, 'rgba(251, 99, 64, 0.2)');
-            gradientStroke1.addColorStop(0.2, 'rgba(251, 99, 64, 0.0)');
-            gradientStroke1.addColorStop(0, 'rgba(251, 99, 64, 0)');
+        gradientStroke1.addColorStop(1, 'rgba(251, 99, 64, 0.2)');
+        gradientStroke1.addColorStop(0.2, 'rgba(251, 99, 64, 0.0)');
+        gradientStroke1.addColorStop(0, 'rgba(251, 99, 64, 0)');
+        new Chart(ctx1, {
+            type: "line",
+            data: {
+                labels: ["Iniciação", "Petizes", "Traquinas", "Benjamins", "Infantis", "Iniciados", "Juvenis", "Juniores", "Seniores"],
 
-            var chart = new Chart(ctx1, {
-                type: "line",
-                data: {
-                    labels: ["Iniciação", "Petizes", "Traquinas", "Benjamins", "Infantis", "Iniciados", "Juvenis", "Juniores", "Seniores"],
-                    datasets: [{
-                        label: "Jogadores:",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        pointRadius: 0,
-                        borderColor: "#fb6340",
-                        backgroundColor: gradientStroke1,
-                        borderWidth: 3,
-                        fill: true,
-                        data: [0,0,0,0,0,0,0,0,0],
-                        maxBarThickness: 6
-                    }],
+                datasets: [{
+                    label: "Jogadores:",
+                    tension: 0.4,
+                    borderWidth: 0,
+                    pointRadius: 0,
+                    borderColor: "#fb6340",
+                    backgroundColor: gradientStroke1,
+                    borderWidth: 3,
+                    fill: true,
+                    data: [0,0,0,0,0,0,0,0,0],
+                    maxBarThickness: 6
+
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false,
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+                scales: {
+                    y: {
+                        grid: {
+                            drawBorder: false,
+                            display: true,
+                            drawOnChartArea: true,
+                            drawTicks: false,
+                            borderDash: [5, 5]
+                        },
+                        ticks: {
+                            display: true,
+                            padding: 10,
+                            color: '#fbfbfb',
+                            font: {
+                                size: 11,
+                                family: "Open Sans",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
                         }
                     },
-                    interaction: {
-                        intersect: false,
-                        mode: 'index',
-                    },
-                    scales: {
-                        y: {
-                            grid: {
-                                drawBorder: false,
-                                display: true,
-                                drawOnChartArea: true,
-                                drawTicks: false,
-                                borderDash: [5, 5]
-                            },
-                            ticks: {
-                                display: true,
-                                padding: 10,
-                                color: '#fbfbfb',
-                                font: {
-                                    size: 11,
-                                    family: "Open Sans",
-                                    style: 'normal',
-                                    lineHeight: 2
-                                },
-                            }
+                    x: {
+                        grid: {
+                            drawBorder: false,
+                            display: false,
+                            drawOnChartArea: false,
+                            drawTicks: false,
+                            borderDash: [5, 5]
                         },
-                        x: {
-                            grid: {
-                                drawBorder: false,
-                                display: false,
-                                drawOnChartArea: false,
-                                drawTicks: false,
-                                borderDash: [5, 5]
+                        ticks: {
+                            display: true,
+                            color: '#ccc',
+                            padding: 20,
+                            font: {
+                                size: 11,
+                                family: "Open Sans",
+                                style: 'normal',
+                                lineHeight: 2
                             },
-                            ticks: {
-                                display: true,
-                                color: '#ccc',
-                                padding: 20,
-                                font: {
-                                    size: 11,
-                                    family: "Open Sans",
-                                    style: 'normal',
-                                    lineHeight: 2
-                                },
-                            }
-                        },
+                        }
                     },
                 },
-            });
-
-            fetchDataAndDrawChart(chart);
+            },
         });
-
-
-        function fetchDataAndDrawChart(chart) {
-            $.ajax({
-                url: '{{ route("totalPlayersInIniciacao") }}',
-                method: 'GET',
-                success: function(data) {
-                    chart.data.datasets[0].data[0] = data.totalPlayers;
-                    chart.update();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-
-            $.ajax({
-                url: '{{ route("totalPlayersInPetizes") }}',
-                method: 'GET',
-                success: function(data) {
-                    chart.data.datasets[0].data[1] = data.totalPlayers;
-                    chart.update();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-
-            $.ajax({
-                url: '{{ route("totalPlayersInTraquinas") }}',
-                method: 'GET',
-                success: function(data) {
-                    chart.data.datasets[0].data[2] = data.totalPlayers;
-                    chart.update();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-
-            $.ajax({
-                url: '{{ route("totalPlayersInBenjamins") }}',
-                method: 'GET',
-                success: function(data) {
-                    chart.data.datasets[0].data[3] = data.totalPlayers;
-                    chart.update();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-
-            $.ajax({
-                url: '{{ route("totalPlayersInInfantis") }}',
-                method: 'GET',
-                success: function(data) {
-                    chart.data.datasets[0].data[4] = data.totalPlayers;
-                    chart.update();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-
-            $.ajax({
-                url: '{{ route("totalPlayersInIniciados") }}',
-                method: 'GET',
-                success: function(data) {
-                    chart.data.datasets[0].data[5] = data.totalPlayers;
-                    chart.update();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-
-            $.ajax({
-                url: '{{ route("totalPlayersInJuvenis") }}',
-                method: 'GET',
-                success: function(data) {
-                    chart.data.datasets[0].data[6] = data.totalPlayers;
-                    chart.update();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-
-            $.ajax({
-                url: '{{ route("totalPlayersInJuniores") }}',
-                method: 'GET',
-                success: function(data) {
-                    chart.data.datasets[0].data[7] = data.totalPlayers;
-                    chart.update();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-
-            $.ajax({
-                url: '{{ route("totalPlayersInSeniores") }}',
-                method: 'GET',
-                success: function(data) {
-                    chart.data.datasets[0].data[8] = data.totalPlayers;
-                    chart.update();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            $.ajax({
-                url: '{{ route("totalCoaches") }}',
-                method: 'GET',
-                success: function(response) {
-                    $('#totalCoaches').text(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        });
-        $(document).ready(function() {
-            $.ajax({
-                url: '{{ route("totalPlayers") }}',
-                method: 'GET',
-                success: function(response) {
-                    $('#totalPlayers').text(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        });
-        $(document).ready(function() {
-            $.ajax({
-                url: '{{ route("totalTeams") }}',
-                method: 'GET',
-                success: function(response) {
-                    $('#totalTeams').text(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        });
-        $(document).ready(function() {
-            $.ajax({
-                url: '{{ route("totalInjuries") }}',
-                method: 'GET',
-                success: function(response) {
-                    $('#totalInjuries').text(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        });
-
 
     </script>
 @endpush
