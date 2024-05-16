@@ -87,6 +87,7 @@ Route::get('injury_player/{id}', [InjuryPlayerController::class, 'show']);
 Route::post('injury_player', [InjuryPlayerController::class, 'store']);
 Route::put('injury_player/{id}', [InjuryPlayerController::class, 'update']);
 Route::delete('injury_player/{id}', [InjuryPlayerController::class,'destroy']);
+Route::get('totalInjuries', [InjuryPlayerController::class, 'totalInjuries'])->name('totalInjuries');;
 
 // INJURY
 Route::get('injuries', [InjuryController::class, 'index']);
@@ -129,6 +130,15 @@ Route::get('team_player/{id}', [TeamPlayerController::class, 'show']);
 Route::post('team_player', [TeamPlayerController::class, 'store']);
 Route::put('team_player/{id}', [TeamPlayerController::class, 'update']);
 Route::delete('team_player/{id}', [TeamPlayerController::class, 'destroy']);
+Route::get('totalPlayersInIniciacao', [TeamPlayerController::class, 'totalPlayersInIniciacao']);
+Route::get('totalPlayersInPetizes', [TeamPlayerController::class, 'totalPlayersInPetizes']);
+Route::get('totalPlayersInTraquinas', [TeamPlayerController::class, 'totalPlayersInTraquinas']);
+Route::get('totalPlayersInBenjamins', [TeamPlayerController::class, 'totalPlayersInBenjamins']);
+Route::get('totalPlayersInInfantis', [TeamPlayerController::class, 'totalPlayersInInfantis']);
+Route::get('totalPlayersInIniciados', [TeamPlayerController::class, 'totalPlayersInIniciados']);
+Route::get('totalPlayersInJuvenis', [TeamPlayerController::class, 'totalPlayersInJuvenis']);
+Route::get('totalPlayersInjuniores', [TeamPlayerController::class, 'totalPlayersInjuniores']);
+Route::get('totalPlayersInSeniores', [TeamPlayerController::class, 'totalPlayersInSeniores']);
 
 // FIELD
 Route::get('fields', [FieldController::class, 'index']);
@@ -143,6 +153,8 @@ Route::get('team/{id}', [TeamController::class, 'show']);
 Route::post('team', [TeamController::class, 'store']);
 Route::put('team/{id}', [TeamController::class, 'update']);
 Route::delete('team/{id}', [TeamController::class, 'destroy']);
+Route::get('totalTeams', [TeamController::class, 'totalTeams'])->name('totalTeams');;
+
 
 // TEAM COACH
 Route::get('team_coaches', [TeamCoachController::class, 'index']);
@@ -157,6 +169,7 @@ Route::get('player/{id}', [PlayerController::class, 'show']);
 Route::post('player', [PlayerController::class, 'store']);
 Route::put('player/{id}', [PlayerController::class, 'update']);
 Route::delete('player/{id}', [PlayerController::class, 'destroy']);
+Route::get('totalPlayers', [PlayerController::class, 'totalPlayers'])->name('totalPlayers');;
 
 // POSITION
 Route::get('positions', [PositionController::class, 'index']);
@@ -171,6 +184,7 @@ Route::get('coach/{id}', [CoachController::class, 'show']);
 Route::post('coach', [CoachController::class, 'store']);
 Route::put('coach/{id}', [CoachController::class, 'update']);
 Route::delete('coach/{id}', [CoachController::class, 'destroy']);
+Route::get('totalCoaches', [CoachController::class, 'totalCoaches'])->name('totalCoaches');;
 
 // COACH ROLE
 Route::get('coach_roles', [CoachRoleController::class, 'index']);

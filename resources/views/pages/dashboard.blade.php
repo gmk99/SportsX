@@ -1,3 +1,55 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: '{{ route("totalCoaches") }}',
+            method: 'GET',
+            success: function(response) {
+                $('#totalCoaches').text(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+    $(document).ready(function() {
+        $.ajax({
+            url: '{{ route("totalPlayers") }}',
+            method: 'GET',
+            success: function(response) {
+                $('#totalPlayers').text(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+    $(document).ready(function() {
+        $.ajax({
+            url: '{{ route("totalTeams") }}',
+            method: 'GET',
+            success: function(response) {
+                $('#totalTeams').text(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+    $(document).ready(function() {
+        $.ajax({
+            url: '{{ route("totalInjuries") }}',
+            method: 'GET',
+            success: function(response) {
+                $('#totalInjuries').text(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+</script>
+
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
@@ -12,7 +64,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total de Atletas do Clube</p>
                                     <h5 class="font-weight-bolder">
-                                        {{ app('App\Http\Controllers\PlayerController')->totalPlayers() }}
+                                        <h5 id="totalPlayers" class="font-weight-bolder"></h5>
                                     </h5>
                                 </div>
                             </div>
@@ -33,7 +85,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Atletas Lesionados</p>
                                     <h5 class="font-weight-bolder">
-                                        {{ app('App\Http\Controllers\InjuryPlayerController')->totalInjuries() }}
+                                        <h5 id="totalInjuries" class="font-weight-bolder"></h5>
                                     </h5>
                                 </div>
                             </div>
@@ -54,8 +106,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total de equipas</p>
                                     <h5 class="font-weight-bolder">
-                                        {{ app('App\Http\Controllers\TeamController')->totalTeams() }}
-                                    </h5>
+                                        <h5 id="totalTeams" class="font-weight-bolder"></h5>                                    </h5>
                                 </div>
                             </div>
                             <div class="col-4 text-end">
@@ -74,9 +125,7 @@
                             <div class="col-8">
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total de treinadores</p>
-                                    <h5 class="font-weight-bolder">
-                                        {{ app('App\Http\Controllers\CoachController')->totalCoaches() }}
-                                    </h5>
+                                    <h5 id="totalCoaches" class="font-weight-bolder"></h5>
                                 </div>
                             </div>
                             <div class="col-4 text-end">
@@ -93,11 +142,7 @@
             <div class="col-lg-7 mb-lg-0 mb-4">
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
-                        <h6 class="text-capitalize">Sales overview</h6>
-                        <p class="text-sm mb-0">
-                            <i class="fa fa-arrow-up text-success"></i>
-                            <span class="font-weight-bold">4% more</span> in 2021
-                        </p>
+                        <h6 class="text-capitalize">Jogadores por escalão</h6>
                     </div>
                     <div class="card-body p-3">
                         <div class="chart">
@@ -382,6 +427,8 @@
 @push('js')
     <script src="./assets/js/plugins/chartjs.min.js"></script>
     <script>
+
+
         var ctx1 = document.getElementById("chart-line").getContext("2d");
 
         var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
@@ -392,9 +439,10 @@
         new Chart(ctx1, {
             type: "line",
             data: {
-                labels: ["2000", "2002", "2004", "2006", "2008", "2010", "2012", "2014", "2016"],
+                labels: ["Iniciação", "Petizes", "Traquinas", "Benjamins", "Infantis", "Iniciados", "Juvenis", "Juniores", "Seniores"],
+
                 datasets: [{
-                    label: "Mobile apps",
+                    label: "Jogadores:",
                     tension: 0.4,
                     borderWidth: 0,
                     pointRadius: 0,
@@ -402,7 +450,7 @@
                     backgroundColor: gradientStroke1,
                     borderWidth: 3,
                     fill: true,
-                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                    data: [],
                     maxBarThickness: 6
 
                 }],
@@ -463,5 +511,6 @@
                 },
             },
         });
+
     </script>
 @endpush
