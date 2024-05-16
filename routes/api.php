@@ -137,7 +137,7 @@ Route::get('totalPlayersInBenjamins', [TeamPlayerController::class, 'totalPlayer
 Route::get('totalPlayersInInfantis', [TeamPlayerController::class, 'totalPlayersInInfantis'])->name('totalPlayersInInfantis');
 Route::get('totalPlayersInIniciados', [TeamPlayerController::class, 'totalPlayersInIniciados'])->name('totalPlayersInIniciados');
 Route::get('totalPlayersInJuvenis', [TeamPlayerController::class, 'totalPlayersInJuvenis'])->name('totalPlayersInJuvenis');
-Route::get('totalPlayersInjuniores', [TeamPlayerController::class, 'totalPlayersInjuniores'])->name('totalPlayersInJuniores');
+Route::get('totalPlayersInJuniores', [TeamPlayerController::class, 'totalPlayersInJuniores'])->name('totalPlayersInJuniores');
 Route::get('totalPlayersInSeniores', [TeamPlayerController::class, 'totalPlayersInSeniores'])->name('totalPlayersInSeniores');
 
 // FIELD

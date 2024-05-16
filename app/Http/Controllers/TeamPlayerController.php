@@ -71,7 +71,7 @@ class TeamPlayerController extends Controller
         return $total;
     }
 
-    public function totalPlayersInInfantis()
+    public function totalPlayersInBenjamins()
     {
         $total = TeamPlayer::whereHas('team', function ($query) {
             $query->where('LevelID', 4);
@@ -79,7 +79,7 @@ class TeamPlayerController extends Controller
         return $total;
     }
 
-    public function totalPlayersInIniciados()
+    public function totalPlayersInInfantis()
     {
         $total = TeamPlayer::whereHas('team', function ($query) {
             $query->where('LevelID', 5);
@@ -87,7 +87,7 @@ class TeamPlayerController extends Controller
         return $total;
     }
 
-    public function totalPlayersInJuvenis()
+    public function totalPlayersInIniciados()
     {
         $total = TeamPlayer::whereHas('team', function ($query) {
             $query->where('LevelID', 6);
@@ -95,7 +95,7 @@ class TeamPlayerController extends Controller
         return $total;
     }
 
-    public function totalPlayersInJuniores()
+    public function totalPlayersInJuvenis()
     {
         $total = TeamPlayer::whereHas('team', function ($query) {
             $query->where('LevelID', 7);
@@ -103,10 +103,18 @@ class TeamPlayerController extends Controller
         return $total;
     }
 
-    public function totalPlayersInSeniores()
+    public function totalPlayersInJuniores()
     {
         $total = TeamPlayer::whereHas('team', function ($query) {
             $query->where('LevelID', 8);
+        })->count();
+        return $total;
+    }
+
+    public function totalPlayersInSeniores()
+    {
+        $total = TeamPlayer::whereHas('team', function ($query) {
+            $query->where('LevelID', 9);
         })->count();
         return $total;
     }
