@@ -170,9 +170,7 @@ Route::post('player', [PlayerController::class, 'store']);
 Route::put('player/{id}', [PlayerController::class, 'update']);
 Route::delete('player/{id}', [PlayerController::class, 'destroy']);
 Route::get('totalPlayers', [PlayerController::class, 'totalPlayers'])->name('totalPlayers');
-Route::get('/top-scorer/name', [PlayerController::class, 'getTopScorerName']);
-Route::get('/top-scorer/association-number', [PlayerController::class, 'getTopScorerAssociationNumber']);
-Route::get('/top-scorer/position', [PlayerController::class, 'getTopScorerPosition']);
+Route::get('topScorer', [PlayerController::class, 'topScorer'])->name('topScorer');
 
 // POSITION
 Route::get('positions', [PositionController::class, 'index']);

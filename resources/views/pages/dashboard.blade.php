@@ -155,7 +155,7 @@
                 <div class="card ">
                     <div class="card-header pb-0 p-3">
                         <div class="d-flex justify-content-between">
-                            <h6 class="mb-2">Best Scorers</h6>
+                            <h6 class="mb-2">Melhores Marcadores</h6>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -164,33 +164,28 @@
                                 <tr>
                                     <td class="w-30">
                                         <div class="d-flex px-2 py-1 align-items-center">
-                                            <div>
-                                                <img src="./img/icons/flags/gmk.jpg" alt="gmk">
-                                            </div>
                                             <div class="ms-4">
-                                                <p class="text-xs font-weight-bold mb-0">Name:</p>
-                                                <h6 class="text-sm mb-0">Mário Macedo</h6>
+                                                <p class="text-xs font-weight-bold mb-0">Nome:</p>
+                                                <h6 id="topScorerName" class="text-sm mb-0"></h6>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Number:</p>
-                                            <h6 class="text-sm mb-0">99</h6>
+                                            <p class="text-xs font-weight-bold mb-0">Numero:</p>
+                                            <h6 id="topScorerNumber" class="text-sm mb-0"></h6>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Position:</p>
-                                            <h6 class="text-sm mb-0">Goalkeeper</h6>
+                                            <p class="text-xs font-weight-bold mb-0">Posição:</p>
+                                            <h6 id="topScorerPosition" class="text-sm mb-0"></h6>
                                         </div>
                                     </td>
                                     <td class="align-middle text-sm">
                                         <div class="col text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Goals:</p>
-                                            <h6 class="text-sm mb-0">
-                                                    {{ app('App\Http\Controllers\GoalController')->countGoals() }}
-                                            </h6>
+                                            <p class="text-xs font-weight-bold mb-0">Golos:</p>
+                                            <h6 id="topScorerGoals" class="text-sm mb-0"></h6>
                                         </div>
                                     </td>
                                 </tr>
@@ -463,7 +458,6 @@
             });
         }
 
-
         $(document).ready(function() {
             $.ajax({
                 url: '{{ route("totalCoaches") }}',
@@ -512,6 +506,22 @@
                 }
             });
         });
+        $(document).ready(function() {
+            $.ajax({
+                url: '{{ route("topScorer") }}',
+                method: 'GET',
+                success: function(response) {
+                    $('#topScorerName').text(response.Name);
+                    $('#topScorerNumber').text(response.Number);
+                    $('#topScorerPosition').text(response.Position);
+                    $('#topScorerGoals').text(response.Goals);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+
 
     </script>
 

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Player;
 use App\Http\Resources\Player as PlayerResource;
 use App\Http\Requests\PlayerRequest;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class PlayerController extends Controller {
 
@@ -67,49 +68,41 @@ class PlayerController extends Controller {
         return $total;
     }
 
-    public function getTopScorerName()
+    public function topScorer()
     {
         $topScorer = $this->getTopScorer();
 
         if ($topScorer) {
-            return response()->json(['name' => $topScorer->FullName], 200);
+            return response()->json([
+                'Name' => $topScorer->FullName,
+                'Number' => $topScorer->Number,
+                'Position' => $topScorer->Designation,
+                'Goals' => $topScorer->goals,
+            ]);
         } else {
-            return response()->json(['message' => 'No players found'], 404);
-        }
-    }
-
-    public function getTopScorerAssociationNumber()
-    {
-        $topScorer = $this->getTopScorer();
-
-        if ($topScorer) {
-            return response()->json(['association_number' => $topScorer->AssociationNumber], 200);
-        } else {
-            return response()->json(['message' => 'No players found'], 404);
-        }
-    }
-
-    public function getTopScorerPosition()
-    {
-        $topScorer = $this->getTopScorer();
-
-        if ($topScorer) {
-            return response()->json(['position' => $topScorer->Designation], 200);
-        } else {
-            return response()->json(['message' => 'No players found'], 404);
+            return response()->json(['message' => 'Nenhum jogador encontrado'], 404);
         }
     }
 
     private function getTopScorer()
     {
         return DB::table('Goal')
-            ->select('Player.FullName', 'Player.AssociationNumber', 'Position.Designation', DB::raw('COUNT(Goal.id) as goals'))
+            ->select(
+                'Player.FullName',
+                'GamePlayer.player_id',
+                'Position.Designation',
+                'TeamPlayer.Number',
+                DB::raw('COUNT(Goal.id) as goals')
+            )
             ->join('GamePlayer', 'Goal.PlayerID', '=', 'GamePlayer.player_id')
             ->join('Player', 'GamePlayer.player_id', '=', 'Player.id')
             ->join('Position', 'Player.PositionID', '=', 'Position.id')
-            ->groupBy('Player.id', 'Player.FullName', 'Player.AssociationNumber', 'Position.Designation')
+            ->join('TeamPlayer', 'Player.id', '=', 'TeamPlayer.player_id')
+            ->groupBy('Player.id', 'Player.FullName', 'GamePlayer.player_id', 'Position.Designation', 'TeamPlayer.Number')
             ->orderBy('goals', 'desc')
             ->first();
     }
+
+
 
 }
