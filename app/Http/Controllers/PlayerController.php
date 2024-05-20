@@ -66,4 +66,50 @@ class PlayerController extends Controller {
         $total = Player::count();
         return $total;
     }
+
+    public function getTopScorerName()
+    {
+        $topScorer = $this->getTopScorer();
+
+        if ($topScorer) {
+            return response()->json(['name' => $topScorer->FullName], 200);
+        } else {
+            return response()->json(['message' => 'No players found'], 404);
+        }
+    }
+
+    public function getTopScorerAssociationNumber()
+    {
+        $topScorer = $this->getTopScorer();
+
+        if ($topScorer) {
+            return response()->json(['association_number' => $topScorer->AssociationNumber], 200);
+        } else {
+            return response()->json(['message' => 'No players found'], 404);
+        }
+    }
+
+    public function getTopScorerPosition()
+    {
+        $topScorer = $this->getTopScorer();
+
+        if ($topScorer) {
+            return response()->json(['position' => $topScorer->Designation], 200);
+        } else {
+            return response()->json(['message' => 'No players found'], 404);
+        }
+    }
+
+    private function getTopScorer()
+    {
+        return DB::table('Goal')
+            ->select('Player.FullName', 'Player.AssociationNumber', 'Position.Designation', DB::raw('COUNT(Goal.id) as goals'))
+            ->join('GamePlayer', 'Goal.PlayerID', '=', 'GamePlayer.player_id')
+            ->join('Player', 'GamePlayer.player_id', '=', 'Player.id')
+            ->join('Position', 'Player.PositionID', '=', 'Position.id')
+            ->groupBy('Player.id', 'Player.FullName', 'Player.AssociationNumber', 'Position.Designation')
+            ->orderBy('goals', 'desc')
+            ->first();
+    }
+
 }
