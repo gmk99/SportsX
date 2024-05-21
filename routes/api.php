@@ -175,6 +175,9 @@ Route::get('secondTopScorer', [PlayerController::class, 'secondTopScorer'])->nam
 Route::get('thirdTopScorer', [PlayerController::class, 'thirdTopScorer'])->name('thirdTopScorer');
 Route::get('forthTopScorer', [PlayerController::class, 'forthTopScorer'])->name('forthTopScorer');
 Route::get('fifthTopScorer', [PlayerController::class, 'fifthTopScorer'])->name('fifthTopScorer');
+Route::get('playerManagementData', [PlayerController::class, 'playerManagementData'])->name('playerManagementData');
+
+
 
 // POSITION
 Route::get('positions', [PositionController::class, 'index']);

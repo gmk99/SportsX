@@ -22,18 +22,13 @@ class TeamPlayer extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function team(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function player()
     {
-        return $this->belongsTo(Team::class, 'team_id');
+        return $this->belongsTo(Player::class, 'player_id', 'id');
     }
 
-    /**
-     * Get the player associated with the team player.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function player(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function team()
     {
-        return $this->belongsTo(Player::class, 'player_id');
+        return $this->belongsTo(Team::class, 'team_id', 'id');
     }
 }

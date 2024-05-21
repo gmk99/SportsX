@@ -19,9 +19,24 @@ class Player extends Model
      ];
     public $timestamps = false;
 
-    //Chave estrangeira PositionID
+    public function teamPlayer()
+    {
+        return $this->hasOne(TeamPlayer::class, 'player_id', 'id');
+    }
+
     public function position()
     {
-        return $this->belongsTo(Position::class,'PositionID');
+        return $this->belongsTo(Position::class, 'PositionID', 'id');
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class, 'team_id', 'id');
+    }
+
+    public function injuryPlayer()
+    {
+        return $this->hasOne(InjuryPlayer::class, 'PlayerID', 'PlayerID');
+
     }
 }

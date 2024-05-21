@@ -17,15 +17,14 @@ class InjuryPlayer extends Model
         'PlayerID',
     ];
     public $timestamps = false;
-    //Chave estrangeira InjuryID
+
     private function injury()
     {
         return $this->belongsTo(Injury::class,'InjuryID');
     }
 
-    //Chave estrangeira PlayerID
-    private function player()
+    public function player()
     {
-        return $this->belongsTo(Player::class,'PlayerID');
+        return $this->belongsTo(Player::class, 'player_id', 'id');
     }
 }
