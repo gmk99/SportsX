@@ -155,7 +155,7 @@
                 <div class="card ">
                     <div class="card-header pb-0 p-3">
                         <div class="d-flex justify-content-between">
-                            <h6 class="mb-2">Melhores Marcadores</h6>
+                            <h6 class="mb-2">Top 5 Melhores Marcadores</h6>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -167,6 +167,10 @@
                                             <div class="ms-4">
                                                 <p class="text-xs font-weight-bold mb-0">Nome:</p>
                                                 <h6 id="topScorerName" class="text-sm mb-0"></h6>
+                                                <h6 id="secondTopScorerName" class="text-sm mb-0"></h6>
+                                                <h6 id="thirdTopScorerName" class="text-sm mb-0"></h6>
+                                                <h6 id="forthTopScorerName" class="text-sm mb-0"></h6>
+                                                <h6 id="fifthTopScorerName" class="text-sm mb-0"></h6>
                                             </div>
                                         </div>
                                     </td>
@@ -174,117 +178,36 @@
                                         <div class="text-center">
                                             <p class="text-xs font-weight-bold mb-0">Numero:</p>
                                             <h6 id="topScorerNumber" class="text-sm mb-0"></h6>
+                                            <h6 id="secondTopScorerNumber" class="text-sm mb-0"></h6>
+                                            <h6 id="thirdTopScorerNumber" class="text-sm mb-0"></h6>
+                                            <h6 id="forthTopScorerNumber" class="text-sm mb-0"></h6>
+                                            <h6 id="fifthTopScorerNumber" class="text-sm mb-0"></h6>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="text-center">
                                             <p class="text-xs font-weight-bold mb-0">Posição:</p>
                                             <h6 id="topScorerPosition" class="text-sm mb-0"></h6>
+                                            <h6 id="secondTopScorerPosition" class="text-sm mb-0"></h6>
+                                            <h6 id="thirdTopScorerPosition" class="text-sm mb-0"></h6>
+                                            <h6 id="forthTopScorerPosition" class="text-sm mb-0"></h6>
+                                            <h6 id="fifthTopScorerPosition" class="text-sm mb-0"></h6>
                                         </div>
                                     </td>
                                     <td class="align-middle text-sm">
                                         <div class="col text-center">
                                             <p class="text-xs font-weight-bold mb-0">Golos:</p>
                                             <h6 id="topScorerGoals" class="text-sm mb-0"></h6>
+                                            <h6 id="secondTopScorerGoals" class="text-sm mb-0"></h6>
+                                            <h6 id="thirdTopScorerGoals" class="text-sm mb-0"></h6>
+                                            <h6 id="forthTopScorerGoals" class="text-sm mb-0"></h6>
+                                            <h6 id="fifthTopScorerGoals" class="text-sm mb-0"></h6>
                                         </div>
                                     </td>
                                 </tr>
-                                <!--                                <tr>
-                                                                  <td class="w-30">
-                                                                        <div class="d-flex px-2 py-1 align-items-center">
-                                                                            <div>
-                                                                                <img src="./img/icons/flags/DE.png" alt="Country flag">
-                                                                            </div>
-                                                                            <div class="ms-4">
-                                                                                <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                                                <h6 class="text-sm mb-0">Germany</h6>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="text-center">
-                                                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                                                            <h6 class="text-sm mb-0">3.900</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="text-center">
-                                                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                                                            <h6 class="text-sm mb-0">$440,000</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="align-middle text-sm">
-                                                                        <div class="col text-center">
-                                                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                                                            <h6 class="text-sm mb-0">40.22%</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="w-30">
-                                                                        <div class="d-flex px-2 py-1 align-items-center">
-                                                                            <div>
-                                                                                <img src="./img/icons/flags/GB.png" alt="Country flag">
-                                                                            </div>
-                                                                            <div class="ms-4">
-                                                                                <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                                                <h6 class="text-sm mb-0">Great Britain</h6>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="text-center">
-                                                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                                                            <h6 class="text-sm mb-0">1.400</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="text-center">
-                                                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                                                            <h6 class="text-sm mb-0">$190,700</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="align-middle text-sm">
-                                                                        <div class="col text-center">
-                                                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                                                            <h6 class="text-sm mb-0">23.44%</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="w-30">
-                                                                        <div class="d-flex px-2 py-1 align-items-center">
-                                                                            <div>
-                                                                                <img src="./img/icons/flags/BR.png" alt="Country flag">
-                                                                            </div>
-                                                                            <div class="ms-4">
-                                                                                <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                                                <h6 class="text-sm mb-0">Brasil</h6>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="text-center">
-                                                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                                                            <h6 class="text-sm mb-0">562</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="text-center">
-                                                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                                                            <h6 class="text-sm mb-0">$143,960</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="align-middle text-sm">
-                                                                        <div class="col text-center">
-                                                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                                                            <h6 class="text-sm mb-0">32.14%</h6>
-                                                                        </div>-->
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-5">
@@ -521,7 +444,66 @@
                 }
             });
         });
-
+        $(document).ready(function() {
+            $.ajax({
+                url: '{{ route("secondTopScorer") }}',
+                method: 'GET',
+                success: function(response) {
+                    $('#secondTopScorerName').text(response.Name);
+                    $('#secondTopScorerNumber').text(response.Number);
+                    $('#secondTopScorerPosition').text(response.Position);
+                    $('#secondTopScorerGoals').text(response.Goals);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+        $(document).ready(function() {
+            $.ajax({
+                url: '{{ route("thirdTopScorer") }}',
+                method: 'GET',
+                success: function(response) {
+                    $('#thirdTopScorerName').text(response.Name);
+                    $('#thirdTopScorerNumber').text(response.Number);
+                    $('#thirdTopScorerPosition').text(response.Position);
+                    $('#thirdTopScorerGoals').text(response.Goals);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+        $(document).ready(function() {
+            $.ajax({
+                url: '{{ route("forthTopScorer") }}',
+                method: 'GET',
+                success: function(response) {
+                    $('#forthTopScorerName').text(response.Name);
+                    $('#forthTopScorerNumber').text(response.Number);
+                    $('#forthTopScorerPosition').text(response.Position);
+                    $('#forthTopScorerGoals').text(response.Goals);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+        $(document).ready(function() {
+            $.ajax({
+                url: '{{ route("fifthTopScorer") }}',
+                method: 'GET',
+                success: function(response) {
+                    $('#fifthTopScorerName').text(response.Name);
+                    $('#fifthTopScorerNumber').text(response.Number);
+                    $('#fifthTopScorerPosition').text(response.Position);
+                    $('#fifthTopScorerGoals').text(response.Goals);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
 
     </script>
 

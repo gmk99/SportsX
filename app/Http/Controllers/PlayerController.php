@@ -70,7 +70,37 @@ class PlayerController extends Controller {
 
     public function topScorer()
     {
-        $topScorer = $this->getTopScorer();
+        $topScorer = $this->getScorer(1);
+
+        if ($topScorer) {
+            return response()->json([
+                'Name' => $topScorer->FullName,
+                'Number' => $topScorer->Number,
+                'Position' => $topScorer->Designation,
+                'Goals' => $topScorer->goals,
+            ]);
+        } else {
+            return response()->json(['message' => 'Nenhum jogador encontrado'], 404);
+        }
+    }
+    public function secondTopScorer()
+    {
+        $topScorer = $this->getScorer(2);
+
+        if ($topScorer) {
+            return response()->json([
+                'Name' => $topScorer->FullName,
+                'Number' => $topScorer->Number,
+                'Position' => $topScorer->Designation,
+                'Goals' => $topScorer->goals,
+            ]);
+        } else {
+            return response()->json(['message' => 'Nenhum jogador encontrado'], 404);
+        }
+    }
+    public function thirdTopScorer()
+    {
+        $topScorer = $this->getScorer(3);
 
         if ($topScorer) {
             return response()->json([
@@ -84,8 +114,41 @@ class PlayerController extends Controller {
         }
     }
 
-    private function getTopScorer()
+    public function forthTopScorer()
     {
+        $topScorer = $this->getScorer(4);
+
+        if ($topScorer) {
+            return response()->json([
+                'Name' => $topScorer->FullName,
+                'Number' => $topScorer->Number,
+                'Position' => $topScorer->Designation,
+                'Goals' => $topScorer->goals,
+            ]);
+        } else {
+            return response()->json(['message' => 'Nenhum jogador encontrado'], 404);
+        }
+    }
+
+    public function fifthTopScorer()
+    {
+        $topScorer = $this->getScorer(5);
+
+        if ($topScorer) {
+            return response()->json([
+                'Name' => $topScorer->FullName,
+                'Number' => $topScorer->Number,
+                'Position' => $topScorer->Designation,
+                'Goals' => $topScorer->goals,
+            ]);
+        } else {
+            return response()->json(['message' => 'Nenhum jogador encontrado'], 404);
+        }
+    }
+
+    private function getScorer($x)
+    {
+        $x=$x-1;
         return DB::table('Goal')
             ->select(
                 'Player.FullName',
@@ -100,6 +163,7 @@ class PlayerController extends Controller {
             ->join('TeamPlayer', 'Player.id', '=', 'TeamPlayer.player_id')
             ->groupBy('Player.id', 'Player.FullName', 'GamePlayer.player_id', 'Position.Designation', 'TeamPlayer.Number')
             ->orderBy('goals', 'desc')
+            ->skip($x)
             ->first();
     }
 
