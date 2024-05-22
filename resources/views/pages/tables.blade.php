@@ -219,7 +219,7 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Projects table</h6>
+                        <h6>Equipas</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -227,16 +227,16 @@
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Project</th>
+                                            Equipa</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Budget</th>
+                                            Escalao</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Status</th>
+                                            Idade maxima</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
-                                            Completion</th>
+                                            Numero de Jogadores</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -244,12 +244,8 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2">
-                                                <div>
-                                                    <img src="/img/small-logos/logo-spotify.svg"
-                                                        class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                                                </div>
                                                 <div class="my-auto">
-                                                    <h6 class="mb-0 text-sm">Spotify</h6>
+                                                    <h6 id="teamsList" class="text-sm mb-0"></h6>
                                                 </div>
                                             </div>
                                         </td>
@@ -280,10 +276,6 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2">
-                                                <div>
-                                                    <img src="/img/small-logos/logo-invision.svg"
-                                                        class="avatar avatar-sm rounded-circle me-2" alt="invision">
-                                                </div>
                                                 <div class="my-auto">
                                                     <h6 class="mb-0 text-sm">Invision</h6>
                                                 </div>
@@ -317,10 +309,6 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2">
-                                                <div>
-                                                    <img src="/img/small-logos/logo-jira.svg"
-                                                        class="avatar avatar-sm rounded-circle me-2" alt="jira">
-                                                </div>
                                                 <div class="my-auto">
                                                     <h6 class="mb-0 text-sm">Jira</h6>
                                                 </div>
@@ -354,10 +342,6 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2">
-                                                <div>
-                                                    <img src="/img/small-logos/logo-slack.svg"
-                                                        class="avatar avatar-sm rounded-circle me-2" alt="slack">
-                                                </div>
                                                 <div class="my-auto">
                                                     <h6 class="mb-0 text-sm">Slack</h6>
                                                 </div>
@@ -391,10 +375,6 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2">
-                                                <div>
-                                                    <img src="/img/small-logos/logo-webdev.svg"
-                                                        class="avatar avatar-sm rounded-circle me-2" alt="webdev">
-                                                </div>
                                                 <div class="my-auto">
                                                     <h6 class="mb-0 text-sm">Webdev</h6>
                                                 </div>
@@ -428,10 +408,6 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2">
-                                                <div>
-                                                    <img src="/img/small-logos/logo-xd.svg"
-                                                        class="avatar avatar-sm rounded-circle me-2" alt="xd">
-                                                </div>
                                                 <div class="my-auto">
                                                     <h6 class="mb-0 text-sm">Adobe XD</h6>
                                                 </div>
@@ -471,4 +447,35 @@
         </div>
         @include('layouts.footers.auth.footer')
     </div>
+@endsection
+
+@section('js')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Faz uma solicitação AJAX para a rota '/team-management-data'
+        $.ajax({
+            url: '/team-management-data',
+            type: 'GET',
+            success: function(response) {
+                // Limpa o conteúdo atual do elemento com ID 'teamsList'
+                $('#teamsList').empty();
+
+                // Itera sobre os dados recebidos da resposta
+                response.forEach(function(team) {
+                    // Constrói uma string com os detalhes da equipe
+                    var teamDetails = 'ID: ' + team.Id + ', Nome: ' + team.Name + ', Nível: ' + team.LevelName;
+
+                    // Adiciona os detalhes da equipe ao elemento com ID 'teamsList'
+                    $('#teamsList').append('<p>' + teamDetails + '</p>');
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                // Em caso de erro, exibe uma mensagem no console
+            }
+        });
+    });
+</script>
 @endsection

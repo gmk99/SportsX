@@ -154,6 +154,7 @@ Route::post('team', [TeamController::class, 'store']);
 Route::put('team/{id}', [TeamController::class, 'update']);
 Route::delete('team/{id}', [TeamController::class, 'destroy']);
 Route::get('totalTeams', [TeamController::class, 'totalTeams'])->name('totalTeams');
+Route::get('/team-management-data', [TeamController::class, 'teamManagementData']);
 
 
 // TEAM COACH

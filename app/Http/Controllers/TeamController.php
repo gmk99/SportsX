@@ -58,4 +58,35 @@ class TeamController extends Controller
         $total = Team::count();
         return $total;
     }
+
+    public function teamManagementData()
+    {
+        // Seleciona apenas as colunas necessárias da tabela Team
+        $teams = Team::select('id', 'Name', 'LevelID')->get();
+
+        // Verifica se não há equipes
+        if ($teams->isEmpty()) {
+            return response()->json(['message' => 'Nenhuma equipa encontrada'], 404);
+        }
+
+        // Array para armazenar detalhes das equipes
+        $teamsDetails = [];
+
+        // Itera sobre cada equipe para adicionar detalhes
+        foreach ($teams as $team) {
+            // Obtém o nível da equipe
+            $level = $team->level;
+
+            // Adiciona detalhes da equipe ao array
+            $teamsDetails[] = [
+                'Id' => $team->id,
+                'Name' => $team->Name,
+                'LevelID' => $team->LevelID,
+                'LevelName' => $level ? $level->Designation : 'N/A',
+            ];
+        }
+
+        // Retorna os detalhes das equipes como resposta JSON
+        return response()->json($teamsDetails);
+    }
 }
