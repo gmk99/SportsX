@@ -16,14 +16,23 @@ class Team extends Model
         'TeamDirectorID'
     ];
     public $timestamps = false;
-    //Chave estrangeira LevelID
-    private function level()
-    {
-        return $this->belongsTo(Level::class,'LevelID');
-    }
-    //Chave estrangeira TeamDirectorID
+
     private function teamDirector()
     {
         return $this->belongsTo(TeamDirector::class,'TeamDirectorID');
+    }
+    public function players()
+    {
+        return $this->hasMany(Player::class, 'team_id', 'id');
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class, 'level_id', 'id');
+    }
+
+    public static function find($id)
+    {
+        return self::query()->find($id);
     }
 }

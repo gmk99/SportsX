@@ -15,4 +15,9 @@ class Position extends Model
         'Designation',
     ];
     public $timestamps = false;
+
+    public function players()
+    {
+        return $this->hasMany(Player::class, 'PositionID', 'id');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Http\Resources\Game as GameResource;
 use Illuminate\Http\Request;
+use App\Models\Team;
 
 class GameController extends Controller {
 
@@ -61,5 +62,35 @@ class GameController extends Controller {
         {
             return new GameResource( $game );
         }
+    }
+
+    public function indexFormatted()
+    {
+        $games = Game::all();
+
+        $formattedGames = [];
+
+        foreach ($games as $game) {
+            $opposingTeamName = $game->opposingTeam;
+            $goalsConceded = $game->goalsConceded;
+            $goalsScored = $game->goalsScored;
+            $isAtHome = $game->isAtHome;
+
+            $homeTeam = Team::find($game->teamId);
+            $homeTeamName = $homeTeam ? $homeTeam->name : null;
+
+            $gameStatus = [
+                'gameId' => $game->id,
+                'opposingTeam' => $opposingTeamName,
+                'goalsConceded' => $goalsConceded,
+                'goalsScored' => $goalsScored,
+                'homeTeamName' => $homeTeamName,
+                'isAtHome' => $isAtHome ? 'Casa' : 'Fora'
+            ];
+
+            $formattedGames[] = $gameStatus;
+        }
+
+        return response()->json($formattedGames);
     }
 }

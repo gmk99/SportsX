@@ -6,6 +6,10 @@ use App\Models\Player;
 use App\Http\Resources\Player as PlayerResource;
 use App\Http\Requests\PlayerRequest;
 use Illuminate\Support\Facades\DB;
+use App\Models\Team;
+use App\Models\Position;
+use App\Models\InjuryPlayer;
+use Carbon\Carbon;
 
 
 class PlayerController extends Controller {
@@ -145,6 +149,38 @@ class PlayerController extends Controller {
             return response()->json(['message' => 'Nenhum jogador encontrado'], 404);
         }
     }
+
+    public function playerManagementData()
+    {
+        $players = Player::with(['team.level', 'position', 'teamPlayer', 'injuryPlayer'])->get();
+
+        if ($players->isEmpty()) {
+            return response()->json(['message' => 'Nenhum jogador encontrado'], 404);
+        }
+
+        $playersDetails = [];
+
+        foreach ($players as $player) {
+            $team = $player->team;
+            $position = $player->position;
+            $teamPlayer = $player->teamPlayer;
+            $injuryStatus = $player->injuryPlayer ? 'Lesionado' : 'Apto';
+            $age = Carbon::parse($player->Birthdate)->age;
+
+            $playersDetails[] = [
+                'Name' => $player->FullName,
+                'Number' => $teamPlayer ? $teamPlayer->Number : 'N/A',
+                'Position' => $position ? $position->Designation : 'N/A',
+                'TeamName' => $team ? $team->Name : 'N/A',
+                'Level' => $team && $team->level ? $team->level->Designation : 'N/A',
+                'InjuryStatus' => $injuryStatus,
+                'Age' => $age,
+            ];
+        }
+
+        return response()->json($playersDetails);
+    }
+
 
     private function getScorer($x)
     {

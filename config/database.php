@@ -45,7 +45,7 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'dbsportsx.c3kkaeuq2xa0.eu-west-3.rds.amazonaws.com'),
+            'host' => env('DB_HOST', 'pdsdatabase.c3kkaeuq2xa0.eu-west-3.rds.amazonaws.com'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'dbsportsx'),
             'username' => env('DB_USERNAME', 'root'),

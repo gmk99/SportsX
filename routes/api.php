@@ -52,6 +52,7 @@ Route::get('game/{id}', [GameController::class, 'show']);
 Route::post('game', [GameController::class, 'store']);
 Route::put('game/{id}', [GameController::class, 'update']);
 Route::delete('game/{id}', [GameController::class,'destroy']);
+Route::get('game/games-formatted', [GameController::class, 'indexFormatted']);
 
 // CARD
 Route::get('cards', [CardController::class, 'index']);
@@ -176,6 +177,7 @@ Route::get('secondTopScorer', [PlayerController::class, 'secondTopScorer'])->nam
 Route::get('thirdTopScorer', [PlayerController::class, 'thirdTopScorer'])->name('thirdTopScorer');
 Route::get('forthTopScorer', [PlayerController::class, 'forthTopScorer'])->name('forthTopScorer');
 Route::get('fifthTopScorer', [PlayerController::class, 'fifthTopScorer'])->name('fifthTopScorer');
+Route::get('playerManagementData', [PlayerController::class, 'playerManagementData'])->name('playerManagementData');
 
 // POSITION
 Route::get('positions', [PositionController::class, 'index']);
