@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Http\Resources\Game as GameResource;
 use Illuminate\Http\Request;
+use App\Models\Team;
 
 class GameController extends Controller {
 
