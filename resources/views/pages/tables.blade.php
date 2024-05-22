@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
-                            <table class="table align-items-center mb-0">
+                            <table class="table align-items-center mb-0" id="players_table">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -29,7 +29,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($players as $player)
+                                @foreach ($playersDetails as $player)
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2 py-1">
@@ -473,3 +473,24 @@
         @include('layouts.footers.auth.footer')
     </div>
 @endsection
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('/playerManagementData')
+            .then(response => response.json())
+            .then(data => {
+                const players = data;
+                players.forEach(player => {
+                    const playerRow = `
+              <tr>
+                  <td>${player.Name}</td>
+                  </tr>
+          `;
+                    document.getElementById('players_table').innerHTML += playerRow;
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    });
+</script>

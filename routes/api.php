@@ -178,8 +178,6 @@ Route::get('forthTopScorer', [PlayerController::class, 'forthTopScorer'])->name(
 Route::get('fifthTopScorer', [PlayerController::class, 'fifthTopScorer'])->name('fifthTopScorer');
 Route::get('playerManagementData', [PlayerController::class, 'playerManagementData'])->name('playerManagementData');
 
-
-
 // POSITION
 Route::get('positions', [PositionController::class, 'index']);
 Route::get('position/{id}', [PositionController::class, 'show']);
