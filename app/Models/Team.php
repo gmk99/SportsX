@@ -31,4 +31,8 @@ class Team extends Model
         return $this->belongsTo(Level::class, 'level_id', 'id');
     }
 
+    public static function find($id)
+    {
+        return self::query()->find($id);
+    }
 }

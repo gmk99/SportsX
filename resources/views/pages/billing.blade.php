@@ -47,7 +47,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script>
             $(document).ready(function() {
-                $.getJSON('/api/games-formatted', function(data) {
+                $.getJSON('game/games-formatted', function(data) {
                     var gamesData = data;
 
                     if (gamesData.length > 0) {

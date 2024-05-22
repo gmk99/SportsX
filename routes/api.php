@@ -52,7 +52,7 @@ Route::get('game/{id}', [GameController::class, 'show']);
 Route::post('game', [GameController::class, 'store']);
 Route::put('game/{id}', [GameController::class, 'update']);
 Route::delete('game/{id}', [GameController::class,'destroy']);
-Route::get('/api/games-formatted', [GameController::class, 'indexFormatted']);
+Route::get('game/games-formatted', [GameController::class, 'indexFormatted']);
 
 // CARD
 Route::get('cards', [CardController::class, 'index']);
