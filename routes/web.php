@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +22,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
+use App\Http\Controllers\GameController;
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
@@ -35,6 +35,15 @@ Route::get('/', function () {return redirect('/dashboard');})->middleware('auth'
 	Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
 	Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
 	Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
+
+Route::get('billing', [GameController::class, 'index'])->name('billing');
+Route::get('games', [GameController::class, 'index'])->name('games.index');
+Route::get('game/create', [GameController::class, 'create'])->name('game.create');
+Route::post('game', [GameController::class, 'store'])->name('games.store');
+Route::get('game/{id}', [GameController::class, 'show'])->name('game.show');
+Route::put('game/{id}', [GameController::class, 'update'])->name('game.update');
+Route::delete('game/{id}', [GameController::class, 'destroy'])->name('game.destroy');
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/virtual-reality', [PageController::class, 'vr'])->name('virtual-reality');
