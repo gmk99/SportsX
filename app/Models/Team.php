@@ -33,6 +33,16 @@ class Team extends Model
 
     public static function find($id)
     {
-        return self::query()->find($id);
+        // Attempt to retrieve the team record from the database
+        $teamRecord = self::query()->where('id', $id)->first();
+
+        // Check if the team record was found
+        if ($teamRecord) {
+            // Convert the database record to a Team model instance
+            return new static($teamRecord->toArray());
+        } else {
+            // Return null if the team record was not found
+            return null;
+        }
     }
 }

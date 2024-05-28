@@ -137,12 +137,12 @@
                             </div>
                         </div>
                         <button class="carousel-control-prev w-5 me-3" type="button"
-                            data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next w-5 me-3" type="button"
-                            data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -161,50 +161,50 @@
                     <div class="table-responsive">
                         <table class="table align-items-center ">
                             <tbody>
-                                <tr>
-                                    <td class="w-30">
-                                        <div class="d-flex px-2 py-1 align-items-center">
-                                            <div class="ms-4">
-                                                <p class="text-xs font-weight-bold mb-0">Nome:</p>
-                                                <h6 id="topScorerName" class="text-sm mb-0"></h6>
-                                                <h6 id="secondTopScorerName" class="text-sm mb-0"></h6>
-                                                <h6 id="thirdTopScorerName" class="text-sm mb-0"></h6>
-                                                <h6 id="forthTopScorerName" class="text-sm mb-0"></h6>
-                                                <h6 id="fifthTopScorerName" class="text-sm mb-0"></h6>
-                                            </div>
+                            <tr>
+                                <td class="w-30">
+                                    <div class="d-flex px-2 py-1 align-items-center">
+                                        <div class="ms-4">
+                                            <p class="text-xs font-weight-bold mb-0">Nome:</p>
+                                            <h6 id="topScorerName" class="text-sm mb-0"></h6>
+                                            <h6 id="secondTopScorerName" class="text-sm mb-0"></h6>
+                                            <h6 id="thirdTopScorerName" class="text-sm mb-0"></h6>
+                                            <h6 id="forthTopScorerName" class="text-sm mb-0"></h6>
+                                            <h6 id="fifthTopScorerName" class="text-sm mb-0"></h6>
                                         </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Numero:</p>
-                                            <h6 id="topScorerNumber" class="text-sm mb-0"></h6>
-                                            <h6 id="secondTopScorerNumber" class="text-sm mb-0"></h6>
-                                            <h6 id="thirdTopScorerNumber" class="text-sm mb-0"></h6>
-                                            <h6 id="forthTopScorerNumber" class="text-sm mb-0"></h6>
-                                            <h6 id="fifthTopScorerNumber" class="text-sm mb-0"></h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Posição:</p>
-                                            <h6 id="topScorerPosition" class="text-sm mb-0"></h6>
-                                            <h6 id="secondTopScorerPosition" class="text-sm mb-0"></h6>
-                                            <h6 id="thirdTopScorerPosition" class="text-sm mb-0"></h6>
-                                            <h6 id="forthTopScorerPosition" class="text-sm mb-0"></h6>
-                                            <h6 id="fifthTopScorerPosition" class="text-sm mb-0"></h6>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="col text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Golos:</p>
-                                            <h6 id="topScorerGoals" class="text-sm mb-0"></h6>
-                                            <h6 id="secondTopScorerGoals" class="text-sm mb-0"></h6>
-                                            <h6 id="thirdTopScorerGoals" class="text-sm mb-0"></h6>
-                                            <h6 id="forthTopScorerGoals" class="text-sm mb-0"></h6>
-                                            <h6 id="fifthTopScorerGoals" class="text-sm mb-0"></h6>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <p class="text-xs font-weight-bold mb-0">Numero:</p>
+                                        <h6 id="topScorerNumber" class="text-sm mb-0"></h6>
+                                        <h6 id="secondTopScorerNumber" class="text-sm mb-0"></h6>
+                                        <h6 id="thirdTopScorerNumber" class="text-sm mb-0"></h6>
+                                        <h6 id="forthTopScorerNumber" class="text-sm mb-0"></h6>
+                                        <h6 id="fifthTopScorerNumber" class="text-sm mb-0"></h6>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <p class="text-xs font-weight-bold mb-0">Posição:</p>
+                                        <h6 id="topScorerPosition" class="text-sm mb-0"></h6>
+                                        <h6 id="secondTopScorerPosition" class="text-sm mb-0"></h6>
+                                        <h6 id="thirdTopScorerPosition" class="text-sm mb-0"></h6>
+                                        <h6 id="forthTopScorerPosition" class="text-sm mb-0"></h6>
+                                        <h6 id="fifthTopScorerPosition" class="text-sm mb-0"></h6>
+                                    </div>
+                                </td>
+                                <td class="align-middle text-sm">
+                                    <div class="col text-center">
+                                        <p class="text-xs font-weight-bold mb-0">Golos:</p>
+                                        <h6 id="topScorerGoals" class="text-sm mb-0"></h6>
+                                        <h6 id="secondTopScorerGoals" class="text-sm mb-0"></h6>
+                                        <h6 id="thirdTopScorerGoals" class="text-sm mb-0"></h6>
+                                        <h6 id="forthTopScorerGoals" class="text-sm mb-0"></h6>
+                                        <h6 id="fifthTopScorerGoals" class="text-sm mb-0"></h6>
+                                    </div>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

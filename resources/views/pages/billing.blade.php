@@ -2,75 +2,58 @@
 
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Billing'])
-            <!DOCTYPE html>
-        <html lang="pt-PT">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Lista de Jogos Formatada</title>
-            <style>
-                table {
-                    font-family: Arial, sans-serif;
-                    border-collapse: collapse;
-                    width: 100%;
-                }
 
-                table th, table td {
-                    border: 1px solid #ddd;
-                    padding: 8px;
-                }
+    <div class="container mt--8 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">Lista de Jogos</div>
 
-                table th {
-                    text-align: left;
-                    background-color: #f0f0f0;
-                }
-            </style>
-        </head>
-        <body>
-        <h1>Lista de Jogos Formatada</h1>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>OpposingTeam</th>
+                                <th>Date</th>
+                                <th>StartingTime</th>
+                                <th>GoalsScored</th>
+                                <th>GoalsConceded</th>
+                                <th>EndingTime</th>
+                                <th>FieldFieldID</th>
+                                <th>TeamID</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($games as $game)
+                                <tr>
+                                    <td>{{ $game->OpposingTeam }}</td>
+                                    <td>{{ $game->Date }}</td>
+                                    <td>{{ $game->StartingTime }}</td>
+                                    <td>{{ $game->GoalsScored }}</td>
+                                    <td>{{ $game->GoalsConceded}}</td>
+                                    <td>{{ $game->EndingTime}}</td>
+                                    <td>{{ $game->FieldFieldID }}</td>
+                                    <td>{{ $game->TeamID}}</td>
+                                    <td>
+                                        <a href="{{ url('game/' . $game->id) }}">View</a>
+                                        <a href="{{ url('game/' . $game->id . '/edit') }}">Edit</a>
+                                        <form action="{{ url('game/' . $game->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        <a href="{{ route('game.create') }}">Create New Game</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <table id="gamesTable">
-            <thead>
-            <tr>
-                <th>ID Jogo</th>
-                <th>Equipa Oponente</th>
-                <th>Golos Sofridos</th>
-                <th>Golos Marcados</th>
-                <th>Equipa da Casa</th>
-                <th>Em Casa</th>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $.getJSON('game/games-formatted', function(data) {
-                    var gamesData = data;
-
-                    if (gamesData.length > 0) {
-                        for (var i = 0; i < gamesData.length; i++) {
-                            var game = gamesData[i];
-
-                            var row = $('<tr>');
-                            row.append('<td>' + game.gameId + '</td>');
-                            row.append('<td>' + game.opposingTeam + '</td>');
-                            row.append('<td>' + game.goalsConceded + '</td>');
-                            row.append('<td>' + game.goalsScored + '</td>');
-                            row.append('<td>' + game.homeTeamName + '</td>');
-                            row.append('<td>' + game.isAtHome + '</td>');
-
-                            $('#gamesTable tbody').append(row);
-                        }
-                    } else {
-                        $('#gamesTable tbody').append('<tr><td colspan="6">Não foram encontrados jogos.</td></tr>');
-                    }
-                });
-            });
-        </script>
-        </body>
-        </html>
     @include('layouts.footers.auth.footer')
 @endsection
