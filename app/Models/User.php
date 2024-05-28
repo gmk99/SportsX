@@ -31,6 +31,22 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class,'RoleID');
     }
 
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
+    }
+
+  /* public function setRole($role_id)
+    {
+        $role = Role::where('2', $role_id)->first();
+
+        if ($role) {
+            $this->roles()->detach();
+            $this->roles()->attach($role);
+        } else {
+            throw new \Exception("Role '{$role_id}' not found.");
+        }
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
