@@ -13,14 +13,14 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>OpposingTeam</th>
-                                <th>Date</th>
-                                <th>StartingTime</th>
-                                <th>GoalsScored</th>
-                                <th>GoalsConceded</th>
-                                <th>EndingTime</th>
-                                <th>FieldFieldID</th>
-                                <th>TeamID</th>
+                                <th>Equipa Adversária</th>
+                                <th>Data</th>
+                                <th>Hora de início</th>
+                                <th>Golos Marcados</th>
+                                <th>Golos Sofridos</th>
+                                <th>Hora de fim</th>
+                                <th>Campo</th>
+                                <th>Equipa</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
