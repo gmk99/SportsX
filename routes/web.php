@@ -23,6 +23,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');

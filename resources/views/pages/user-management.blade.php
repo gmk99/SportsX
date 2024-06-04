@@ -31,7 +31,7 @@
                                         <td>
                                             <div class="d-flex px-3 py-1">
                                                 <div>
-                                                    <img src="./img/team-1.jpg" class="avatar me-3" alt="image">
+                                                    <img src="{{ $user->avatar }}" class="avatar me-3" alt="image">
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm">{{ $user->firstname }} {{ $user->lastname }}</h6>
@@ -58,6 +58,9 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            {{ $users->links() }}
                         </div>
                     </div>
                 </div>

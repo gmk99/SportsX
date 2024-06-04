@@ -215,11 +215,11 @@ Route::put('team_director/{id}', [TeamDirectorController::class, 'update']);
 Route::delete('team_director/{id}', [TeamDirectorController::class, 'destroy']);
 
 // USER
-Route::get('users', [UserController::class, 'index']);
-Route::get('user/{id}', [UserController::class, 'show']);
-Route::post('user', [UserController::class, 'store']);
-Route::put('user/{id}', [UserController::class, 'update']);
-Route::delete('user/{id}', [UserController::class, 'destroy']);
+Route::get('users', [UserController::class, 'index'])->name('users.index');
+Route::get('users/manage', [UserController::class, 'index'])->name('users.manage');
+Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
