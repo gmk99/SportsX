@@ -37,13 +37,23 @@ Route::get('/', function () {return redirect('/dashboard');})->middleware('auth'
 	Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
 	Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
-Route::get('billing', [GameController::class, 'index'])->name('billing');
-Route::get('games', [GameController::class, 'index'])->name('games.index');
-Route::get('game/create', [GameController::class, 'create'])->name('game.create');
-Route::post('game', [GameController::class, 'store'])->name('games.store');
-Route::get('game/{id}', [GameController::class, 'show'])->name('game.show');
-Route::put('game/{id}', [GameController::class, 'update'])->name('game.update');
-Route::delete('game/{id}', [GameController::class, 'destroy'])->name('game.destroy');
+Route::middleware(['role:admin,td'])->group(function () {
+    Route::get('billing', [GameController::class, 'index'])->name('billing');
+    Route::get('games', [GameController::class, 'index'])->name('games.index');
+    Route::get('game/create', [GameController::class, 'create'])->name('game.create');
+    Route::post('game', [GameController::class, 'store'])->name('games.store');
+    Route::get('game/{id}', [GameController::class, 'show'])->name('game.show');
+    Route::put('game/{id}', [GameController::class, 'update'])->name('game.update');
+    Route::delete('game/{id}', [GameController::class, 'destroy'])->name('game.destroy');
+});
+
+Route::get('user-management', [UserController::class, 'index'])->name('user-management');
+Route::get('users', [UserController::class, 'index'])->name('users.index');
+Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+Route::post('user', [UserController::class, 'store'])->name('users.store');
+Route::get('user/{id}', [UserController::class, 'show'])->name('user.show');
+Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
+Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
 
 Route::group(['middleware' => 'auth'], function () {

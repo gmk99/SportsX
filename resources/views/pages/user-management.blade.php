@@ -1,65 +1,55 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'User Management'])
-    <div class="container-fluid py-4">
-        <div class="row">
-            <div class="col-12">
-                @if (session('success'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                <div class="card mb-4">
-                    <div class="card-header pb-0">
-                        <h6>Users</h6>
-                    </div>
-                    <div class="card-body px-0 pt-0 pb-2">
-                        <div class="table-responsive p-0">
-                            <table class="table align-items-center mb-0">
-                                <thead>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">User Management</div>
+
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Roles</th>
+                                <th>Creation Date</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($users as $user)
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Role</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Create Date</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                    <td>{{ $user->username }}</td>
+                                    <td>
+                                        @if ($user->roles->isNotEmpty())
+                                            @foreach ($user->roles as $role)
+                                                {{ $role->name }}<br>
+                                            @endforeach
+                                        @else
+                                            No Role
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($user->created_at)
+                                            {{ $user->created_at->format('d/m/Y') }}
+                                        @else
+                                            Unknown
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <!-- Botões de ação -->
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($users as $user)
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-3 py-1">
-                                                <div>
-                                                    <img src="{{ $user->avatar }}" class="avatar me-3" alt="image">
-                                                </div>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">{{ $user->firstname }} {{ $user->lastname }}</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0">{{ $user->role->display_name }}</p>
-                                        </td>
-                                        <td class="align-middle text-center text-sm">
-                                            <p class="text-sm font-weight-bold mb-0">{{ $user->created_at->format('d/m/Y') }}</p>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <a href="{{ route('users.edit', $user->id) }}" class="text-sm font-weight-bold mb-0 ps-2">Edit</a>
-                                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-sm font-weight-bold mb-0 border-0 bg-transparent p-0">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            {{ $users->links() }}
-                        </div>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
