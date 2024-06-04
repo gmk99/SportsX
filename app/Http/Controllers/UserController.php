@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+
     public function index()
     {
         $users = User::with('role')->paginate(15); // Fetch users with their roles
@@ -49,4 +51,11 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
+
+    public function manageUsers()
+    {
+        $users = User::all();
+        return view('profile', compact('users'));
+    }
+
 }

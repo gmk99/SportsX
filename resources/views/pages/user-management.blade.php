@@ -44,15 +44,13 @@
                                         <td class="align-middle text-center text-sm">
                                             <p class="text-sm font-weight-bold mb-0">{{ $user->created_at->format('d/m/Y') }}</p>
                                         </td>
-                                        <td class="align-middle text-end">
-                                            <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                                <a href="{{ route('users.edit', $user->id) }}" class="text-sm font-weight-bold mb-0 ps-2">Edit</a>
-                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="ps-2">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="text-sm font-weight-bold mb-0 border-0 bg-transparent p-0">Delete</button>
-                                                </form>
-                                            </div>
+                                        <td class="align-middle text-center">
+                                            <a href="{{ route('users.edit', $user->id) }}" class="text-sm font-weight-bold mb-0 ps-2">Edit</a>
+                                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-sm font-weight-bold mb-0 border-0 bg-transparent p-0">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
