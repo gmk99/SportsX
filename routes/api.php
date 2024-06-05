@@ -47,12 +47,14 @@ Route::put('card-type/{id}', [CardTypeController::class, 'update']);
 Route::delete('card-type/{id}', [CardTypeController::class,'destroy']);
 
 // GAME
-Route::get('games', [GameController::class, 'index']);
-Route::get('game/{id}', [GameController::class, 'show']);
-Route::post('game', [GameController::class, 'store']);
-Route::put('game/{id}', [GameController::class, 'update']);
-Route::delete('game/{id}', [GameController::class,'destroy']);
-Route::get('game/games-formatted', [GameController::class, 'indexFormatted']);
+Route::middleware(['auth:api', 'role:admin,td'])->group(function () {
+    Route::get('games', [GameController::class, 'index']);
+    Route::get('game/{id}', [GameController::class, 'show']);
+    Route::post('game', [GameController::class, 'store']);
+    Route::put('game/{id}', [GameController::class, 'update']);
+    Route::delete('game/{id}', [GameController::class, 'destroy']);
+    Route::get('game/games-formatted', [GameController::class, 'indexFormatted']);
+});
 
 // CARD
 Route::get('cards', [CardController::class, 'index']);

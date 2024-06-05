@@ -4,22 +4,27 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Http\Resources\Users as UserResource;
 
 class UserController extends Controller
 {
-
-
     public function index()
     {
-        $users = User::with('role')->paginate(15); // Fetch users with their roles
-        return view('users.index', compact('users')); // Pass users to the view
+        $users = User::paginate(10); // Paginação com 10 registros por página (ajuste conforme necessário)
+        return view('pages.user-management', compact('users'));
     }
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
         $roles = Role::all();
-        return view('users.edit', compact('user', 'roles'));
+        return view('users.user-edit', compact('user', 'roles')); // Updated line
+    }
+
+    public function show($id)
+    {
+        $game = User::findOrFail($id);
+        return new UserResource($game);
     }
 
     public function update(Request $request, $id)
@@ -57,5 +62,4 @@ class UserController extends Controller
         $users = User::all();
         return view('profile', compact('users'));
     }
-
 }

@@ -19,34 +19,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'role_id',
         'username',
         'email',
         'password'
     ];
 
-    //Chave estrangeira RoleID
-    private function role()
-    {
-        return $this->belongsTo(Role::class,'RoleID');
-    }
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
-    }
-
-  /* public function setRole($role_id)
-    {
-        $role = Role::where('2', $role_id)->first();
-
-        if ($role) {
-            $this->roles()->detach();
-            $this->roles()->attach($role);
-        } else {
-            throw new \Exception("Role '{$role_id}' not found.");
-        }
-    }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -66,14 +43,41 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Define o relacionamento com as roles.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_roles');
+    }
 
     /**
-     * Always encrypt the password when it is updated.
+     * Verifica se o usuário possui uma role específica.
      *
-     * @param $value
-    * @return string
-    */
+     * @param string $role
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
+    }
 
+    /**
+     * Verifica se o usuário possui pelo menos uma das roles fornecidas.
+     *
+     * @param array $roles
+     * @return bool
+     */
+    public function hasAnyRole($roles)
+    {
+        return $this->roles()->whereIn('name', $roles)->exists();
+    }
+
+    /**
+     * Sempre criptografa a senha quando ela é definida.
+     *
+     * @param string $value
+     */
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
