@@ -24,6 +24,7 @@ use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InjuryController;
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
@@ -54,6 +55,8 @@ Route::post('user', [UserController::class, 'store'])->name('users.store');
 Route::get('user/{id}', [UserController::class, 'show'])->name('user.show');
 Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
 Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+
+Route::resource('injuries', InjuryController::class);
 
 
 Route::group(['middleware' => 'auth'], function () {

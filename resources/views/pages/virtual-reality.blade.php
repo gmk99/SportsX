@@ -1,59 +1,49 @@
-@extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
+@extends('layouts.app')
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Billing'])
-
-    <div class="container mt--8 pb-5">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Lista de Jogos</div>
+                    <div class="card-header">Injury Management</div>
 
                     <div class="card-body">
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Equipa Adversária</th>
-                                <th>Data</th>
-                                <th>Hora de início</th>
-                                <th>Golos Marcados</th>
-                                <th>Golos Sofridos</th>
-                                <th>Hora de fim</th>
-                                <th>Campo</th>
-                                <th>Equipa</th>
-                                <th>Actions</th>
+                                <th>Denomination</th>
+                                <th>Location</th>
+                                <th>Estimated Time to Recover</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($games as $game)
+                            @foreach ($injuries as $injury)
                                 <tr>
-                                    <td>{{ $game->OpposingTeam }}</td>
-                                    <td>{{ $game->Date }}</td>
-                                    <td>{{ $game->StartingTime }}</td>
-                                    <td>{{ $game->GoalsScored }}</td>
-                                    <td>{{ $game->GoalsConceded}}</td>
-                                    <td>{{ $game->EndingTime}}</td>
-                                    <td>{{ $game->FieldFieldID }}</td>
-                                    <td>{{ $game->TeamID}}</td>
+                                    <td>{{ $injury->Denomination }}</td>
+                                    <td>{{ $injury->Location }}</td>
+                                    <td>{{ $injury->EstimatedTimeToRecover }}</td>
                                     <td>
-                                        <a href="{{ url('game/' . $game->id) }}">View</a>
-                                        <a href="{{ url('game/' . $game->id . '/edit') }}">Edit</a>
-                                        <form action="{{ url('game/' . $game->id) }}" method="POST" style="display: inline;">
+                                        <a href="{{ route('injuries.edit', $injury->id) }}" class="btn btn-primary">Edit</a>
+                                        <form action="{{ route('injuries.destroy', $injury->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit">Delete</button>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-                        <a href="{{ route('game.create') }}">Create New Game</a>
+                        {{ $injuries->links() }} <!-- Pagination -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    @include('layouts.footers.auth.footer')
 @endsection
