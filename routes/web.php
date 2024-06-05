@@ -70,3 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/{page}', [PageController::class, 'index'])->name('page');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::resource('games', GameController::class);
+});
