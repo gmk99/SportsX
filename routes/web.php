@@ -24,6 +24,7 @@ use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InjuryController;
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
@@ -55,6 +56,8 @@ Route::get('user/{id}', [UserController::class, 'show'])->name('user.show');
 Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
 Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
+Route::resource('injuries', InjuryController::class);
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/virtual-reality', [PageController::class, 'vr'])->name('virtual-reality');
@@ -66,4 +69,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/sign-up-static', [PageController::class, 'signup'])->name('sign-up-static');
     Route::get('/{page}', [PageController::class, 'index'])->name('page');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::resource('games', GameController::class);
 });
