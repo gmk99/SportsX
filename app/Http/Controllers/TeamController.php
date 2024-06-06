@@ -89,4 +89,10 @@ class TeamController extends Controller
         // Retorna os detalhes das equipes como resposta JSON
         return response()->json($teamsDetails);
     }
+
+    public function getTeamNames()
+    {
+        $teams = Team::select('Name')->get();
+        return response()->json($teams);
+    }
 }
