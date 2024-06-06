@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        @if($injuries->count() > 0)
+                        @if(isset($injuries) && $injuries->count() > 0)
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -42,10 +42,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <!-- Ensure that $injuries is an instance of LengthAwarePaginator -->
-                            @if ($injuries instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                                {{ $injuries->links() }}
-                            @endif
+                            {{ $injuries->links() }} <!-- Pagination -->
                         @else
                             <p>No injuries found.</p>
                         @endif
