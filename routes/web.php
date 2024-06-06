@@ -56,7 +56,13 @@ Route::get('user/{id}', [UserController::class, 'show'])->name('user.show');
 Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
 Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
-Route::resource('injuries', InjuryController::class);
+
+Route::get('injuries', [InjuryController::class, 'index'])->name('injuries.index');
+Route::get('injuries/{id}/edit', [InjuryController::class, 'edit'])->name('injuries.edit');
+Route::get('injury/{id}', [InjuryController::class, 'show'])->name('injuries.show');
+Route::post('injury', [InjuryController::class, 'store'])->name('injuries.store');
+Route::put('injury/{id}', [InjuryController::class, 'update'])->name('injuries.update');
+Route::delete('injury/{id}', [InjuryController::class,'destroy'])->name('injuries.destroy');
 
 
 Route::group(['middleware' => 'auth'], function () {
