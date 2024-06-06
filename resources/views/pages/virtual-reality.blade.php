@@ -13,34 +13,39 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Denomination</th>
-                                <th>Location</th>
-                                <th>Estimated Time to Recover</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($injuries as $injury)
+
+                        @if(isset($injuries) && $injuries->count() > 0)
+                            <table class="table">
+                                <thead>
                                 <tr>
-                                    <td>{{ $injury->Denomination }}</td>
-                                    <td>{{ $injury->Location }}</td>
-                                    <td>{{ $injury->EstimatedTimeToRecover }}</td>
-                                    <td>
-                                        <a href="{{ route('injuries.edit', $injury->id) }}" class="btn btn-primary">Edit</a>
-                                        <form action="{{ route('injuries.destroy', $injury->id) }}" method="POST" style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
-                                    </td>
+                                    <th>Denomination</th>
+                                    <th>Location</th>
+                                    <th>Estimated Time to Recover</th>
+                                    <th>Action</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        {{ $injuries->links() }} <!-- Pagination -->
+                                </thead>
+                                <tbody>
+                                @foreach ($injuries as $injury)
+                                    <tr>
+                                        <td>{{ $injury->Denomination }}</td>
+                                        <td>{{ $injury->Location }}</td>
+                                        <td>{{ $injury->EstimatedTimeToRecover }}</td>
+                                        <td>
+                                            <a href="{{ route('injuries.edit', $injury->id) }}" class="btn btn-primary">Edit</a>
+                                            <form action="{{ route('injuries.destroy', $injury->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            {{ $injuries->links() }} <!-- Pagination -->
+                        @else
+                            <p>No injuries found.</p>
+                        @endif
                     </div>
                 </div>
             </div>
