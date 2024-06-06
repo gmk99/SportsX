@@ -48,7 +48,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <a href="{{ route('game.create') }}">Create New Game</a>
+                        <a href="{{ route('game_create') }}">Create New Game</a>
                     </div>
                 </div>
             </div>
