@@ -93,11 +93,11 @@ Route::delete('injury_player/{id}', [InjuryPlayerController::class,'destroy']);
 Route::get('totalInjuries', [InjuryPlayerController::class, 'totalInjuries'])->name('totalInjuries');
 
 // INJURY
-Route::get('injuries', [InjuryController::class, 'index']);
-Route::get('injury/{id}', [InjuryController::class, 'show']);
-Route::post('injury', [InjuryController::class, 'store']);
-Route::put('injury/{id}', [InjuryController::class, 'update']);
-Route::delete('injury/{id}', [InjuryController::class,'destroy']);
+Route::get('injuries', [InjuryController::class, 'index'])->name('injuries.index');
+Route::get('injuries/{id}', [InjuryController::class, 'show'])->name('injuries.show');
+Route::post('injuries', [InjuryController::class, 'store'])->name('injuries.store');
+Route::put('injuries/{id}', [InjuryController::class, 'update'])->name('injuries.update');
+Route::delete('injuries/{id}', [InjuryController::class,'destroy'])->name('injuries.destroy');
 
 // INJURY PLAYER TREATMENT
 Route::get('injury_player_treatments', [InjuryPlayerTreatmentController::class, 'index']);
