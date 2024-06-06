@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use TCG\Voyager\Models\Role;
 
 class User extends Authenticatable
 {
@@ -16,18 +15,18 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
-        'username',
+        'name',
         'email',
-        'password'
+        'password',
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
         'password',
@@ -35,16 +34,16 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
-     * @var array<string, string>
+     * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
     /**
-     * Define o relacionamento com as roles.
+     * Define the relationship with roles.
      */
     public function roles()
     {
@@ -52,7 +51,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Verifica se o usuário possui uma role específica.
+     * Check if the user has a specific role.
      *
      * @param string $role
      * @return bool
@@ -63,7 +62,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Verifica se o usuário possui pelo menos uma das roles fornecidas.
+     * Check if the user has any of the provided roles.
      *
      * @param array $roles
      * @return bool
@@ -74,7 +73,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Sempre criptografa a senha quando ela é definida.
+     * Always encrypt the password when setting it.
      *
      * @param string $value
      */

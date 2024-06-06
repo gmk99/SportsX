@@ -22,4 +22,9 @@ class Player extends JsonResource
             'PositionID' => $this->PositionID
         ];
     }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class, 'PositionID');
+    }
 }
