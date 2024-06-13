@@ -28,7 +28,7 @@
     <style>
         #calendar {
             width: 100%;
-            height: 700px;
+            height: 700px; /* Adjust this height as needed */
         }
     </style>
 

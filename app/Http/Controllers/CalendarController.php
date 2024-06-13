@@ -16,28 +16,28 @@ class CalendarController extends Controller
 
     public function getEvents(Request $request)
     {
-        $startOfWeek = Carbon::parse($request->query('start'));
-        $endOfWeek = Carbon::parse($request->query('end'));
+        $start = Carbon::parse($request->query('start'));
+        $end = Carbon::parse($request->query('end'));
 
-        $games = Game::whereBetween('starting_time', [$startOfWeek, $endOfWeek])->get();
-        $trains = Train::whereBetween('starting_time', [$startOfWeek, $endOfWeek])->get();
+        $games = Game::whereBetween('Date', [$start, $end])->get();
+        $trains = Train::whereBetween('Date', [$start, $end])->get();
 
         $events = [];
 
         foreach ($games as $game) {
             $events[] = [
-                'title' => $game->name,
-                'start' => $game->starting_time,
-                'end' => $game->ending_time,
+                'title' => 'Game: ' . $game->name,
+                'start' => $game->Date . 'T' . Carbon::parse($game->StartingTime)->format('H:i:s'),
+                'end' => $game->Date . 'T' . Carbon::parse($game->EndingTime)->format('H:i:s'),
                 'color' => 'blue'
             ];
         }
 
         foreach ($trains as $train) {
             $events[] = [
-                'title' => $train->name,
-                'start' => $train->starting_time,
-                'end' => $train->ending_time,
+                'title' => 'Train: ' . $train->name,
+                'start' => $train->Date . 'T' . Carbon::parse($train->StartingTime)->format('H:i:s'),
+                'end' => $train->Date . 'T' . Carbon::parse($train->EndingTime)->format('H:i:s'),
                 'color' => 'green'
             ];
         }
