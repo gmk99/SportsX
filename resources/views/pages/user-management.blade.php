@@ -22,13 +22,9 @@
                                 <tr>
                                     <td>{{ $user->username }}</td>
                                     <td>
-                                        @if ($user->roles->isNotEmpty())
-                                            @foreach ($user->roles as $role)
-                                                {{ $role->name }}<br>
-                                            @endforeach
-                                        @else
-                                            No Role
-                                        @endif
+                                        @foreach ($user->roles as $role)
+                                            {{ $role->name }}<br>
+                                        @endforeach
                                     </td>
                                     <td>
                                         @if ($user->created_at)
@@ -38,7 +34,6 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <!-- Botões de ação -->
                                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
                                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
                                             @csrf

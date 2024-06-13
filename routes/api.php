@@ -25,6 +25,7 @@ use App\Http\Controllers\CoachController;
 use App\Http\Controllers\CoachRoleController;
 use App\Http\Controllers\TrainController;
 use App\Http\Controllers\TeamDirectorController;
+use App\Http\Controllers\CalendarController;
 
 
 
@@ -225,6 +226,7 @@ Route::get('users/{id}', [UserController::class, 'edit'])->name('users.edit');
 Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');
 Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 Route::get('users/manage', [UserController::class, 'manageUsers'])->name('users.manage');
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

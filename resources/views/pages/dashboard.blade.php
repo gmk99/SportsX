@@ -104,35 +104,25 @@
                 <div class="card card-carousel overflow-hidden h-100 p-0">
                     <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
                         <div class="carousel-inner border-radius-lg h-100">
-                            <div class="carousel-item h-100 active" style="background-image: url('./img/carousel-1.jpg');
+                            <div class="carousel-item h-100 active" style="background-image: url('./img/coach.jpg');
             background-size: cover;">
                                 <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-camera-compact text-dark opacity-10"></i>
-                                    </div>
-                                    <h5 class="text-white mb-1">Get started with Argon</h5>
-                                    <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
+                                    <h5 class="text-white mb-1">Vamos ao trabalho</h5>
+                                    <p>Na aba de gestão, faça a coordenação de jogos e treinos da sua equipa.</p>
                                 </div>
                             </div>
-                            <div class="carousel-item h-100" style="background-image: url('./img/carousel-2.jpg');
+                            <div class="carousel-item h-100" style="background-image: url('./img/team.jpg');
             background-size: cover;">
                                 <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-bulb-61 text-dark opacity-10"></i>
-                                    </div>
-                                    <h5 class="text-white mb-1">Faster way to create web pages</h5>
-                                    <p>That’s my skill. I’m not really specifically talented at anything except for the
-                                        ability to learn.</p>
+                                    <h5 class="text-white mb-1">Onze inicial</h5>
+                                    <p>Você consegue gerir as suas equipas e os seus jogadores na aba de gestão.</p>
                                 </div>
                             </div>
-                            <div class="carousel-item h-100" style="background-image: url('./img/carousel-3.jpg');
+                            <div class="carousel-item h-100" style="background-image: url('./img/injury.jpg');
             background-size: cover;">
                                 <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-trophy text-dark opacity-10"></i>
-                                    </div>
-                                    <h5 class="text-white mb-1">Share with us your design tips!</h5>
-                                    <p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
+                                    <h5 class="text-white mb-1">Um novo começo</h5>
+                                    <p>Consulte o boletim clínico na aba de gestão para ajuda na recuperação dos jogadores.</p>
                                 </div>
                             </div>
                         </div>

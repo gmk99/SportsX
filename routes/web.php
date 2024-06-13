@@ -25,6 +25,7 @@ use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InjuryController;
+use App\Http\Controllers\CalendarController;
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
@@ -78,6 +79,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/{page}', [PageController::class, 'index'])->name('page');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
+
+
+
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
+Route::get('/calendar/events', [CalendarController::class, 'getEvents'])->name('calendar.events');
+
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('games', GameController::class);
