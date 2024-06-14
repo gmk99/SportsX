@@ -15,24 +15,33 @@ class GameController extends Controller {
         return view('pages.billing', compact('games'));
     }
 
-
     public function show($id){
-        $game = Game::findOrFail( $id );
-        return new GameResource( $game );
+        $game = Game::findOrFail($id);
+        return new GameResource($game);
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validated();
+        $validatedData = $request->validate([
+            'IsAtHome' => 'required|boolean',
+            'OpposingTeam' => 'required|string|max:255',
+            'Date' => 'required|date',
+            'StartingTime' => 'required|date_format:H:i',
+            'GoalsScored' => 'required|integer',
+            'GoalsConceded' => 'required|integer',
+            'EndingTime' => 'required|date_format:H:i',
+            'FieldFieldID' => 'required|integer',
+            'TeamID' => 'required|integer|exists:Team,id'
+        ]);
 
         $game = new Game;
         $game->IsAtHome = $validatedData['IsAtHome'];
         $game->OpposingTeam = $validatedData['OpposingTeam'];
         $game->Date = $validatedData['Date'];
-        $game->StartingTime = $validatedData['StartingTime'];
+        $game->StartingTime = $validatedData['Date'] . ' ' . $validatedData['StartingTime'] . ':00'; // Combine date and time
         $game->GoalsScored = $validatedData['GoalsScored'];
         $game->GoalsConceded = $validatedData['GoalsConceded'];
-        $game->EndingTime = $validatedData['EndingTime'];
+        $game->EndingTime = $validatedData['Date'] . ' ' . $validatedData['EndingTime'] . ':00'; // Combine date and time
         $game->FieldFieldID = $validatedData['FieldFieldID'];
         $game->TeamID = $validatedData['TeamID'];
         $game->save();
@@ -40,32 +49,41 @@ class GameController extends Controller {
         return redirect()->route('billing')->with('success', 'Game created successfully.');
     }
 
-
     public function update(Request $request)
     {
-        $game = Game::findOrFail( $request->id );
-        $game->IsAtHome = $request->input('IsAtHome');
-        $game->OpposingTeam = $request->input('OpposingTeam');
-        $game->Date = $request->input('Date');
-        $game->StartingTime = $request->input('StartingTime');
-        $game->GoalsScored = $request->input('GoalsScored');
-        $game->GoalsConceded = $request->input('GoalsConceded');
-        $game->EndingTime = $request->input('EndingTime');
-        $game->FieldFieldID = $request->input('FieldFieldID');
-        $game->TeamID = $request->input('TeamID');
+        $validatedData = $request->validate([
+            'IsAtHome' => 'required|boolean',
+            'OpposingTeam' => 'required|string|max:255',
+            'Date' => 'required|date',
+            'StartingTime' => 'required|date_format:H:i',
+            'GoalsScored' => 'required|integer',
+            'GoalsConceded' => 'required|integer',
+            'EndingTime' => 'required|date_format:H:i',
+            'FieldFieldID' => 'required|integer',
+            'TeamID' => 'required|integer|exists:Team,id'
+        ]);
 
-        if( $game->save() )
-        {
+        $game = Game::findOrFail($request->id);
+        $game->IsAtHome = $validatedData['IsAtHome'];
+        $game->OpposingTeam = $validatedData['OpposingTeam'];
+        $game->Date = $validatedData['Date'];
+        $game->StartingTime = $validatedData['Date'] . ' ' . $validatedData['StartingTime'] . ':00'; // Combine date and time
+        $game->GoalsScored = $validatedData['GoalsScored'];
+        $game->GoalsConceded = $validatedData['GoalsConceded'];
+        $game->EndingTime = $validatedData['Date'] . ' ' . $validatedData['EndingTime'] . ':00'; // Combine date and time
+        $game->FieldFieldID = $validatedData['FieldFieldID'];
+        $game->TeamID = $validatedData['TeamID'];
+
+        if ($game->save()) {
             return new GameResource($game);
         }
     }
 
     public function destroy($id)
     {
-        $game = Game::findOrFail( $id );
-        if( $game->delete() )
-        {
-            return new GameResource( $game );
+        $game = Game::findOrFail($id);
+        if ($game->delete()) {
+            return new GameResource($game);
         }
     }
 
@@ -82,16 +100,16 @@ class GameController extends Controller {
             $formattedGames = [];
 
             foreach ($games as $game) {
-                $homeTeam = Team::find($game->teamId);
+                $homeTeam = Team::find($game->TeamID);
                 $homeTeamName = $homeTeam ? $homeTeam->name : null;
 
                 $gameStatus = [
                     'gameId' => $game->id,
-                    'opposingTeam' => $game->opposingTeam,
-                    'goalsConceded' => $game->goalsConceded,
-                    'goalsScored' => $game->goalsScored,
+                    'opposingTeam' => $game->OpposingTeam,
+                    'goalsConceded' => $game->GoalsConceded,
+                    'goalsScored' => $game->GoalsScored,
                     'homeTeamName' => $homeTeamName,
-                    'isAtHome' => $game->isAtHome ? 'Casa' : 'Fora'
+                    'isAtHome' => $game->IsAtHome ? 'Casa' : 'Fora'
                 ];
 
                 $formattedGames[] = $gameStatus;

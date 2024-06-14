@@ -26,6 +26,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InjuryController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\TrainController;
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
@@ -80,7 +81,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-
+Route::get('/train/create', [TrainController::class, 'create'])->name('train_create');
+Route::resource('trains', TrainController::class);
 
 Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
 Route::get('/calendar/events', [CalendarController::class, 'getEvents'])->name('calendar.events');

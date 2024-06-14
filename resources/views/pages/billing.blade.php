@@ -7,15 +7,16 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Calendar</div>
+                    <div class="card-header">Calendario</div>
                     <div class="card-body">
                         <div id="calendar" data-events-url="{{ route('calendar.events') }}"></div>
                         <div class="mt-3">
-                            <button id="prevWeek" class="btn btn-primary">Previous Week</button>
-                            <button id="nextWeek" class="btn btn-primary">Next Week</button>
+                            <button id="prevWeek" class="btn btn-primary">Semana Anterior</button>
+                            <button id="nextWeek" class="btn btn-primary">Proxima Semana</button>
                         </div>
                         <div class="mt-3">
-                            <a href="{{ route('game_create') }}" class="btn btn-success">Create New Game</a>
+                            <a href="{{ route('game_create') }}" class="btn btn-success">Criar Novo Jogo</a>
+                            <a href="{{ route('train_create') }}" class="btn btn-success">Criar Novo Treino</a>
                         </div>
                     </div>
                 </div>
